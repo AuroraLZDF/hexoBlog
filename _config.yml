@@ -36,10 +36,15 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'default'
+  line_number: true    # default false
+  custom_css: 'path/to/your/custom.css'     # optional  
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -57,7 +62,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: annie
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -65,6 +70,12 @@ deploy:
   repo: https://github.com/AuroraLZDF/blog.io.git
   #repo: https://git.coding.net/aurora_LZDF/Hexo-Blog.git
   branch: master
+# Search   
+search:
+  path: search.json
+  zipPath: search.zip
+  versionPath: searchVersion.txt
+  field: post
 # jsonContent
 jsonContent:
     meta: false
