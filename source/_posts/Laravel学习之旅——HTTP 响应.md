@@ -4,6 +4,7 @@ date: 2017-04-01 16:45:15
 tags: [PHP, Laravel]
 categories: [Laravel]
 toc: true
+cover: '/images/categories/laravel.jpeg'
 ---
 
 # 基本响应

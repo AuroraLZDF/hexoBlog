@@ -4,6 +4,7 @@ date: 2017-04-11 15:33:11
 tags: [Vue.js, 前端框架]
 categories: [Vue.js]
 toc: true
+cover: '/images/categories/vuejs.jpeg'
 ---
 <h1>Vue.js介绍</h1>
 

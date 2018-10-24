@@ -4,6 +4,7 @@ date: 2017-11-13 10:25:12
 tags: [MySQL]
 categories: [MySQL]
 toc: true
+cover: '/images/categories/mysql.jpg'
 ---
 
 命名规则：表名_字段名

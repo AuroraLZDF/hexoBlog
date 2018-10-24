@@ -4,6 +4,7 @@ date: 2017-11-13 14:50:39
 tags: [PHP,Session]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 # 简介

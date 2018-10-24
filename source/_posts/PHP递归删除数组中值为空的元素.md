@@ -4,6 +4,7 @@ date: 2018-10-23 17:47:06
 tag: [PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 ```php

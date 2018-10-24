@@ -5,6 +5,7 @@ date: 2018-03-01 09:54:31
 tags: [Docker]
 categories: [Docker]
 toc: true
+cover: '/images/categories/docker.jpg'
 ---
 
 # 一、Docker 简介

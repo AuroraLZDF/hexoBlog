@@ -4,6 +4,7 @@ date: 2018-01-04
 tag: [Python]
 categories: [Python]
 toc: true
+cover: '/images/categories/python.jpeg'
 ---
 # TODO
 待补充。。。

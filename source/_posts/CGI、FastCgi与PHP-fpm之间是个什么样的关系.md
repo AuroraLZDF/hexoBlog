@@ -4,6 +4,7 @@ date: 2017-11-15 15:09:30
 tags: [Linux,PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 [转载：搞不清FastCgi与PHP-fpm之间是个什么样的关系](https://segmentfault.com/q/1010000000256516)

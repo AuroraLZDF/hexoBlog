@@ -4,6 +4,7 @@ date: 2017-05-02 10:19:03
 tags: [Vue.js, js]
 categories: [Vue.js]
 toc: true
+cover: '/images/categories/vuejs.jpeg'
 ---
 # 写在前面的话
 <div class="bs-callout bs-callout-info">

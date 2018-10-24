@@ -4,6 +4,7 @@ date: 2017-05-08 11:18:07
 tags: [webuploader, js, PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 # 前言
 做手机游戏运营难免会遇到上传超大APP，但受限于宽带、http响应时间等因素，导致文件上传不成功。在网上搜罗了一圈，终于在github上找到了[kazaff](https://github.com/kazaff)大神对于`webuploader`[大文件上传](http://blog.kazaff.me/2014/11/14/聊聊大文件上传/)的详细介绍。

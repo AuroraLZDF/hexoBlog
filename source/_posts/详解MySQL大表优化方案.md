@@ -4,6 +4,7 @@ date: 2017-03-23 19:00:22
 tags: [MySQL]
 categories: [MySQL]
 toc: true
+cover: '/images/categories/mysql.jpg'
 ---
 当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化：单表优化、字段、索引、查询SQL、引擎等。
 

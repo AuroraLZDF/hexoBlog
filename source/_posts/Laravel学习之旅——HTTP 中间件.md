@@ -4,6 +4,7 @@ date: 2017-04-02 09:45:46
 tags: [PHP, Laravel]
 categories: [Laravel]
 toc: true
+cover: '/images/categories/laravel.jpeg'
 ---
 
 # 简介

@@ -4,6 +4,7 @@ date: 2017-09-23
 tags: [Linux,git]
 categories: [git]
 toc: true
+cover: '/images/categories/git.gif'
 ---
 # 前言
 最近搞了个服务器，来放一些自己的小东西（代码）。想想ftp太麻烦（lower），于是选择了在服务器上搭建一个Git，用来同步代码，特此做一个备忘录（注：我的服务器是centos 7，lnmp环境）。

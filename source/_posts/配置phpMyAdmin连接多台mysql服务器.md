@@ -4,6 +4,7 @@ date: 2017-04-02 13:24:12
 tags: [MySQL]
 categories: [MySQL]
 toc: true
+cover: '/images/categories/mysql.jpg'
 ---
 # 一、设置phpMyAdmin自动登录
 首先在根目录找到`config.sample.inc.php`复制一份文件名改为`config.inc.php`（如果已经存在 `config.inc.php` 文件，则直接修改该文件即可）。

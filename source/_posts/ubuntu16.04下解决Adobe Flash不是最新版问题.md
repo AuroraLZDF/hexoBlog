@@ -4,6 +4,7 @@ date: 2017-05-22 16:02:11
 tags: [Linux]
 categories: [Linux]
 toc: true
+cover: '/images/categories/linux.jpeg'
 ---
 
 刚刚装好的我的Ubuntu16.04，我是开发人员，需要chrome浏览器（强大的调试工具），打开flash提示‘Adobe Flash不是最新版’

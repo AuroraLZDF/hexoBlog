@@ -4,6 +4,7 @@ date: 2017-10-18 16:02:11
 tags: [Linux, MySQL]
 categories: [MySQL]
 toc: true
+cover: '/images/categories/mysql.jpg'
 ---
 
 ### 创建并编辑文件 /home/aurora/backup/backup_mysql_aurora.sh，命令：

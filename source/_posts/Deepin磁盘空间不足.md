@@ -5,6 +5,7 @@ tags: [Linux,系统]
 categories: [Deepin]
 comments: true
 toc: true
+cover: '/images/categories/deepin.jpeg'
 ---
 # 简介
 早上打开电脑进入Deepin系统，系统右上角突然提示磁盘空间不足！！！ (啊啊啊！没图啊，问题已经修复了，回来总结的，自己脑补吧)

@@ -4,6 +4,7 @@ date: 2017-11-13 14:50:39
 tags: [面试总结]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 # 浏览器与服务器交互图

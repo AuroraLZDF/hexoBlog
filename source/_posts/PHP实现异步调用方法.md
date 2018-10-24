@@ -4,6 +4,7 @@ date: 2018-10-23 17:49:19
 tags: [PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 浏览器和服务器之间是通过 HTTP 协议进行连接通讯的。这是一种基于请求和响应模型的协议。

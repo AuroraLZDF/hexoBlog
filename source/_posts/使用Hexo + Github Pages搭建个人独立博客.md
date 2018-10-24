@@ -4,6 +4,7 @@ date: 2017-03-02 16:40:41
 tags: [Hexo]
 categories: [Hexo]
 toc: true
+cover: '/images/categories/hexo.jpg'
 ---
 
 ## 系统环境配置

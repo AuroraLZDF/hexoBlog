@@ -4,6 +4,7 @@ date: 2017-04-01 09:31:25
 tags: [PHP, Laravel]
 categories: [Laravel]
 toc: true
+cover: '/images/categories/laravel.jpeg'
 ---
 
 # 安装

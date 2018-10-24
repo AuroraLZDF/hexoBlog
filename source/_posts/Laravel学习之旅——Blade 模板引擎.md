@@ -4,6 +4,7 @@ date: 2017-04-02 11:56:43
 tags: [PHP, Laravel]
 categories: [Laravel]
 toc: true
+cover: '/images/categories/laravel.jpeg'
 ---
 
 #注：MarkDown不支持两个'}'连续出现，所以下文使用'\}'替换！

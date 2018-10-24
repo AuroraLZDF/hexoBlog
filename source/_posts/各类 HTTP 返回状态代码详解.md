@@ -4,6 +4,7 @@ date: 2017-11-15 16:30:30
 tags: [HTTP,PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 如果某项请求发送到您的服务器要求显示您网站上的某个网页（例如，用户通过浏览器访问您的网页或 Googlebot 抓取网页时），服务器将会返回 HTTP 状态代码以响应请求。  

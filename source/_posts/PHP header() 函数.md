@@ -4,6 +4,7 @@ date: 2017-02-22 16:05:11
 tags: [PHP]
 categories: [PHP]
 toc: true
+cover: '/images/categories/php.jpeg'
 ---
 
 # 定义和用法
