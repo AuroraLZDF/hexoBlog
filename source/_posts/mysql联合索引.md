@@ -2,6 +2,7 @@
 title: mysql联合索引
 date: 2017-11-13 10:25:12
 tags: [MySQL]
+categories: [MySQL]
 toc: true
 ---
 

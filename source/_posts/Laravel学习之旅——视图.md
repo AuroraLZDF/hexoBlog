@@ -2,6 +2,7 @@
 title: Laravel学习之旅——视图
 date: 2017-04-01 21:00:12
 tags: [PHP, Laravel]
+categories: [Laravel]
 toc: true
 ---
 

@@ -2,6 +2,7 @@
 title: 各类 HTTP 返回状态代码详解
 date: 2017-11-15 16:30:30
 tags: [HTTP,PHP]
+categories: [PHP]
 toc: true
 ---
 

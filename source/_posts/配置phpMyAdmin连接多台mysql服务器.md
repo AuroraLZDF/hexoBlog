@@ -2,6 +2,7 @@
 title: 配置phpmyadmin使登录时可填写IP管理多台MySQL 连接多个数据库 自动登录
 date: 2017-04-02 13:24:12
 tags: [MySQL]
+categories: [MySQL]
 toc: true
 ---
 # 一、设置phpMyAdmin自动登录

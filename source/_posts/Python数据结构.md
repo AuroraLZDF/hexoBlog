@@ -2,6 +2,7 @@
 title: '数据结构'
 date: 2018-01-04
 tag: [Python]
+categories: [Python]
 toc: true
 ---
 # TODO

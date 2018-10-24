@@ -2,6 +2,7 @@
 title: 'PHP类的自动加载'
 date: 2017-11-28
 tag: [PHP]
+categories: [PHP]
 toc: true
 ---
 

@@ -2,6 +2,7 @@
 title: webuploder+PHP实现大文件断点（切片）续传
 date: 2017-05-08 11:18:07
 tags: [webuploader, js, PHP]
+categories: [PHP]
 toc: true
 ---
 # 前言

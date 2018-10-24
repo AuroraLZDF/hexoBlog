@@ -2,6 +2,7 @@
 title: PHP header() 函数
 date: 2017-02-22 16:05:11
 tags: [PHP]
+categories: [PHP]
 toc: true
 ---
 

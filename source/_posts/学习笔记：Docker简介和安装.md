@@ -3,6 +3,8 @@ layout: docker
 title: 学习笔记：Docker简介和安装
 date: 2018-03-01 09:54:31
 tags: [Docker]
+categories: [Docker]
+toc: true
 ---
 
 # 一、Docker 简介

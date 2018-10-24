@@ -2,6 +2,7 @@
 title: Laravel学习之旅——HTTP 请求
 date: 2017-04-01 13:48:00
 tags: [PHP, Laravel]
+categories: [Laravel]
 toc: true
 ---
 

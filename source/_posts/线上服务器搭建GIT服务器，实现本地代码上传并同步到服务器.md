@@ -2,6 +2,7 @@
 title: 线上服务器搭建GIT服务器，实现本地代码上传并同步到服务器
 date: 2017-09-23
 tags: [Linux,git]
+categories: [git]
 toc: true
 ---
 # 前言

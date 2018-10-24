@@ -2,6 +2,7 @@
 title: Laravel学习之旅——HTTP 响应
 date: 2017-04-01 16:45:15
 tags: [PHP, Laravel]
+categories: [Laravel]
 toc: true
 ---
 

@@ -2,6 +2,7 @@
 title: session原理，如何修改session生命周期
 date: 2017-11-13 14:50:39
 tags: [PHP,Session]
+categories: [PHP]
 toc: true
 ---
 

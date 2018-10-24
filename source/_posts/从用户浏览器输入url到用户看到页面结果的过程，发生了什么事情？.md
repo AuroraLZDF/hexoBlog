@@ -2,6 +2,7 @@
 title: 从用户浏览器输入url到用户看到页面结果的过程，发生了什么事情？
 date: 2017-11-13 14:50:39
 tags: [面试总结]
+categories: [PHP]
 toc: true
 ---
 

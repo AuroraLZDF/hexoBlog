@@ -2,6 +2,7 @@
 title: linux(deepin) 下mysql自动备份
 date: 2017-10-18 16:02:11
 tags: [Linux, MySQL]
+categories: [MySQL]
 toc: true
 ---
 

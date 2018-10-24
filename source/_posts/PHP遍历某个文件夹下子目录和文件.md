@@ -2,6 +2,7 @@
 title: PHP遍历文件夹下子目录和文件
 date: 2017-03-14 10:58:04
 tags: [PHP]
+categories: [PHP]
 toc: true
 ---
 ```php

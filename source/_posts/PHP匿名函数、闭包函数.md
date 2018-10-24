@@ -2,6 +2,7 @@
 title: 'PHP匿名函数、闭包函数'
 date: 2017-11-28
 tag: [PHP]
+categories: [PHP]
 toc: true
 ---
 

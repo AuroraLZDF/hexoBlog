@@ -1,7 +1,8 @@
 ---
 title: ubuntu16.04下解决Adobe Flash不是最新版问题
 date: 2017-05-22 16:02:11
-tags: Linux
+tags: [Linux]
+categories: [Linux]
 toc: true
 ---
 

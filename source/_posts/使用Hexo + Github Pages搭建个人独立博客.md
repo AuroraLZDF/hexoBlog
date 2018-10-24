@@ -1,7 +1,8 @@
 ﻿---
 title: 使用Hexo + Github Pages搭建个人独立博客
 date: 2017-03-02 16:40:41
-tags: Hexo
+tags: [Hexo]
+categories: [Hexo]
 toc: true
 ---
 

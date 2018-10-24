@@ -2,6 +2,7 @@
 title: Laravel学子之旅——Blade 模板引擎
 date: 2017-04-02 11:56:43
 tags: [PHP, Laravel]
+categories: [Laravel]
 toc: true
 ---
 
