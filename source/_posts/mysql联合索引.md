@@ -43,7 +43,7 @@ cover: '/images/categories/mysql.jpg'
 1．**ALTER TABLE**
 
 ALTER TABLE用来创建普通索引、UNIQUE索引或PRIMARY KEY索引。
-```mysql
+```sql
 ALTER TABLE table_name ADD INDEX index_name (column_list);
 
 ALTER TABLE table_name ADD UNIQUE (column_list);
@@ -55,7 +55,7 @@ ALTER TABLE table_name ADD PRIMARY KEY (column_list);
 2．**CREATE INDEX**
 
 CREATE INDEX可对表增加普通索引或UNIQUE索引。
-```mysql
+```sql
 CREATE INDEX index_name ON table_name (column_list);
 
 CREATE UNIQUE INDEX index_name ON table_name (column_list);
@@ -71,14 +71,14 @@ PRIMARY KEY索引和UNIQUE索引非常类似。
 事实上，PRIMARY KEY索引仅是一个具有**`名称PRIMARY`**的UNIQUE索引。这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。
 
 下面的SQL语句对students表在sid上添加PRIMARY KEY索引。
-```mysql
+```sql
 ALTER TABLE students ADD PRIMARY KEY (sid);
 ```
 
 4.  **删除索引**
 
 可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。
-```mysql
+```sql
 DROP INDEX index_name ON talbe_name;
 
 ALTER TABLE table_name DROP INDEX index_name;
@@ -93,7 +93,7 @@ ALTER TABLE table_name DROP PRIMARY KEY;
 
 5．**查看索引**
 
-```mysql
+```sql
 show index from tblname;
 show keys from tblname;
 
@@ -225,7 +225,7 @@ mysql查询只使用一个索引，因此如果where子句中已经使用了索�
 
 7，不要在列上进行运算
 
-```mysql
+```sql
 select * from users where YEAR(adddate);
 ```
 

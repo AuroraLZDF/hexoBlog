@@ -1,5 +1,5 @@
 ---
-title: Laravel学习之旅——基础篇（安装、路由、CSRF、404）
+title: 【转】Laravel学习之旅——基础篇（安装、路由、CSRF、404）
 date: 2017-04-01 09:31:25
 tags: [PHP, Laravel]
 categories: [Laravel]

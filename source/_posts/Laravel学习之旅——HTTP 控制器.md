@@ -1,5 +1,5 @@
 ---
-title: Laravel学习之旅——HTTP 控制器
+title: 【转】Laravel学习之旅——HTTP 控制器
 date: 2017-04-01 20:11:25
 tags: [PHP, Laravel]
 categories: [Laravel]

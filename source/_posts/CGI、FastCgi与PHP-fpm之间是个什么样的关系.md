@@ -1,5 +1,5 @@
 ---
-title: CGI、FastCgi与PHP-fpm之间是个什么样的关系
+title: 【转】CGI、FastCgi与PHP-fpm之间是个什么样的关系
 date: 2017-11-15 15:09:30
 tags: [Linux,PHP]
 categories: [PHP]

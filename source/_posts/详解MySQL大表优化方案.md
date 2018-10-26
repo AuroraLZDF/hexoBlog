@@ -1,5 +1,5 @@
 ---
-title: 详解MySQL大表优化方案
+title: 【转】详解MySQL大表优化方案
 date: 2017-03-23 19:00:22
 tags: [MySQL]
 categories: [MySQL]
