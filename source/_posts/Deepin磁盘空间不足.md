@@ -3,7 +3,6 @@ title: Deepin磁盘空间不足
 date: 2017-09-22 22:52:52
 tags: [Linux,系统]
 categories: [Deepin]
-comments: true
 toc: true
 cover: '/images/categories/deepin.jpeg'
 ---
