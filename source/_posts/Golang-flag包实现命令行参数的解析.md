@@ -112,6 +112,7 @@ const (
     PanicOnError
 )
 ```
+
 ## type **Flag** 
 ```go
 type Flag struct {
@@ -121,7 +122,8 @@ type Flag struct {
     DefValue string // 默认值（文本格式），用于使用信息
 }
 ```
-`Flag` 类型代表一条flag的状态。
+Flag类型代表一条flag的状态。
+
 ## type **FlagSet**
 ```go
 type FlagSet struct {
@@ -131,193 +133,20 @@ type FlagSet struct {
     // 内含隐藏或非导出字段
 }
 ```
-`FlagSet` 代表一个已注册的flag的集合。FlagSet零值没有名字，采用ContinueOnError错误处理策略。
+FlagSet代表一个已注册的flag的集合。FlagSet零值没有名字，采用ContinueOnError错误处理策略。
 
 ## func **NewFlagSet**
 ```go
-func NewFlagSet(name string, errorHandling ErrorHandling) *FlagSet
-```
-`NewFlagSet` 创建一个新的、名为name，采用errorHandling为错误处理策略的FlagSet。
 
-## func (*FlagSet) Init
-```go
-func (f *FlagSet) Init(name string, errorHandling ErrorHandling)
 ```
-`Init` 设置flag集合f的名字和错误处理属性。FlagSet零值没有名字，默认采用ContinueOnError错误处理策略。
 
-## func (*FlagSet) NFlag
 ```go
-func (f *FlagSet) NFlag() int
-```
-`NFlag` 返回解析时进行了设置的flag的数量。
 
-## func (*FlagSet) Lookup
-```go
-func (f *FlagSet) Lookup(name string) *Flag
 ```
-返回已经f中已注册flag的Flag结构体指针；如果flag不存在的话，返回nil。
 
-## func (*FlagSet) NArg
-```go
-func (f *FlagSet) NArg() int
-```
-`NArg` 返回解析flag之后剩余参数的个数。
 
-## func (*FlagSet) Args
-```go
-func (f *FlagSet) Args() []string
-```
-返回解析之后剩下的非flag参数。（不包括命令名）
 
-## func (*FlagSet) Arg
-```go
-func (f *FlagSet) Arg(i int) string
-```
-返回解析之后剩下的第i个参数，从0开始索引。
 
-## func (*FlagSet) PrintDefaults
-```go
-func (f *FlagSet) PrintDefaults()
-```
-`PrintDefault` 打印集合中所有注册好的flag的默认值。除非另外配置，默认输出到标准错误输出中。
-
-## func (*FlagSet) SetOutput
-```go
-func (f *FlagSet) SetOutput(output io.Writer)
-```
-设置使用信息和错误信息的输出流，如果output为nil，将使用os.Stderr。
-
-## func (*FlagSet) Bool
-```go
-func (f *FlagSet) Bool(name string, value bool, usage string) *bool
-```
-`Bool` 用指定的名称、默认值、使用信息注册一个bool类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) BoolVar
-```go
-func (f *FlagSet) BoolVar(p *bool, name string, value bool, usage string)
-```
-`BoolVar` 用指定的名称、默认值、使用信息注册一个bool类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Int
-```go
-func (f *FlagSet) Int(name string, value int, usage string) *int
-```
-`Int` 用指定的名称、默认值、使用信息注册一个int类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) IntVar
-```go
-func (f *FlagSet) IntVar(p *int, name string, value int, usage string)
-```
-`IntVar` 用指定的名称、默认值、使用信息注册一个int类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Int64
-```go
-func (f *FlagSet) Int64(name string, value int64, usage string) *int64
-```
-`Int64` 用指定的名称、默认值、使用信息注册一个int64类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) Int64Var
-```go
-func (f *FlagSet) Int64Var(p *int64, name string, value int64, usage string)
-```
-`Int64Var` 用指定的名称、默认值、使用信息注册一个int64类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Uint 
-```go
-func (f *FlagSet) Uint(name string, value uint, usage string) *uint
-```
-`Uint` 用指定的名称、默认值、使用信息注册一个uint类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) UintVar
-```go
-func (f *FlagSet) UintVar(p *uint, name string, value uint, usage string)
-```
-`UintVar` 用指定的名称、默认值、使用信息注册一个uint类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Uint64
-```go
-func (f *FlagSet) Uint64(name string, value uint64, usage string) *uint64
-```
-`Uint64` 用指定的名称、默认值、使用信息注册一个uint64类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) Uint64Var 
-```go
-func (f *FlagSet) Uint64Var(p *uint64, name string, value uint64, usage string)
-```
-`Uint64Var` 用指定的名称、默认值、使用信息注册一个uint64类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Float64
-```go
-func (f *FlagSet) Float64(name string, value float64, usage string) *float64
-```
-`Float64` 用指定的名称、默认值、使用信息注册一个float64类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) Float64Var 
-```go
-func (f *FlagSet) Float64Var(p *float64, name string, value float64, usage string)
-```
-`Float64Var` 用指定的名称、默认值、使用信息注册一个float64类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) String
-```go
-func (f *FlagSet) String(name string, value string, usage string) *string
-```
-`String` 用指定的名称、默认值、使用信息注册一个string类型flag。返回一个保存了该flag的值的指针。
-
-## func (*FlagSet) StringVar
-```go
-func (f *FlagSet) StringVar(p *string, name string, value string, usage string)
-```
-`StringVar` 用指定的名称、默认值、使用信息注册一个string类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Duration
-```go
-func (f *FlagSet) Duration(name string, value time.Duration, usage string) *time.Duration
-```
-`Duration` 用指定的名称、默认值、使用信息注册一个time.Duration类型flag。返回一个保存了该flag的值的指针。`
-
-## func (*FlagSet) DurationVar
-```go
-func (f *FlagSet) DurationVar(p *time.Duration, name string, value time.Duration, usage string)
-```
-`DurationVar` 用指定的名称、默认值、使用信息注册一个time.Duration类型flag，并将flag的值保存到p指向的变量。
-
-## func (*FlagSet) Var
-```go
-func (f *FlagSet) Var(value Value, name string, usage string)
-```
-`Var` 方法使用指定的名字、使用信息注册一个flag。该flag的类型和值由第一个参数表示，该参数应实现了Value接口。例如，用户可以创建一个flag，可以用Value接口的Set方法将逗号分隔的字符串转化为字符串切片。
-
-## func (*FlagSet) Set
-```go
-func (f *FlagSet) Set(name, value string) error
-```
-设置已注册的flag的值。
-
-## func (*FlagSet) Parse
-```go
-func (f *FlagSet) Parse(arguments []string) error
-```
-从 `arguments` 中解析注册的flag。必须在所有flag都注册好而未访问其值时执行。未注册却使用flag -help时，会返回ErrHelp。
-
-## func (*FlagSet) Parsed
-```go
-func (f *FlagSet) Parsed() bool
-```
-返回是否 `f.Parse` 已经被调用过。
-
-## func (*FlagSet) Visit 
-```go
-func (f *FlagSet) Visit(fn func(*Flag))
-```
-按照字典顺序遍历标签，并且对每个标签调用fn。 这个函数只遍历解析时进行了设置的标签。
-
-## func (*FlagSet) VisitAll
-```go
-func (f *FlagSet) VisitAll(fn func(*Flag))
-```
-按照字典顺序遍历标签，并且对每个标签调用fn。 这个函数会遍历所有标签，不管解析时有无进行设置。
 
 
 

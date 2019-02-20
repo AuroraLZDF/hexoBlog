@@ -105,3 +105,115 @@ if *processedFlag { // found flag -proc
 }
 ```
 要给 flag 定义其它类型，可以使用 `flag.Int()`，`flag.Float64()`，`flag.String()`。
+
+# 用 buffer 读取文件
+
+在下面的例子中，我们结合使用了缓冲读取文件和命令行 flag 解析这两项技术。如果不加参数，那么你输入什么屏幕就打印什么。
+
+```go
+// cat.go
+package main
+
+import (
+    "bufio"
+    "flag"
+    "fmt"
+    "io"
+    "os"
+)
+
+func cat(r *bufio.Reader) {
+    for {
+        buf, err := r.ReadBytes('\n')
+        if err == io.EOF {
+            break
+        }
+        fmt.Fprintf(os.Stdout, "%s", buf)
+    }
+    return
+}
+
+func main() {
+    flag.Parse()
+    if flag.NArg() == 0 {
+        cat(bufio.NewReader(os.Stdin))
+    }
+    for i := 0; i < flag.NArg(); i++ {
+        f, err := os.Open(flag.Arg(i))
+        if err != nil {
+            fmt.Fprintf(os.Stderr, "%s:error reading from %s: %s\n", os.Args[0], flag.Arg(i), err.Error())
+            continue
+        }
+        cat(bufio.NewReader(f))
+    }
+}
+```
+执行`go build cat.go` 生成 cat 可执行文件
+参数被认为是文件名，如果文件存在的话就打印文件内容到屏幕。命令行执行 `./cat test` 测试输出。
+
+# 用切片读写文件
+切片提供了 Go 中处理 I/O 缓冲的标准方式，下面 `cat` 函数的第二版中，在一个切片缓冲内使用无限 for 循环（直到文件尾部 EOF）读取文件，并写入到标准输出（`os.Stdout`）。
+
+```go
+// cat2.go
+package main
+
+import (
+    "flag"
+    "fmt"
+    "os"
+)
+
+func cat(f *os.File) {
+    const NBUF = 512
+    var buf [NBUF]byte
+    for {
+        switch nr, err := f.Read(buf[:]); true {
+        case nr < 0:
+            fmt.Fprintf(os.Stderr, "cat: error reading: %s\n", err.Error())
+            os.Exit(1)
+        case nr == 0: // EOF
+            return
+        case nr > 0:
+            if nw, ew := os.Stdout.Write(buf[0:nr]); nw != nr {
+                fmt.Fprintf(os.Stderr, "cat: error writing: %s\n", ew.Error())
+            }
+        }
+    }
+}
+
+func main() {
+    flag.Parse() // Scans the arg list and sets up flags
+    if flag.NArg() == 0 {
+        cat(os.Stdin)
+    }
+    for i := 0; i < flag.NArg(); i++ {
+        f, err := os.Open(flag.Arg(i))
+        if f == nil {
+            fmt.Fprintf(os.Stderr, "cat: can't open %s: error %s\n", flag.Arg(i), err)
+            os.Exit(1)
+        }
+        cat(f)
+        f.Close()
+    }
+}
+```
+上面的代码，使用了 os 包中的 `os.File` 和 `Read` 方法；cat2.go 与 cat.go 具有同样的功能。
+
+# 用 defer 关闭文件
+`defer` 关键字对于在函数结束时关闭打开的文件非常有用，例如下面的代码片段：
+```go
+func data(name string) string {
+    f, _ := os.OpenFile(name, os.O_RDONLY, 0)
+    defer f.Close() // idiomatic Go code!
+    contents, _ := ioutil.ReadAll(f)
+    return string(contents)
+}
+```
+在函数 return 后执行了 `f.Close()`
+
+
+
+
+
+
