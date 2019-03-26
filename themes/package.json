@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "hexo-generator-search-zip": "^0.0.1",
+    "hexo-prism-plugin": "^2.3.0"
+  }
+}
