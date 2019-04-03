@@ -1,0 +1,925 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Golang-json包实现了json对象的编/解码</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Golang-json包实现了json对象的编/解码》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/01/18/golang/Golang-json包实现了json对象的编-解码/" itemprop="url">		
+			Golang-json包实现了json对象的编/解码		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/01/18/golang/Golang-json包实现了json对象的编-解码/" itemprop="url">
+	<time datetime="2019-01-18T02:34:55.000Z" itemprop="datePublished">
+  		2019-01-18
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#Golang" title="Golang" rel="18">Golang</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>json包实现了json对象的编解码，参见RFC 4627。Json对象和go类型的映射关系请参见Marshal和Unmarshal函数的文档。</p>
+<h1 id="type-InvalidUTF8Error"><a href="#type-InvalidUTF8Error" class="headerlink" title="type InvalidUTF8Error"></a>type <strong>InvalidUTF8Error</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> InvalidUTF8Error <span class="keyword">struct</span> &#123;</span><br><span class="line">    S <span class="keyword">string</span> <span class="comment">// 引发错误的完整字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Go 1.2之前版本，当试图编码一个包含非法utf-8序列的字符串时会返回本错误。Go 1.2及之后版本，编码器会强行将非法字节替换为unicode字符U+FFFD来使字符串合法。<em>本错误已不会再出现，但出于向后兼容考虑而保留</em>。</p>
+<h2 id="func-InvalidUTF8Error-Error"><a href="#func-InvalidUTF8Error-Error" class="headerlink" title="func (*InvalidUTF8Error) Error"></a>func <strong>(*InvalidUTF8Error) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *InvalidUTF8Error)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-InvalidUnmarshalError"><a href="#type-InvalidUnmarshalError" class="headerlink" title="type InvalidUnmarshalError"></a>type <strong>InvalidUnmarshalError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> InvalidUnmarshalError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Type reflect.Type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>InvalidUnmarshalError</code> 用于描述一个传递给解码器的非法参数。（解码器的参数必须是非nil指针）</p>
+<h2 id="func-InvalidUnmarshalError-Error"><a href="#func-InvalidUnmarshalError-Error" class="headerlink" title="func (*InvalidUnmarshalError) Error"></a>func <strong>(*InvalidUnmarshalError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *InvalidUnmarshalError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-SyntaxError"><a href="#type-SyntaxError" class="headerlink" title="type SyntaxError"></a>type <strong>SyntaxError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> SyntaxError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Offset <span class="keyword">int64</span> <span class="comment">// 在读取Offset个字节后出现错误</span></span><br><span class="line">    <span class="comment">// 内含隐藏或非导出字段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>SyntaxError</code> 表示一个json语法错误。</p>
+<h2 id="func-SyntaxError-Error"><a href="#func-SyntaxError-Error" class="headerlink" title="func (*SyntaxError) Error"></a>func <strong>(*SyntaxError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *SyntaxError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-UnmarshalFieldError"><a href="#type-UnmarshalFieldError" class="headerlink" title="type UnmarshalFieldError"></a>type <strong>UnmarshalFieldError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> UnmarshalFieldError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Key   <span class="keyword">string</span></span><br><span class="line">    Type  reflect.Type</span><br><span class="line">    Field reflect.StructField</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UnmarshalFieldError</code> 表示一个json对象的键指向一个非导出字段。（因此不能写入；<em>已不再使用，出于兼容保留</em>）</p>
+<h2 id="func-UnmarshalFieldError-Error"><a href="#func-UnmarshalFieldError-Error" class="headerlink" title="func (*UnmarshalFieldError) Error"></a>func <strong>(*UnmarshalFieldError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *UnmarshalFieldError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-UnmarshalTypeError"><a href="#type-UnmarshalTypeError" class="headerlink" title="type UnmarshalTypeError"></a>type <strong>UnmarshalTypeError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> UnmarshalTypeError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Value <span class="keyword">string</span>       <span class="comment">// 描述json值："bool", "array", "number -5"</span></span><br><span class="line">    Type  reflect.Type <span class="comment">// 不能转化为的go类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UnmarshalTypeError</code> 表示一个json值不能转化为特定的go类型的值。</p>
+<h2 id="func-UnmarshalTypeError-Error"><a href="#func-UnmarshalTypeError-Error" class="headerlink" title="func (*UnmarshalTypeError) Error"></a>func <strong>(*UnmarshalTypeError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *UnmarshalTypeError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-UnsupportedTypeError"><a href="#type-UnsupportedTypeError" class="headerlink" title="type UnsupportedTypeError"></a>type <strong>UnsupportedTypeError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> UnsupportedTypeError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Type reflect.Type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UnsupportedTypeError</code> 表示试图编码一个不支持类型的值。</p>
+<h2 id="func-UnsupportedTypeError-Error"><a href="#func-UnsupportedTypeError-Error" class="headerlink" title="func (*UnsupportedTypeError) Error"></a>func <strong>(*UnsupportedTypeError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *UnsupportedTypeError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-UnsupportedValueError"><a href="#type-UnsupportedValueError" class="headerlink" title="type UnsupportedValueError"></a>type <strong>UnsupportedValueError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> UnsupportedValueError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Value reflect.Value</span><br><span class="line">    Str   <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="func-UnsupportedValueError-Error"><a href="#func-UnsupportedValueError-Error" class="headerlink" title="func (*UnsupportedValueError) Error"></a>func <strong>(*UnsupportedValueError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *UnsupportedValueError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-MarshalerError"><a href="#type-MarshalerError" class="headerlink" title="type MarshalerError"></a>type <strong>MarshalerError</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MarshalerError <span class="keyword">struct</span> &#123;</span><br><span class="line">    Type reflect.Type</span><br><span class="line">    Err  error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="func-MarshalerError-Error"><a href="#func-MarshalerError-Error" class="headerlink" title="func (*MarshalerError) Error"></a>func <strong>(*MarshalerError) Error</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *MarshalerError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="type-Number"><a href="#type-Number" class="headerlink" title="type Number"></a>type <strong>Number</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Number <span class="keyword">string</span></span><br></pre></td></tr></table></figure>
+<p><code>Number</code> 类型代表一个json数字字面量。</p>
+<h2 id="func-Number-Int64"><a href="#func-Number-Int64" class="headerlink" title="func (Number) Int64"></a>func <strong>(Number) Int64</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(n Number)</span> <span class="title">Int64</span><span class="params">()</span> <span class="params">(<span class="keyword">int64</span>, error)</span></span></span><br></pre></td></tr></table></figure>
+<p>将该数字作为int64类型返回。</p>
+<h2 id="func-Number-Float64"><a href="#func-Number-Float64" class="headerlink" title="func (Number) Float64"></a>func <strong>(Number) Float64</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(n Number)</span> <span class="title">Float64</span><span class="params">()</span> <span class="params">(<span class="keyword">float64</span>, error)</span></span></span><br></pre></td></tr></table></figure>
+<p>将该数字作为float64类型返回。</p>
+<h2 id="func-Number-String"><a href="#func-Number-String" class="headerlink" title="func (Number) String"></a>func <strong>(Number) String</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(n Number)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>返回该数字的字面值文本表示。</p>
+<h1 id="type-RawMessage"><a href="#type-RawMessage" class="headerlink" title="type RawMessage"></a>type <strong>RawMessage</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> RawMessage []<span class="keyword">byte</span></span><br></pre></td></tr></table></figure>
+<p><code>RawMessage</code> 类型是一个保持原本编码的json对象。本类型实现了Marshaler和Unmarshaler接口，用于延迟json的解码或者预计算json的编码。</p>
+<p>示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Color <span class="keyword">struct</span> &#123;</span><br><span class="line">    Space <span class="keyword">string</span></span><br><span class="line">    Point json.RawMessage <span class="comment">// delay parsing until we know the color space</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> RGB <span class="keyword">struct</span> &#123;</span><br><span class="line">    R   <span class="keyword">uint8</span></span><br><span class="line">    G   <span class="keyword">uint8</span></span><br><span class="line">    B   <span class="keyword">uint8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> YCbCr <span class="keyword">struct</span> &#123;</span><br><span class="line">    Y   <span class="keyword">uint8</span></span><br><span class="line">    Cb  <span class="keyword">int8</span></span><br><span class="line">    Cr  <span class="keyword">int8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> j = []<span class="keyword">byte</span>(<span class="string">`[</span></span><br><span class="line"><span class="string">		&#123;"Space": "YCbCr", "Point": &#123;"Y": 255, "Cb": 0, "Cr": -10&#125;&#125;,</span></span><br><span class="line"><span class="string">		&#123;"Space": "RGB",   "Point": &#123;"R": 98, "G": 218, "B": 255&#125;&#125;</span></span><br><span class="line"><span class="string">	]`</span>)</span><br><span class="line"><span class="keyword">var</span> colors []Color</span><br><span class="line">err := json.Unmarshal(j, &amp;colors)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatalln(<span class="string">"error:"</span>, err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> _, c := <span class="keyword">range</span> colors &#123;</span><br><span class="line">    <span class="keyword">var</span> dst <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">switch</span> c.Space &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"RGB"</span>:</span><br><span class="line">        dst = <span class="built_in">new</span>(RGB)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"YCbCr"</span>:</span><br><span class="line">        dst = <span class="built_in">new</span>(YCbCr)</span><br><span class="line">    &#125;</span><br><span class="line">    err := json.Unmarshal(c.Point, dst)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatalln(<span class="string">"error:"</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(c.Space, dst)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YCbCr &amp;&#123;255 0 -10&#125;</span><br><span class="line">RGB &amp;&#123;98 218 255&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="func-RawMessage-MarshalJSON"><a href="#func-RawMessage-MarshalJSON" class="headerlink" title="func (*RawMessage) MarshalJSON"></a>func <strong>(*RawMessage) MarshalJSON</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *RawMessage)</span> <span class="title">MarshalJSON</span><span class="params">()</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>MarshalJSON</code> 返回*m的json编码。</p>
+<h2 id="func-RawMessage-UnmarshalJSON"><a href="#func-RawMessage-UnmarshalJSON" class="headerlink" title="func (*RawMessage) UnmarshalJSON"></a>func <strong>(*RawMessage) UnmarshalJSON</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *RawMessage)</span> <span class="title">UnmarshalJSON</span><span class="params">(data []<span class="keyword">byte</span>)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>UnmarshalJSON</code> 将*m设为data的一个拷贝。</p>
+<h1 id="type-Marshaler"><a href="#type-Marshaler" class="headerlink" title="type Marshaler"></a>type <strong>Marshaler</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Marshaler <span class="keyword">interface</span> &#123;</span><br><span class="line">    MarshalJSON() ([]<span class="keyword">byte</span>, error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了 <code>Marshaler</code> 接口的类型可以将自身序列化为合法的json描述。</p>
+<h1 id="type-Unmarshaler"><a href="#type-Unmarshaler" class="headerlink" title="type Unmarshaler"></a>type <strong>Unmarshaler</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Unmarshaler <span class="keyword">interface</span> &#123;</span><br><span class="line">    UnmarshalJSON([]<span class="keyword">byte</span>) error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了 <code>Unmarshaler</code> 接口的对象可以将自身的json描述反序列化。该方法可以认为输入是合法的json字符串。如果要在方法返回后保存自身的json数据，必须进行拷贝。</p>
+<h1 id="func-Compact"><a href="#func-Compact" class="headerlink" title="func Compact"></a>func <strong>Compact</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Compact</span><span class="params">(dst *bytes.Buffer, src []<span class="keyword">byte</span>)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Compact</code> 函数将json编码的src中无用的空白字符剔除后写入dst。</p>
+<h1 id="func-HTMLEscape"><a href="#func-HTMLEscape" class="headerlink" title="func HTMLEscape"></a>func <strong>HTMLEscape</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HTMLEscape</span><span class="params">(dst *bytes.Buffer, src []<span class="keyword">byte</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>HTMLEscape</code> 函数将json编码的src中的&lt;、&gt;、&amp;、U+2028 和U+2029字符替换为\u003c、\u003e、\u0026、\u2028、\u2029 转义字符串，以便json编码可以安全的嵌入HTML的<script>标签里。因为历史原因，网络浏览器不支持在<script>标签中使用标准HTML转义， 因此必须使用另一种json编码方案。</p>
+<h1 id="func-Indent"><a href="#func-Indent" class="headerlink" title="func Indent"></a>func <strong>Indent</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Indent</span><span class="params">(dst *bytes.Buffer, src []<span class="keyword">byte</span>, prefix, indent <span class="keyword">string</span>)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Indent</code> 函数将json编码的调整缩进之后写入dst。每一个json元素/数组都另起一行开始，以prefix为起始，一或多个indent缩进（数目看嵌套层数）。写入dst的数据起始没有prefix字符，也没有indent字符，最后也不换行，因此可以更好的嵌入其他格式化后的json数据里。</p>
+<h1 id="func-Marshal"><a href="#func-Marshal" class="headerlink" title="func Marshal"></a>func <strong>Marshal</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Marshal</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Marshal</code> 函数返回v的json编码。</p>
+<p><code>Marshal</code> 函数会递归的处理值。如果一个值实现了 <code>Marshaler</code> 接口切非nil指针，会调用其 <code>MarshalJSON</code> 方法来生成json编码。nil指针异常并不是严格必需的，但会模拟与 <code>UnmarshalJSON</code> 的行为类似的必需的异常。</p>
+<p>否则，Marshal函数使用下面的基于类型的默认编码格式：</p>
+<p>布尔类型编码为json布尔类型。</p>
+<p>浮点数、整数和Number类型的值编码为json数字类型。</p>
+<p>字符串编码为json字符串。角括号”&lt;”和”&gt;”会转义为”\u003c”和”\u003e”以避免某些浏览器吧json输出错误理解为HTML。基于同样的原因，”&amp;”转义为”\u0026”。</p>
+<p>数组和切片类型的值编码为json数组，但[]byte编码为base64编码字符串，nil切片编码为null。</p>
+<p>结构体的值编码为json对象。每一个导出字段变成该对象的一个成员，除非：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 字段的标签是<span class="string">"-"</span></span><br><span class="line">- 字段是空值，而其标签指定了omitempty选项</span><br></pre></td></tr></table></figure>
+<p>空值是false、0、””、nil指针、nil接口、长度为0的数组、切片、映射。对象默认键字符串是结构体的字段名，但可以在结构体字段的标签里指定。结构体标签值里的”json”键为键名，后跟可选的逗号和选项，举例如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 字段被本包忽略</span><br><span class="line">Field int `json:<span class="string">"-"</span>`</span><br><span class="line">// 字段在json里的键为<span class="string">"myName"</span></span><br><span class="line">Field int `json:<span class="string">"myName"</span>`</span><br><span class="line">// 字段在json里的键为<span class="string">"myName"</span>且如果字段为空值将在对象中省略掉</span><br><span class="line">Field int `json:<span class="string">"myName,omitempty"</span>`</span><br><span class="line">// 字段在json里的键为<span class="string">"Field"</span>（默认值），但如果字段为空值会跳过；注意前导的逗号</span><br><span class="line">Field int `json:<span class="string">",omitempty"</span>`</span><br></pre></td></tr></table></figure>
+<p>“string”选项标记一个字段在编码json时应编码为字符串。它只适用于字符串、浮点数、整数类型的字段。这个额外水平的编码选项有时候会用于和javascript程序交互：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Int64String <span class="keyword">int64</span> <span class="string">`json:",string"`</span></span><br></pre></td></tr></table></figure>
+<p>如果键名是只含有unicode字符、数字、美元符号、百分号、连字符、下划线和斜杠的非空字符串，将使用它代替字段名。</p>
+<p>匿名的结构体字段一般序列化为他们内部的导出字段就好像位于外层结构体中一样。如果一个匿名结构体字段的标签给其提供了键名，则会使用键名代替字段名，而不视为匿名。</p>
+<p>Go结构体字段的可视性规则用于供json决定那个字段应该序列化或反序列化时是经过修正了的。如果同一层次有多个（匿名）字段且该层次是最小嵌套的（嵌套层次则使用默认go规则），会应用如下额外规则：</p>
+<ul>
+<li>1）json标签为”-“的匿名字段强行忽略，不作考虑；</li>
+<li>2）json标签提供了键名的匿名字段，视为非匿名字段；</li>
+<li>3）其余字段中如果只有一个匿名字段，则使用该字段；</li>
+<li>4）其余字段中如果有多个匿名字段，但压平后不会出现冲突，所有匿名字段压平；</li>
+<li>5）其余字段中如果有多个匿名字段，但压平后出现冲突，全部忽略，不产生错误。</li>
+</ul>
+<p>对匿名结构体字段的管理是从go1.1开始的，在之前的版本，匿名字段会直接忽略掉。</p>
+<p>映射类型的值编码为json对象。映射的键必须是字符串，对象的键直接使用映射的键。</p>
+<p>指针类型的值编码为其指向的值（的json编码）。nil指针编码为null。</p>
+<p>接口类型的值编码为接口内保持的具体类型的值（的json编码）。nil接口编码为null。</p>
+<p>通道、复数、函数类型的值不能编码进json。尝试编码它们会导致Marshal函数返回UnsupportedTypeError。</p>
+<p>Json不能表示循环的数据结构，将一个循环的结构提供给Marshal函数会导致无休止的循环。</p>
+<h1 id="func-MarshalIndent"><a href="#func-MarshalIndent" class="headerlink" title="func MarshalIndent"></a>func <strong>MarshalIndent</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MarshalIndent</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;, prefix, indent <span class="keyword">string</span>)</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>MarshalIndent</code> 类似 <code>Marshal</code> 但会使用缩进将输出格式化。</p>
+<h1 id="func-Unmarshal"><a href="#func-Unmarshal" class="headerlink" title="func Unmarshal"></a>func <strong>Unmarshal</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Unmarshal</span><span class="params">(data []<span class="keyword">byte</span>, v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Unmarshal</code> 函数解析json编码的数据并将结果存入v指向的值。</p>
+<p><code>Unmarshal</code> 和 <code>Marshal</code> 做相反的操作，必要时申请映射、切片或指针，有如下的附加规则：</p>
+<p>要将json数据解码写入一个指针，<code>Unmarshal</code> 函数首先处理json数据是json字面值null的情况。此时，函数将指针设为nil；否则，函数将json数据解码写入指针指向的值；如果指针本身是nil，函数会先申请一个值并使指针指向它。</p>
+<p>要将json数据解码写入一个结构体，函数会匹配输入对象的键和 <code>Marshal</code> 使用的键（结构体字段名或者它的标签指定的键名），优先选择精确的匹配，但也接受大小写不敏感的匹配。</p>
+<p>要将json数据解码写入一个接口类型值，函数会将数据解码为如下类型写入接口：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bool                   对应JSON布尔类型</span><br><span class="line"><span class="keyword">float64</span>                对应JSON数字类型</span><br><span class="line"><span class="keyword">string</span>                 对应JSON字符串类型</span><br><span class="line">[]<span class="keyword">interface</span>&#123;&#125;          对应JSON数组</span><br><span class="line"><span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125; 对应JSON对象</span><br><span class="line"><span class="literal">nil</span>                    对应JSON的null</span><br></pre></td></tr></table></figure>
+<p>如果一个JSON值不匹配给出的目标类型，或者如果一个json数字写入目标类型时溢出，Unmarshal函数会跳过该字段并尽量完成其余的解码操作。如果没有出现更加严重的错误，本函数会返回一个描述第一个此类错误的详细信息的UnmarshalTypeError。</p>
+<p>JSON的null值解码为go的接口、指针、切片时会将它们设为nil，因为null在json里一般表示“不存在”。 解码json的null值到其他go类型时，不会造成任何改变，也不会产生错误。</p>
+<p>当解码字符串时，不合法的utf-8或utf-16代理（字符）对不视为错误，而是将非法字符替换为unicode字符U+FFFD。</p>
+<h1 id="type-Decoder"><a href="#type-Decoder" class="headerlink" title="type Decoder"></a>type <strong>Decoder</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Decoder <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 内含隐藏或非导出字段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Decoder从输入流解码json对象</p>
+<h2 id="func-NewDecoder"><a href="#func-NewDecoder" class="headerlink" title="func NewDecoder"></a>func <strong>NewDecoder</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewDecoder</span><span class="params">(r io.Reader)</span> *<span class="title">Decoder</span></span></span><br></pre></td></tr></table></figure>
+<p><code>NewDecoder</code> 创建一个从r读取并解码json对象的*Decoder，解码器有自己的缓冲，并可能超前读取部分json数据。</p>
+<h2 id="func-Decoder-Buffered"><a href="#func-Decoder-Buffered" class="headerlink" title="func (*Decoder) Buffered"></a>func <strong>(*Decoder) Buffered</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dec *Decoder)</span> <span class="title">Buffered</span><span class="params">()</span> <span class="title">io</span>.<span class="title">Reader</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Buffered</code> 方法返回保存在dec缓存里数据的读取器，该返回值在下次调用Decode方法之前有效。</p>
+<h2 id="func-Decoder-UseNumber"><a href="#func-Decoder-UseNumber" class="headerlink" title="func (*Decoder) UseNumber"></a>func <strong>(*Decoder) UseNumber</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dec *Decoder)</span> <span class="title">UseNumber</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><code>UseNumber</code> 方法将dec设置为当接收端是interface{}接口时将json数字解码为Number类型而不是float64类型</p>
+<h2 id="func-Decoder-Decode"><a href="#func-Decoder-Decode" class="headerlink" title="func (*Decoder) Decode"></a>func <strong>(*Decoder) Decode</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dec *Decoder)</span> <span class="title">Decode</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Decode</code> 从输入流读取下一个json编码值并保存在v指向的值里，参见Unmarshal函数的文档获取细节信息。</p>
+<h1 id="type-Encoder"><a href="#type-Encoder" class="headerlink" title="type Encoder"></a>type <strong>Encoder</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Encoder <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 内含隐藏或非导出字段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Encoder</code>将json对象写入输出流。</p>
+<h2 id="func-NewEncoder"><a href="#func-NewEncoder" class="headerlink" title="func NewEncoder"></a>func <strong>NewEncoder</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewEncoder</span><span class="params">(w io.Writer)</span> *<span class="title">Encoder</span></span></span><br></pre></td></tr></table></figure>
+<p><code>NewEncoder</code> 创建一个将数据写入w的*Encoder。</p>
+<h2 id="func-Encoder-Encode"><a href="#func-Encoder-Encode" class="headerlink" title="func (*Encoder) Encode"></a>func <strong>(*Encoder) Encode</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(enc *Encoder)</span> <span class="title">Encode</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Encode</code> 将v的json编码写入输出流，并会写入一个换行符，参见Marshal函数的文档获取细节信息。</p>
+</script></p>
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/01/23/golang/Golang-错误处理与测试/" title="【转】Golang-错误处理与测试">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/01/18/golang/Golang-json、xml、gob数据编码解码（格式化）/" title="Golang-json、xml、gob数据编码解码">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-InvalidUTF8Error"><span class="post-toc-text">type InvalidUTF8Error</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-InvalidUTF8Error-Error"><span class="post-toc-text">func (*InvalidUTF8Error) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-InvalidUnmarshalError"><span class="post-toc-text">type InvalidUnmarshalError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-InvalidUnmarshalError-Error"><span class="post-toc-text">func (*InvalidUnmarshalError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-SyntaxError"><span class="post-toc-text">type SyntaxError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SyntaxError-Error"><span class="post-toc-text">func (*SyntaxError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-UnmarshalFieldError"><span class="post-toc-text">type UnmarshalFieldError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-UnmarshalFieldError-Error"><span class="post-toc-text">func (*UnmarshalFieldError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-UnmarshalTypeError"><span class="post-toc-text">type UnmarshalTypeError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-UnmarshalTypeError-Error"><span class="post-toc-text">func (*UnmarshalTypeError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-UnsupportedTypeError"><span class="post-toc-text">type UnsupportedTypeError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-UnsupportedTypeError-Error"><span class="post-toc-text">func (*UnsupportedTypeError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-UnsupportedValueError"><span class="post-toc-text">type UnsupportedValueError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-UnsupportedValueError-Error"><span class="post-toc-text">func (*UnsupportedValueError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-MarshalerError"><span class="post-toc-text">type MarshalerError</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-MarshalerError-Error"><span class="post-toc-text">func (*MarshalerError) Error</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Number"><span class="post-toc-text">type Number</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Number-Int64"><span class="post-toc-text">func (Number) Int64</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Number-Float64"><span class="post-toc-text">func (Number) Float64</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Number-String"><span class="post-toc-text">func (Number) String</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-RawMessage"><span class="post-toc-text">type RawMessage</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-RawMessage-MarshalJSON"><span class="post-toc-text">func (*RawMessage) MarshalJSON</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-RawMessage-UnmarshalJSON"><span class="post-toc-text">func (*RawMessage) UnmarshalJSON</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Marshaler"><span class="post-toc-text">type Marshaler</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Unmarshaler"><span class="post-toc-text">type Unmarshaler</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-Compact"><span class="post-toc-text">func Compact</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-HTMLEscape"><span class="post-toc-text">func HTMLEscape</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

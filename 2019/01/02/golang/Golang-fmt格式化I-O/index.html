@@ -1,0 +1,918 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Golang-fmt格式化I/O</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Golang-fmt格式化I/O》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/01/02/golang/Golang-fmt格式化I-O/" itemprop="url">		
+			Golang-fmt格式化I/O		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/01/02/golang/Golang-fmt格式化I-O/" itemprop="url">
+	<time datetime="2019-01-02T06:53:51.000Z" itemprop="datePublished">
+  		2019-01-02
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#Golang" title="Golang" rel="18">Golang</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p><code>fmt</code> 包实现了类似C语言printf和scanf的格式化I/O。格式化动作（’verb’）源自C语言但更简单。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><h2 id="通用："><a href="#通用：" class="headerlink" title="通用："></a>通用：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%v	值的默认格式表示</span><br><span class="line">%+v	类似%v，但输出结构体时会添加字段名</span><br><span class="line">%#v	值的Go语法表示</span><br><span class="line">%T	值的类型的Go语法表示</span><br><span class="line">%%	百分号</span><br></pre></td></tr></table></figure>
+<h2 id="布尔值："><a href="#布尔值：" class="headerlink" title="布尔值："></a>布尔值：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%t	单词<span class="literal">true</span>或<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="整数："><a href="#整数：" class="headerlink" title="整数："></a>整数：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%b	表示为二进制</span><br><span class="line">%c	该值对应的unicode码值</span><br><span class="line">%d	表示为十进制</span><br><span class="line">%o	表示为八进制</span><br><span class="line">%q	该值对应的单引号括起来的<span class="keyword">go</span>语法字符字面值，必要时会采用安全的转义表示</span><br><span class="line">%x	表示为十六进制，使用a-f</span><br><span class="line">%X	表示为十六进制，使用A-F</span><br><span class="line">%U	表示为Unicode格式：U+<span class="number">1234</span>，等价于<span class="string">"U+%04X"</span></span><br></pre></td></tr></table></figure>
+<h2 id="浮点数与复数的两个组分："><a href="#浮点数与复数的两个组分：" class="headerlink" title="浮点数与复数的两个组分："></a>浮点数与复数的两个组分：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%b	无小数部分、二进制指数的科学计数法，如<span class="number">-123456</span>p<span class="number">-78</span>；参见strconv.FormatFloat</span><br><span class="line">%e	科学计数法，如<span class="number">-1234.456e+78</span></span><br><span class="line">%E	科学计数法，如<span class="number">-1234.456E+78</span></span><br><span class="line">%f	有小数部分但无指数部分，如<span class="number">123.456</span></span><br><span class="line">%F	等价于%f</span><br><span class="line">%g	根据实际情况采用%e或%f格式（以获得更简洁、准确的输出）</span><br><span class="line">%G	根据实际情况采用%E或%F格式（以获得更简洁、准确的输出）</span><br></pre></td></tr></table></figure>
+<h2 id="字符串和-byte："><a href="#字符串和-byte：" class="headerlink" title="字符串和[]byte："></a>字符串和[]byte：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%s	直接输出字符串或者[]<span class="keyword">byte</span></span><br><span class="line">%q	该值对应的双引号括起来的<span class="keyword">go</span>语法字符串字面值，必要时会采用安全的转义表示</span><br><span class="line">%x	每个字节用两字符十六进制数表示（使用a-f）</span><br><span class="line">%X	每个字节用两字符十六进制数表示（使用A-F）</span><br></pre></td></tr></table></figure>
+<h2 id="指针："><a href="#指针：" class="headerlink" title="指针："></a>指针：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%p	表示为十六进制，并加上前导的<span class="number">0</span>x</span><br></pre></td></tr></table></figure>
+<p>没有%u。整数如果是无符号类型自然输出也是无符号的。类似的，也没有必要指定操作数的尺寸（int8，int64）。</p>
+<p>宽度通过一个紧跟在百分号后面的十进制数指定，如果未指定宽度，则表示值时除必需之外不作填充。精度通过（可选的）宽度后跟点号后跟的十进制数指定。如果未指定精度，会使用默认精度；如果点号后没有跟数字，表示精度为0。举例如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%f:    默认宽度，默认精度</span><br><span class="line">%<span class="number">9f</span>    宽度<span class="number">9</span>，默认精度</span><br><span class="line">%<span class="number">.2f</span>   默认宽度，精度<span class="number">2</span></span><br><span class="line">%<span class="number">9.2f</span>  宽度<span class="number">9</span>，精度<span class="number">2</span></span><br><span class="line">%<span class="number">9.f</span>   宽度<span class="number">9</span>，精度<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>宽度和精度格式化控制的是Unicode码值的数量（不同于C的printf，它的这两个因数指的是字节的数量）。两者任一个或两个都可以使用’<em>‘号取代，此时它们的值将被对应的参数（按’</em>‘号和verb出现的顺序，即控制其值的参数会出现在要表示的值前面）控制，这个操作数必须是int类型。</p>
+<p>对于大多数类型的值，宽度是输出字符数目的最小数量，如果必要会用空格填充。对于字符串，精度是输出字符数目的最大数量，如果必要会截断字符串。</p>
+<p>对于整数，宽度和精度都设置输出总长度。采用精度时表示右对齐并用0填充，而宽度默认表示用空格填充。</p>
+<p>对于浮点数，宽度设置输出总长度；精度设置小数部分长度（如果有的话），除了%g和%G，此时精度设置总的数字个数。例如，对数字123.45，格式%6.2f 输出123.45；格式%.4g输出123.5。%e和%f的默认精度是6，%g的默认精度是可以将该值区分出来需要的最小数字个数。</p>
+<p>对复数，宽度和精度会分别用于实部和虚部，结果用小括号包裹。因此%f用于1.2+3.4i输出(1.200000+3.400000i)。</p>
+<h2 id="其它flag："><a href="#其它flag：" class="headerlink" title="其它flag："></a>其它flag：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'+'</span>	总是输出数值的正负号；对%q（%+q）会生成全部是ASCII字符的输出（通过转义）；</span><br><span class="line"><span class="string">' '</span>	对数值，正数前加空格而负数前加负号；</span><br><span class="line"><span class="string">'-'</span>	在输出右边填充空白而不是默认的左边（即从默认的右对齐切换为左对齐）；</span><br><span class="line"><span class="string">'#'</span>	切换格式：</span><br><span class="line">  	八进制数前加<span class="number">0</span>（%#o），十六进制数前加<span class="number">0</span>x（%#x）或<span class="number">0</span>X（%#X），指针去掉前面的<span class="number">0</span>x（%#p）；</span><br><span class="line"> 	对%q（%#q），如果strconv.CanBackquote返回真会输出反引号括起来的未转义字符串；</span><br><span class="line"> 	对%U（%#U），输出Unicode格式后，如字符可打印，还会输出空格和单引号括起来的<span class="keyword">go</span>字面值；</span><br><span class="line">  	对字符串采用%x或%X时（% x或% X）会给各打印的字节之间加空格；</span><br><span class="line"><span class="string">'0'</span>	使用<span class="number">0</span>而不是空格填充，对于数值类型会把填充的<span class="number">0</span>放在正负号后面；</span><br></pre></td></tr></table></figure>
+<p>verb会忽略不支持的flag。例如，因为没有十进制切换模式，所以%#d和%d的输出是相同的。</p>
+<p>对每一个类似Printf的函数，都有对应的Print型函数，该函数不接受格式字符串，就效果上等价于对每一个参数都是用verb %v。另一个变体Println型函数会在各个操作数的输出之间加空格并在最后换行。</p>
+<p>不管verb如何，如果操作数是一个接口值，那么会使用接口内部保管的值，而不是接口，因此：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i <span class="keyword">interface</span>&#123;&#125; = <span class="number">23</span></span><br><span class="line">fmt.Printf(<span class="string">"%v\n"</span>, i)   <span class="comment">// 输出：23</span></span><br></pre></td></tr></table></figure></p>
+<p>除了verb %T和%p之外；对实现了特定接口的操作数会考虑采用特殊的格式化技巧。按应用优先级如下：</p>
+<ul>
+<li><p>如果操作数实现了Formatter接口，会调用该接口的方法。Formatter提供了格式化的控制。</p>
+</li>
+<li><p>如果verb %v配合flag #使用（%#v），且操作数实现了GoStringer接口，会调用该接口。</p>
+</li>
+</ul>
+<p>如果操作数满足如下两条任一条，对于%s、%q、%v、%x、%X五个verb，将考虑：</p>
+<ul>
+<li><p>如果操作数实现了error接口，Error方法会用来生成字符串，随后将按给出的flag（如果有）和verb格式化。</p>
+</li>
+<li><p>如果操作数具有String方法，这个方法将被用来生成字符串，然后将按给出的flag（如果有）和verb格式化。</p>
+</li>
+</ul>
+<p>复合类型的操作数，如切片和结构体，格式化动作verb递归地应用于其每一个成员，而不是作为整体一个操作数使用。因此%q会将[]string的每一个成员括起来，%6.2f会控制浮点数组的每一个元素的格式化。</p>
+<p>为了避免可能出现的无穷递归，如：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> X <span class="keyword">string</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x X)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123; <span class="keyword">return</span> Sprintf(<span class="string">"&lt;%s&gt;"</span>, x) &#125;</span><br></pre></td></tr></table></figure></p>
+<p>应在递归之前转换值的类型：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x X)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123; <span class="keyword">return</span> Sprintf(<span class="string">"&lt;%s&gt;"</span>, <span class="keyword">string</span>(x)) &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="显式指定参数索引："><a href="#显式指定参数索引：" class="headerlink" title="显式指定参数索引："></a>显式指定参数索引：</h2><p>在Printf、Sprintf、Fprintf三个函数中，默认的行为是对每一个格式化verb依次对应调用时成功传递进来的参数。但是，紧跟在verb之前的[n]符号表示应格式化第n个参数（索引从1开始）。同样的在’*’之前的[n]符号表示采用第n个参数的值作为宽度或精度。在处理完方括号表达式[n]后，除非另有指示，会接着处理参数n+1，n+2……（就是说移动了当前处理位置）。例如：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fmt.Sprintf(<span class="string">"%[2]d %[1]d\n"</span>, <span class="number">11</span>, <span class="number">22</span>)    <span class="comment">// 输出： 22 11</span></span><br><span class="line"></span><br><span class="line">fmt.Sprintf(<span class="string">"%[3]*.[2]*[1]f"</span>, <span class="number">12.0</span>, <span class="number">2</span>, <span class="number">6</span>)  <span class="comment">// 输出： [00]12.00</span></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">fmt.Sprintf(<span class="string">"%6.2f"</span>, <span class="number">12.0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>因为显式的索引会影响随后的verb，这种符号可以通过重设索引用于多次打印同一个值：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Sprintf(<span class="string">"%d %d %#[1]x %#x"</span>, <span class="number">16</span>, <span class="number">17</span>) <span class="comment">// 输出： 16 17 0x10 0x11</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="格式化错误："><a href="#格式化错误：" class="headerlink" title="格式化错误："></a>格式化错误：</h2><p>如果给某个verb提供了非法的参数，如给%d提供了一个字符串，生成的字符串会包含该问题的描述，如下所例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">错误的类型或未知的verb：%!verb(<span class="keyword">type</span>=value)</span><br><span class="line">	Printf(<span class="string">"%d"</span>, hi):          %!d(<span class="keyword">string</span>=hi)</span><br><span class="line">太多参数（采用索引时会失效）：%!(EXTRA <span class="keyword">type</span>=value)</span><br><span class="line">	Printf(<span class="string">"hi"</span>, <span class="string">"guys"</span>):      hi%!(EXTRA <span class="keyword">string</span>=guys)</span><br><span class="line">太少参数: %!verb(MISSING)</span><br><span class="line">	Printf(<span class="string">"hi%d"</span>):            hi %!d(MISSING)</span><br><span class="line">宽度/精度不是整数值：%!(BADWIDTH) or %!(BADPREC)</span><br><span class="line">	Printf(<span class="string">"%*s"</span>, <span class="number">4.5</span>, <span class="string">"hi"</span>):  %!(BADWIDTH)hi</span><br><span class="line">	Printf(<span class="string">"%.*s"</span>, <span class="number">4.5</span>, <span class="string">"hi"</span>): %!(BADPREC)hi</span><br><span class="line">没有索引指向的参数：%!(BADINDEX)</span><br><span class="line">	Printf(<span class="string">"%*[2]d"</span>, <span class="number">7</span>):       %!d(BADINDEX)</span><br><span class="line">	Printf(<span class="string">"%.[2]d"</span>, <span class="number">7</span>):       %!d(BADINDEX)</span><br></pre></td></tr></table></figure></p>
+<p>所有的错误都以字符串”%!”开始，有时会后跟单个字符（verb标识符），并以加小括弧的描述结束。</p>
+<p>如果被print系列函数调用时，Error或String方法触发了panic，fmt包会根据panic重建错误信息，用一个字符串说明该panic经过了fmt包。例如，一个String方法调用了panic(“bad”)，生成的格式化信息差不多是这样的：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%!s(PANIC=bad)</span><br></pre></td></tr></table></figure></p>
+<p>%!s指示表示错误（panic）出现时的使用的verb。</p>
+<h1 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a>Scanning</h1><p>一系列类似的函数可以扫描格式化文本以生成值。</p>
+<p>Scan、Scanf和Scanln从标准输入os.Stdin读取文本；Fscan、Fscanf、Fscanln从指定的io.Reader接口读取文本；Sscan、Sscanf、Sscanln从一个参数字符串读取文本。</p>
+<p>Scanln、Fscanln、Sscanln会在读取到换行时停止，并要求一次提供一行所有条目；Scanf、Fscanf、Sscanf只有在格式化文本末端有换行时会读取到换行为止；其他函数会将换行视为空白。</p>
+<p>Scanf、Fscanf、Sscanf会根据格式字符串解析参数，类似Printf。例如%x会读取一个十六进制的整数，%v会按对应值的默认格式读取。格式规则类似Printf，有如下区别：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%p 未实现</span><br><span class="line">%T 未实现</span><br><span class="line">%e %E %f %F %g %G 效果相同，用于读取浮点数或复数类型</span><br><span class="line">%s %v 用在字符串时会读取空白分隔的一个片段</span><br><span class="line">flag <span class="string">'#'</span>和<span class="string">'+'</span> 未实现</span><br></pre></td></tr></table></figure></p>
+<p>在无格式化verb或verb %v下扫描整数时会接受常用的进制设置前缀0（八进制）和0x（十六进制）。</p>
+<p>宽度会在输入文本中被使用（%5s表示最多读取5个rune来生成一个字符串），但没有使用精度的语法（没有%5.2f，只有%5f）。</p>
+<p>当使用格式字符串进行扫描时，多个连续的空白字符（除了换行符）在输出和输出中都被等价于一个空白符。在此前提下，格式字符串中的文本必须匹配输入的文本；如果不匹配扫描会中止，函数的整数返回值说明已经扫描并填写的参数个数。</p>
+<p>在所有的扫描函数里，\r\n都被视为\n。</p>
+<p>在所有的扫描函数里，如果一个操作数实现了Scan方法（或者说，它实现了Scanner接口），将会使用该接口为该操作数扫描文本。另外，如果如果扫描到（准备填写）的参数比提供的参数个数少，会返回一个错误。</p>
+<p>提供的所有参数必须为指针或者实现了Scanner接口。注意：Fscan等函数可能会在返回前多读取一个rune，这导致多次调用这些函数时可能会跳过部分输入。只有在输入里各值之间没有空白时，会出现问题。如果提供给Fscan等函数的io.Reader接口实现了ReadRune方法，将使用该方法读取字符。如果该io.Reader接口还实现了UnreadRune方法，将是使用该方法保存字符，这样可以使成功执行的Fscan等函数不会丢失数据。如果要给一个没有这两个方法的io.Reader接口提供这两个方法，使用bufio.NewReader。</p>
+<h1 id="type-Stringer"><a href="#type-Stringer" class="headerlink" title="type Stringer"></a>type <strong>Stringer</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Stringer <span class="keyword">interface</span> &#123;</span><br><span class="line">    String() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了Stringer接口的类型（即有String方法），定义了该类型值的原始显示。当采用任何接受字符的verb（%v %s %q %x %X）动作格式化一个操作数时，或者被不使用格式字符串如Print函数打印操作数时，会调用String方法来生成输出的文本。</p>
+<h1 id="type-GoStringer"><a href="#type-GoStringer" class="headerlink" title="type GoStringer"></a>type <strong>GoStringer</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> GoStringer <span class="keyword">interface</span> &#123;</span><br><span class="line">    GoString() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了GoStringer接口的类型（即有GoString方法），定义了该类型值的go语法表示。当采用verb %#v格式化一个操作数时，会调用GoString方法来生成输出的文本。</p>
+<p>type <strong>State</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> State <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">// Write方法用来写入格式化的文本</span></span><br><span class="line">    Write(b []<span class="keyword">byte</span>) (ret <span class="keyword">int</span>, err error)</span><br><span class="line">    <span class="comment">// Width返回宽度值，及其是否被设置</span></span><br><span class="line">    Width() (wid <span class="keyword">int</span>, ok <span class="keyword">bool</span>)</span><br><span class="line">    <span class="comment">// Precision返回精度值，及其是否被设置</span></span><br><span class="line">    Precision() (prec <span class="keyword">int</span>, ok <span class="keyword">bool</span>)</span><br><span class="line">    <span class="comment">// Flag报告是否设置了flag c（一个字符，如+、-、#等）</span></span><br><span class="line">    Flag(c <span class="keyword">int</span>) <span class="keyword">bool</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>State代表一个传递给自定义Formatter接口的Format方法的打印环境。它实现了io.Writer接口用来写入格式化的文本，还提供了该操作数的格式字符串指定的选项和宽度、精度信息（通过调用方法）。</p>
+<h1 id="type-Formatter"><a href="#type-Formatter" class="headerlink" title="type Formatter"></a>type <strong>Formatter</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Formatter <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">// c为verb，f提供verb的细节信息和Write方法用于写入生成的格式化文本</span></span><br><span class="line">    Format(f State, c <span class="keyword">rune</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了Formatter接口的类型可以定制自己的格式化输出。Format方法的实现内部可以调用Sprint或Fprint等函数来生成自身的输出。</p>
+<h1 id="type-ScanState"><a href="#type-ScanState" class="headerlink" title="type ScanState"></a>type <strong>ScanState</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ScanState <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">// 从输入读取下一个rune（Unicode码值），在读取超过指定宽度时会返回EOF</span></span><br><span class="line">    <span class="comment">// 如果在Scanln、Fscanln或Sscanln中被调用，本方法会在返回第一个'\n'后再次调用时返回EOF</span></span><br><span class="line">    ReadRune() (r <span class="keyword">rune</span>, size <span class="keyword">int</span>, err error)</span><br><span class="line">    <span class="comment">// UnreadRune方法让下一次调用ReadRune时返回上一次返回的rune且不移动读取位置</span></span><br><span class="line">    UnreadRune() error</span><br><span class="line">    <span class="comment">// SkipSpace方法跳过输入中的空白，换行被视为空白</span></span><br><span class="line">    <span class="comment">// 在Scanln、Fscanln或Sscanln中被调用时，换行被视为EOF</span></span><br><span class="line">    SkipSpace()</span><br><span class="line">    <span class="comment">// 方法从输入中依次读取rune并用f测试，直到f返回假；将读取的rune组织为一个[]byte切片返回。</span></span><br><span class="line">    <span class="comment">// 如果skipSpace参数为真，本方法会先跳过输入中的空白。</span></span><br><span class="line">    <span class="comment">// 如果f为nil，会使用!unicode.IsSpace(c)；就是说返回值token将为一串非空字符。</span></span><br><span class="line">    <span class="comment">// 换行被视为空白，在Scanln、Fscanln或Sscanln中被调用时，换行被视为EOF。</span></span><br><span class="line">    <span class="comment">// 返回的切片指向一个共享内存，可能被下一次调用Token方法时重写；</span></span><br><span class="line">    <span class="comment">// 或被使用该Scanstate的另一个Scan函数重写；或者在本次调用的Scan方法返回时重写。</span></span><br><span class="line">    Token(skipSpace <span class="keyword">bool</span>, f <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="params">(token []<span class="keyword">byte</span>, err error)</span></span></span><br><span class="line"><span class="function">    // <span class="title">Width</span>返回返回宽度值，及其是否被设置。单位是<span class="title">unicode</span>码值。</span></span><br><span class="line"><span class="function">    <span class="title">Width</span><span class="params">()</span> <span class="params">(wid <span class="keyword">int</span>, ok <span class="keyword">bool</span>)</span></span></span><br><span class="line"><span class="function">    // 因为本接口实现了<span class="title">ReadRune</span>方法，<span class="title">Read</span>方法永远不应被在<span class="title">Scanner</span>接口中使用。</span></span><br><span class="line"><span class="function">    // 一个合法的<span class="title">ScanStat</span>接口实现可能会选择让本方法总是返回错误。</span></span><br><span class="line"><span class="function">    <span class="title">Read</span><span class="params">(buf []<span class="keyword">byte</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>ScanState代表一个将传递给Scanner接口的Scan方法的扫描环境。 Scan函数中，可以进行一次一个rune的扫描，或者使用Token方法获得下一个token（比如空白分隔的token）。</p>
+<h1 id="type-Scanner"><a href="#type-Scanner" class="headerlink" title="type Scanner"></a>type <strong>Scanner</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Scanner <span class="keyword">interface</span> &#123;</span><br><span class="line">    Scan(state ScanState, verb <span class="keyword">rune</span>) error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当Scan、Scanf、Scanln或类似函数接受实现了Scanner接口的类型（其Scan方法的receiver必须是指针，该方法从输入读取该类型值的字符串表示并将结果写入receiver）作为参数时，会调用其Scan方法进行定制的扫描。</p>
+<h2 id="func-Printf"><a href="#func-Printf" class="headerlink" title="func Printf"></a>func <strong>Printf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Printf根据format参数生成格式化的字符串并写入标准输出。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Fprintf"><a href="#func-Fprintf" class="headerlink" title="func Fprintf"></a>func <strong>Fprintf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fprintf</span><span class="params">(w io.Writer, format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fprintf根据format参数生成格式化的字符串并写入w。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Sprintf"><a href="#func-Sprintf" class="headerlink" title="func Sprintf"></a>func <strong>Sprintf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sprintf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>Sprintf根据format参数生成格式化的字符串并返回该字符串。</p>
+<h2 id="func-Print"><a href="#func-Print" class="headerlink" title="func Print"></a>func <strong>Print</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Print</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Print采用默认格式将其参数格式化并写入标准输出。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Fprint"><a href="#func-Fprint" class="headerlink" title="func Fprint"></a>func <strong>Fprint</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fprint</span><span class="params">(w io.Writer, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fprint采用默认格式将其参数格式化并写入w。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Sprint"><a href="#func-Sprint" class="headerlink" title="func Sprint"></a>func <strong>Sprint</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sprint</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>Sprint采用默认格式将其参数格式化，串联所有输出生成并返回一个字符串。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格。</p>
+<h2 id="func-Println"><a href="#func-Println" class="headerlink" title="func Println"></a>func <strong>Println</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Println</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Println采用默认格式将其参数格式化并写入标准输出。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Fprintln"><a href="#func-Fprintln" class="headerlink" title="func Fprintln"></a>func <strong>Fprintln</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fprintln</span><span class="params">(w io.Writer, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fprintln采用默认格式将其参数格式化并写入w。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。返回写入的字节数和遇到的任何错误。</p>
+<h2 id="func-Sprintln"><a href="#func-Sprintln" class="headerlink" title="func Sprintln"></a>func <strong>Sprintln</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sprintln</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>Sprintln采用默认格式将其参数格式化，串联所有输出生成并返回一个字符串。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。</p>
+<h2 id="func-Errorf"><a href="#func-Errorf" class="headerlink" title="func Errorf"></a>func <strong>Errorf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Errorf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<p>Errorf根据format参数生成格式化字符串并返回一个包含该字符串的错误。</p>
+<h2 id="func-Scanf"><a href="#func-Scanf" class="headerlink" title="func Scanf"></a>func <strong>Scanf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Scanf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Scanf从标准输入扫描文本，根据format 参数指定的格式将成功读取的空白分隔的值保存进成功传递给本函数的参数。返回成功扫描的条目个数和遇到的任何错误。</p>
+<h2 id="func-Fscanf"><a href="#func-Fscanf" class="headerlink" title="func Fscanf"></a>func <strong>Fscanf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fscanf</span><span class="params">(r io.Reader, format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fscanf从r扫描文本，根据format 参数指定的格式将成功读取的空白分隔的值保存进成功传递给本函数的参数。返回成功扫描的条目个数和遇到的任何错误。</p>
+<h2 id="func-Sscanf"><a href="#func-Sscanf" class="headerlink" title="func Sscanf"></a>func <strong>Sscanf</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sscanf</span><span class="params">(str <span class="keyword">string</span>, format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Sscanf从字符串str扫描文本，根据format 参数指定的格式将成功读取的空白分隔的值保存进成功传递给本函数的参数。返回成功扫描的条目个数和遇到的任何错误。</p>
+<h2 id="func-Scan"><a href="#func-Scan" class="headerlink" title="func Scan"></a>func <strong>Scan</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Scan</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Scan从标准输入扫描文本，将成功读取的空白分隔的值保存进成功传递给本函数的参数。换行视为空白。返回成功扫描的条目个数和遇到的任何错误。如果读取的条目比提供的参数少，会返回一个错误报告原因。</p>
+<h2 id="func-Fscan"><a href="#func-Fscan" class="headerlink" title="func Fscan"></a>func <strong>Fscan</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fscan</span><span class="params">(r io.Reader, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fscan从r扫描文本，将成功读取的空白分隔的值保存进成功传递给本函数的参数。换行视为空白。返回成功扫描的条目个数和遇到的任何错误。如果读取的条目比提供的参数少，会返回一个错误报告原因。</p>
+<h2 id="func-Sscan"><a href="#func-Sscan" class="headerlink" title="func Sscan"></a>func <strong>Sscan</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sscan</span><span class="params">(str <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Sscan从字符串str扫描文本，将成功读取的空白分隔的值保存进成功传递给本函数的参数。换行视为空白。返回成功扫描的条目个数和遇到的任何错误。如果读取的条目比提供的参数少，会返回一个错误报告原因。</p>
+<h2 id="func-Scanln"><a href="#func-Scanln" class="headerlink" title="func Scanln"></a>func <strong>Scanln</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Scanln</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Scanln类似Scan，但会在换行时才停止扫描。最后一个条目后必须有换行或者到达结束位置。</p>
+<h2 id="func-Fscanln"><a href="#func-Fscanln" class="headerlink" title="func Fscanln"></a>func <strong>Fscanln</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fscanln</span><span class="params">(r io.Reader, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Fscanln类似Fscan，但会在换行时才停止扫描。最后一个条目后必须有换行或者到达结束位置。</p>
+<h2 id="func-Sscanln"><a href="#func-Sscanln" class="headerlink" title="func Sscanln"></a>func <strong>Sscanln</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sscanln</span><span class="params">(str <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<p>Sscanln类似Sscan，但会在换行时才停止扫描。最后一个条目后必须有换行或者到达结束位置。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/01/14/golang/Golang-读写数据二/" title="Golang-读写数据二">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/01/02/golang/Golang-读写数据一/" title="【转】Golang-读写数据一">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#输出格式"><span class="post-toc-text">输出格式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通用："><span class="post-toc-text">通用：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#布尔值："><span class="post-toc-text">布尔值：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整数："><span class="post-toc-text">整数：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浮点数与复数的两个组分："><span class="post-toc-text">浮点数与复数的两个组分：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符串和-byte："><span class="post-toc-text">字符串和[]byte：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#指针："><span class="post-toc-text">指针：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其它flag："><span class="post-toc-text">其它flag：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#显式指定参数索引："><span class="post-toc-text">显式指定参数索引：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#格式化错误："><span class="post-toc-text">格式化错误：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Scanning"><span class="post-toc-text">Scanning</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Stringer"><span class="post-toc-text">type Stringer</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-GoStringer"><span class="post-toc-text">type GoStringer</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Formatter"><span class="post-toc-text">type Formatter</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-ScanState"><span class="post-toc-text">type ScanState</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Scanner"><span class="post-toc-text">type Scanner</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Printf"><span class="post-toc-text">func Printf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fprintf"><span class="post-toc-text">func Fprintf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sprintf"><span class="post-toc-text">func Sprintf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Print"><span class="post-toc-text">func Print</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fprint"><span class="post-toc-text">func Fprint</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sprint"><span class="post-toc-text">func Sprint</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Println"><span class="post-toc-text">func Println</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fprintln"><span class="post-toc-text">func Fprintln</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sprintln"><span class="post-toc-text">func Sprintln</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Errorf"><span class="post-toc-text">func Errorf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Scanf"><span class="post-toc-text">func Scanf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fscanf"><span class="post-toc-text">func Fscanf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sscanf"><span class="post-toc-text">func Sscanf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Scan"><span class="post-toc-text">func Scan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fscan"><span class="post-toc-text">func Fscan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sscan"><span class="post-toc-text">func Sscan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Scanln"><span class="post-toc-text">func Scanln</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fscanln"><span class="post-toc-text">func Fscanln</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Sscanln"><span class="post-toc-text">func Sscanln</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

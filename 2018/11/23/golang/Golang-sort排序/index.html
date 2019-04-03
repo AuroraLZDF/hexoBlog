@@ -1,0 +1,892 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Golang-sort排序</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Golang-sort排序》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/23/golang/Golang-sort排序/" itemprop="url">		
+			Golang-sort排序		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/23/golang/Golang-sort排序/" itemprop="url">
+	<time datetime="2018-11-23T06:17:31.000Z" itemprop="datePublished">
+  		2018-11-23
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#Golang" title="Golang" rel="18">Golang</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>sort包提供了排序切片和用户自定义数据集的函数。</p>
+<h1 id="type-Interface"><a href="#type-Interface" class="headerlink" title="type Interface"></a>type Interface</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Interface <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">// Len方法返回集合中的元素个数</span></span><br><span class="line">    Len() <span class="keyword">int</span></span><br><span class="line">    <span class="comment">// Less方法报告索引i的元素是否比索引j的元素小</span></span><br><span class="line">    Less(i, j <span class="keyword">int</span>) <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">// Swap方法交换索引i和j的两个元素</span></span><br><span class="line">    Swap(i, j <span class="keyword">int</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个满足 <code>sort.Interface</code> 接口的（集合）类型可以被本包的函数进行排序。方法要求集合中的元素可以被整数索引。</p>
+<h1 id="type-IntSlice"><a href="#type-IntSlice" class="headerlink" title="type IntSlice"></a>type <strong>IntSlice</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IntSlice []<span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+<p><code>IntSlice</code> 给 <code>[]int</code> 添加方法以满足 <code>Interface</code> 接口，以便排序为递增序列。</p>
+<h2 id="func-IntSlice-Len"><a href="#func-IntSlice-Len" class="headerlink" title="func (IntSlice) Len"></a>func <strong>(IntSlice) Len</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p IntSlice)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Len</code> 方法返回集合中的元素个数</p>
+<h2 id="func-IntSlice-Less"><a href="#func-IntSlice-Less" class="headerlink" title="func (IntSlice) Less"></a>func <strong>(IntSlice) Less</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p IntSlice)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Less</code> 方法报告索引 <code>i</code> 的元素是否比索引 <code>j</code> 的元素小</p>
+<h2 id="func-IntSlice-Swap"><a href="#func-IntSlice-Swap" class="headerlink" title="func (IntSlice) Swap"></a>func <strong>(IntSlice) Swap</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p IntSlice)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Swap</code> 方法交换索引 <code>i</code> 和 <code>j</code> 的两个元素</p>
+<h2 id="func-IntSlice-Sort"><a href="#func-IntSlice-Sort" class="headerlink" title="func (IntSlice) Sort"></a>func <strong>(IntSlice) Sort</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p IntSlice)</span> <span class="title">Sort</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Sort</code> 等价于调用 <code>Sort(p)</code></p>
+<h2 id="func-IntSlice-Search"><a href="#func-IntSlice-Search" class="headerlink" title="func (IntSlice) Search"></a>func <strong>(IntSlice) Search</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p IntSlice)</span> <span class="title">Search</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Search</code> 等价于调用 <code>SearchInts(p, x)</code></p>
+<h1 id="type-Float64Slice"><a href="#type-Float64Slice" class="headerlink" title="type Float64Slice"></a>type <strong>Float64Slice</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Float64Slice []<span class="keyword">float64</span></span><br></pre></td></tr></table></figure>
+<p><code>Float64Slice</code> 给 <code>[]float64</code> 添加方法以满足 <code>Interface</code> 接口，以便排序为递增序列。</p>
+<h2 id="func-Float64Slice-Len"><a href="#func-Float64Slice-Len" class="headerlink" title="func (Float64Slice) Len"></a>func <strong>(Float64Slice) Len</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Float64Slice)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-Float64Slice-Less"><a href="#func-Float64Slice-Less" class="headerlink" title="func (Float64Slice) Less"></a>func <strong>(Float64Slice) Less</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Float64Slice)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-Float64Slice-Swap"><a href="#func-Float64Slice-Swap" class="headerlink" title="func (Float64Slice) Swap"></a>func <strong>(Float64Slice) Swap</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Float64Slice)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-Float64Slice-Sort"><a href="#func-Float64Slice-Sort" class="headerlink" title="func (Float64Slice) Sort"></a>func <strong>(Float64Slice) Sort</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Float64Slice)</span> <span class="title">Sort</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Sort</code> 等价于调用 <code>Sort(p)</code></p>
+<h2 id="func-Float64Slice-Search"><a href="#func-Float64Slice-Search" class="headerlink" title="func (Float64Slice) Search"></a>func <strong>(Float64Slice) Search</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Float64Slice)</span> <span class="title">Search</span><span class="params">(x <span class="keyword">float64</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Search</code> 等价于调用 <code>SearchFloat64s(p, x)</code></p>
+<h1 id="type-StringSlice"><a href="#type-StringSlice" class="headerlink" title="type StringSlice"></a>type <strong>StringSlice</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> StringSlice []<span class="keyword">string</span></span><br></pre></td></tr></table></figure>
+<p><code>StringSlice</code> 给 <code>[]string</code> 添加方法以满足 <code>Interface</code> 接口，以便排序为递增序列。</p>
+<h2 id="func-StringSlice-Len"><a href="#func-StringSlice-Len" class="headerlink" title="func (StringSlice) Len"></a>func <strong>(StringSlice) Len</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p StringSlice)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-StringSlice-Less"><a href="#func-StringSlice-Less" class="headerlink" title="func (StringSlice) Less"></a>func <strong>(StringSlice) Less</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p StringSlice)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-StringSlice-Swap"><a href="#func-StringSlice-Swap" class="headerlink" title="func (StringSlice) Swap"></a>func <strong>(StringSlice) Swap</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p StringSlice)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="func-StringSlice-Sort"><a href="#func-StringSlice-Sort" class="headerlink" title="func (StringSlice) Sort"></a>func <strong>(StringSlice) Sort</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p StringSlice)</span> <span class="title">Sort</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Sort</code> 等价于调用 <code>Sort(p)</code></p>
+<h2 id="func-StringSlice-Search"><a href="#func-StringSlice-Search" class="headerlink" title="func (StringSlice) Search"></a>func <strong>(StringSlice) Search</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p StringSlice)</span> <span class="title">Search</span><span class="params">(x <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Search</code> 等价于调用 <code>SearchStrings(p, x)</code></p>
+<h1 id="func-Sort"><a href="#func-Sort" class="headerlink" title="func Sort"></a>func <strong>Sort</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sort</span><span class="params">(data Interface)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Sort</code> 排序 <code>data</code>。它调用1次 <code>data.Len</code> 确定长度，调用 <code>O(n*log(n))</code> 次 <code>data.Less</code> 和 <code>data.Swap</code>。本函数不能保证排序的稳定性（即不保证相等元素的相对次序不变）。</p>
+<h1 id="func-Stable"><a href="#func-Stable" class="headerlink" title="func Stable"></a>func <strong>Stable</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Stable</span><span class="params">(data Interface)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Stable</code> 排序 <code>data</code>，并保证排序的稳定性，相等元素的相对次序不变。</p>
+<p>它调用1次 <code>data.Len</code>，<code>O(n*log(n))</code> 次 <code>data.Less</code> 和 <code>O(n*log(n)*log(n))</code> 次 <code>data.Swap</code>。</p>
+<h1 id="func-IsSorted"><a href="#func-IsSorted" class="headerlink" title="func IsSorted"></a>func <strong>IsSorted</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IsSorted</span><span class="params">(data Interface)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<p><code>IsSorted</code> 报告 <code>data</code> 是否已经被排序。</p>
+<h1 id="func-Reverse"><a href="#func-Reverse" class="headerlink" title="func Reverse"></a>func <strong>Reverse</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(data Interface)</span> <span class="title">Interface</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Reverse</code> 包装一个 <code>Interface</code>接口并返回一个新的 <code>Interface</code> 接口，对该接口排序可生成递减序列。</p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"sort"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>&#125; <span class="comment">// unsorted</span></span><br><span class="line">	sort.Sort(sort.Reverse(sort.IntSlice(s)))</span><br><span class="line">	fmt.Println(s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[6 5 4 3 2 1]
+</code></pre><h1 id="func-Search"><a href="#func-Search" class="headerlink" title="func Search"></a>func <strong>Search</strong></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Search</span><span class="params">(n <span class="keyword">int</span>, f <span class="keyword">func</span>(<span class="keyword">int</span>)</span> <span class="title">bool</span>) <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Search</code> 函数采用<em>二分法</em>搜索找到[0, n)区间内最小的满足f(i)==true的值i。也就是说，<code>Search</code> 函数希望 <code>f</code> 在输入位于区间[0, n)的前面某部分（可以为空）时返回假，而在输入位于剩余至结尾的部分（可以为空）时返回真；<code>Search</code> 函数会返回满足f(i)==true的最小值i。如果没有该值，函数会返回n。注意，未找到时的返回值不是-1，这一点和 <code>strings.Index</code> 等函数不同。<code>Search</code> 函数只会用区间[0, n)内的值调用 <code>f</code>。</p>
+<p>一般使用 <code>Search</code> 找到值x在插入一个有序的、可索引的数据结构时，应插入的位置。这种情况下，参数 <code>f</code>（通常是闭包）会捕捉应搜索的值和被查询的数据集。</p>
+<p>例如，给定一个递增顺序的切片，调用 <code>Search(len(data), func(i int) bool { return data[i] &gt;= 23 })</code> 会返回data中最小的索引i满足data[i] &gt;= 23。如果调用者想要知道23是否在切片里，它必须另外检查data[i] == 23。</p>
+<p>搜索递减顺序的数据时，应使用&lt;=运算符代替&gt;=运算符。</p>
+<p>下列代码尝试在一个递增顺序的整数切片中找到值x：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GuessingGame</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span></span><br><span class="line">	fmt.Printf(<span class="string">"Pick an integer from 0 to 100.\n"</span>)</span><br><span class="line">	answer := sort.Search(<span class="number">100</span>, <span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Is your number &lt;= %d? "</span>, i)</span><br><span class="line">		fmt.Scanf(<span class="string">"%s"</span>, &amp;s)</span><br><span class="line">		<span class="keyword">return</span> s != <span class="string">""</span> &amp;&amp; s[<span class="number">0</span>] == <span class="string">'y'</span></span><br><span class="line">	&#125;)</span><br><span class="line">	fmt.Printf(<span class="string">"Your number is %d.\n"</span>, answer)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Ints"><a href="#Ints" class="headerlink" title="Ints"></a>Ints</h1><h2 id="func-Ints"><a href="#func-Ints" class="headerlink" title="func Ints"></a>func <strong>Ints</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Ints</span><span class="params">(a []<span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Ints</code> 函数将 <code>a</code> 排序为递增顺序。</p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"sort"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>&#125; <span class="comment">// unsorted</span></span><br><span class="line">	sort.Ints(s)</span><br><span class="line">	fmt.Println(s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[1 2 3 4 5 6]
+</code></pre><h2 id="func-IntsAreSorted"><a href="#func-IntsAreSorted" class="headerlink" title="func IntsAreSorted"></a>func <strong>IntsAreSorted</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IntsAreSorted</span><span class="params">(a []<span class="keyword">int</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<p><code>IntsAreSorted</code> 检查 <code>a</code> 是否已排序为递增顺序。<br>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"sort"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>&#125; <span class="comment">// unsorted</span></span><br><span class="line">	sort.Ints(s)</span><br><span class="line">    fmt.Println(s)</span><br><span class="line">    fmt.Println(sort.IntsAreSorted(s))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[1 2 3 4 5 6]
+true
+</code></pre><h2 id="func-SearchInts"><a href="#func-SearchInts" class="headerlink" title="func SearchInts"></a>func <strong>SearchInts</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SearchInts</span><span class="params">(a []<span class="keyword">int</span>, x <span class="keyword">int</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>SearchInts</code> 在递增顺序的 <code>a</code> 中搜索 <code>x</code>，返回 <code>x</code> 的索引。如果查找不到，返回值是 <code>x</code>应该插入 <code>a</code> 的位置（以保证a的递增顺序），返回值可以是len(a)。</p>
+<h1 id="Float64s"><a href="#Float64s" class="headerlink" title="Float64s"></a>Float64s</h1><h2 id="func-Float64s"><a href="#func-Float64s" class="headerlink" title="func Float64s"></a>func <strong>Float64s</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Float64s</span><span class="params">(a []<span class="keyword">float64</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Float64s</code> 函数将 a` 排序为递增顺序。</p>
+<h2 id="func-Float64sAreSorted"><a href="#func-Float64sAreSorted" class="headerlink" title="func Float64sAreSorted"></a>func <strong>Float64sAreSorted</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Float64sAreSorted</span><span class="params">(a []<span class="keyword">float64</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Float64sAreSorted</code> 检查 <code>a</code>是否已排序为递增顺序。</p>
+<h2 id="func-SearchFloat64s"><a href="#func-SearchFloat64s" class="headerlink" title="func SearchFloat64s"></a>func <strong>SearchFloat64s</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SearchFloat64s</span><span class="params">(a []<span class="keyword">float64</span>, x <span class="keyword">float64</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>SearchFloat64s</code> 在递增顺序的 <code>a</code> 中搜索 <code>x</code>，返回 <code>x</code> 的索引。如果查找不到，返回值是 <code>x</code> 应该插入 <code>a</code> 的位置（以保证a的递增顺序），返回值可以是len(a)。</p>
+<h1 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h1><h2 id="func-Strings"><a href="#func-Strings" class="headerlink" title="func Strings"></a>func <strong>Strings</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Strings</span><span class="params">(a []<span class="keyword">string</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Strings</code> 函数将 <code>a</code> 排序为递增顺序。</p>
+<h2 id="func-StringsAreSorted"><a href="#func-StringsAreSorted" class="headerlink" title="func StringsAreSorted"></a>func <strong>StringsAreSorted</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StringsAreSorted</span><span class="params">(a []<span class="keyword">string</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
+<p><code>StringsAreSorted</code> 检查 <code>a</code> 是否已排序为递增顺序。</p>
+<h2 id="func-SearchStrings"><a href="#func-SearchStrings" class="headerlink" title="func SearchStrings"></a>func <strong>SearchStrings</strong></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SearchStrings</span><span class="params">(a []<span class="keyword">string</span>, x <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure>
+<p><code>SearchStrings</code> 在递增顺序的 <code>a</code> 中搜索 <code>x</code>，返回 <code>x</code> 的索引。如果查找不到，返回值是 <code>x</code> 应该插入 <code>a</code> 的位置（以保证a的递增顺序），返回值可以是len(a)。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/12/03/golang/Golang-regexp包实现了正则表达式搜索/" title="Golang-regexp包实现了正则表达式搜索">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/21/golang/Golang-通过内存缓存来提升性能/" title="【转】Golang-通过内存缓存来提升性能">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Interface"><span class="post-toc-text">type Interface</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-IntSlice"><span class="post-toc-text">type IntSlice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntSlice-Len"><span class="post-toc-text">func (IntSlice) Len</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntSlice-Less"><span class="post-toc-text">func (IntSlice) Less</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntSlice-Swap"><span class="post-toc-text">func (IntSlice) Swap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntSlice-Sort"><span class="post-toc-text">func (IntSlice) Sort</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntSlice-Search"><span class="post-toc-text">func (IntSlice) Search</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-Float64Slice"><span class="post-toc-text">type Float64Slice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64Slice-Len"><span class="post-toc-text">func (Float64Slice) Len</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64Slice-Less"><span class="post-toc-text">func (Float64Slice) Less</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64Slice-Swap"><span class="post-toc-text">func (Float64Slice) Swap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64Slice-Sort"><span class="post-toc-text">func (Float64Slice) Sort</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64Slice-Search"><span class="post-toc-text">func (Float64Slice) Search</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#type-StringSlice"><span class="post-toc-text">type StringSlice</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringSlice-Len"><span class="post-toc-text">func (StringSlice) Len</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringSlice-Less"><span class="post-toc-text">func (StringSlice) Less</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringSlice-Swap"><span class="post-toc-text">func (StringSlice) Swap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringSlice-Sort"><span class="post-toc-text">func (StringSlice) Sort</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringSlice-Search"><span class="post-toc-text">func (StringSlice) Search</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-Sort"><span class="post-toc-text">func Sort</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-Stable"><span class="post-toc-text">func Stable</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-IsSorted"><span class="post-toc-text">func IsSorted</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-Reverse"><span class="post-toc-text">func Reverse</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#func-Search"><span class="post-toc-text">func Search</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ints"><span class="post-toc-text">Ints</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Ints"><span class="post-toc-text">func Ints</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IntsAreSorted"><span class="post-toc-text">func IntsAreSorted</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SearchInts"><span class="post-toc-text">func SearchInts</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Float64s"><span class="post-toc-text">Float64s</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64s"><span class="post-toc-text">func Float64s</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Float64sAreSorted"><span class="post-toc-text">func Float64sAreSorted</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SearchFloat64s"><span class="post-toc-text">func SearchFloat64s</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Strings"><span class="post-toc-text">Strings</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Strings"><span class="post-toc-text">func Strings</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-StringsAreSorted"><span class="post-toc-text">func StringsAreSorted</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SearchStrings"><span class="post-toc-text">func SearchStrings</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
