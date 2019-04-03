@@ -1,5 +1,5 @@
 ---
-title: 初识Shell
+title: shell-初识Shell
 date: 2019-03-29 14:58:08
 tags: [Linux,Shell]
 categories: [Shell]

@@ -1,5 +1,5 @@
 ---
-title: 初识Shell
+title: shell-shell编程基础
 date: 2019-04-01 11:26:01
 tags: [Linux,Shell]
 categories: [Shell]
