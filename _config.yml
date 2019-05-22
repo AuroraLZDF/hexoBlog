@@ -12,7 +12,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://auroralzdf.github.io
+url: https://auroralzdf.gitee.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,7 +63,8 @@ theme: annie
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/AuroraLZDF/blog.io.git
+  repo: https://gitee.com/auroraLZDF/auroraLZDF.git
+  #repo: https://github.com/AuroraLZDF/blog.io.git
   #repo: https://git.coding.net/aurora_LZDF/Hexo-Blog.git
   branch: master
 # Search   
