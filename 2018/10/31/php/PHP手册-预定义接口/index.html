@@ -1,0 +1,923 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>PHP手册-预定义接口</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《PHP手册-预定义接口》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/10/31/php/PHP手册-预定义接口/" itemprop="url">		
+			PHP手册-预定义接口		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/10/31/php/PHP手册-预定义接口/" itemprop="url">
+	<time datetime="2018-10-31T06:17:59.000Z" itemprop="datePublished">
+  		2018-10-31
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#PHP" title="PHP" rel="36">PHP</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h1 id="Traversable（遍历）接口"><a href="#Traversable（遍历）接口" class="headerlink" title="Traversable（遍历）接口"></a>Traversable（遍历）接口</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>检测一个类是否可以使用 foreach 进行遍历的接口。</p>
+<p>无法被单独实现的基本抽象接口。相反它必须由 <code>IteratorAggregate</code> 或 <code>Iterator</code> 接口实现。</p>
+<pre><code>Note:
+实现此接口的内建类可以使用 foreach 进行遍历而无需实现 IteratorAggregate 或 Iterator 接口。
+</code></pre><hr>
+<pre><code>Note:
+这是一个无法在 PHP 脚本中实现的内部引擎接口。IteratorAggregate 或 Iterator 接口可以用来代替它。
+</code></pre><h2 id="接口摘要"><a href="#接口摘要" class="headerlink" title="接口摘要"></a>接口摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Traversable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个接口没有任何方法，它的作用仅仅是作为所有可遍历类的基本接口。</p>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$myarray = <span class="keyword">array</span>(<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>);</span><br><span class="line">$myobj = (object)$myarray;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( !($myarray <span class="keyword">instanceof</span> \Traversable) ) &#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"myarray is NOT Traversable"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> ( !($myobj <span class="keyword">instanceof</span> \Traversable) ) &#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"myobj is NOT Traversable"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($myarray <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    <span class="keyword">print</span> $value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> ($myobj <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    <span class="keyword">print</span> $value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的例子大概会输出：</p>
+<pre><code>myarray is NOT Traversable
+myobj is NOT Traversable
+one
+two
+three
+one
+two
+three
+</code></pre><h1 id="Iterator（迭代器）接口"><a href="#Iterator（迭代器）接口" class="headerlink" title="Iterator（迭代器）接口"></a>Iterator（迭代器）接口</h1><p>##　简介<br>可在内部迭代自己的外部迭代器或类的接口。</p>
+<h2 id="接口摘要-1"><a href="#接口摘要-1" class="headerlink" title="接口摘要"></a>接口摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Iterator extends Traversable &#123;</span><br><span class="line"><span class="comment">/* 方法 */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> mixed current ( void )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> scalar key ( void )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> void next ( void )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> void rewind ( void )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> bool valid ( void )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="预定义迭代器"><a href="#预定义迭代器" class="headerlink" title="预定义迭代器"></a>预定义迭代器</h2><p>PHP 已经提供了一些用于日常任务的迭代器。 详细列表参见 <a href="http://php.net/manual/zh/spl.iterators.php" target="_blank" rel="noopener">SPL 迭代器</a>。</p>
+<h2 id="范例-1"><a href="#范例-1" class="headerlink" title="范例"></a>范例</h2><p>这个例子展示了使用 foreach 时，迭代器方法的调用顺序。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $position = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> $array = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">"firstelement"</span>,</span><br><span class="line">        <span class="string">"secondelement"</span>,</span><br><span class="line">        <span class="string">"lastelement"</span>,</span><br><span class="line">    );  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;position = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;position = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;array[<span class="keyword">$this</span>-&gt;position];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        ++<span class="keyword">$this</span>-&gt;position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;array[<span class="keyword">$this</span>-&gt;position]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$it = <span class="keyword">new</span> myIterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($it <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    var_dump($key, $value);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上例程的输出类似于：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">string(18) <span class="string">"myIterator::rewind"</span></span><br><span class="line">string(17) <span class="string">"myIterator::valid"</span></span><br><span class="line">string(19) <span class="string">"myIterator::current"</span></span><br><span class="line">string(15) <span class="string">"myIterator::key"</span></span><br><span class="line">int(0)</span><br><span class="line">string(12) <span class="string">"firstelement"</span></span><br><span class="line"></span><br><span class="line">string(16) <span class="string">"myIterator::next"</span></span><br><span class="line">string(17) <span class="string">"myIterator::valid"</span></span><br><span class="line">string(19) <span class="string">"myIterator::current"</span></span><br><span class="line">string(15) <span class="string">"myIterator::key"</span></span><br><span class="line">int(1)</span><br><span class="line">string(13) <span class="string">"secondelement"</span></span><br><span class="line"></span><br><span class="line">string(16) <span class="string">"myIterator::next"</span></span><br><span class="line">string(17) <span class="string">"myIterator::valid"</span></span><br><span class="line">string(19) <span class="string">"myIterator::current"</span></span><br><span class="line">string(15) <span class="string">"myIterator::key"</span></span><br><span class="line">int(2)</span><br><span class="line">string(11) <span class="string">"lastelement"</span></span><br><span class="line"></span><br><span class="line">string(16) <span class="string">"myIterator::next"</span></span><br><span class="line">string(17) <span class="string">"myIterator::valid"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li>Iterator::current — 返回当前元素</li>
+<li>Iterator::key — 返回当前元素的键</li>
+<li>Iterator::next — 向前移动到下一个元素</li>
+<li>Iterator::rewind — 返回到迭代器的第一个元素</li>
+<li>Iterator::valid — 检查当前位置是否有效</li>
+</ul>
+<p><em><a href="https://segmentfault.com/q/1010000010830185" target="_blank" rel="noopener">php 迭代接口的作用</a></em></p>
+<h1 id="IteratorAggregate（聚合式迭代器）接口"><a href="#IteratorAggregate（聚合式迭代器）接口" class="headerlink" title="IteratorAggregate（聚合式迭代器）接口"></a>IteratorAggregate（聚合式迭代器）接口</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>创建外部迭代器的接口。</p>
+<h2 id="接口摘要-2"><a href="#接口摘要-2" class="headerlink" title="接口摘要"></a>接口摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IteratorAggregate extends Traversable &#123;</span><br><span class="line"><span class="comment">/* 方法 */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> Traversable getIterator ( void )    <span class="comment">// 获取一个外部迭代器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Example-1-基本用法"><a href="#Example-1-基本用法" class="headerlink" title="Example #1 基本用法"></a>Example #1 基本用法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myData</span> <span class="keyword">implements</span> <span class="title">IteratorAggregate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $property1 = <span class="string">"Public property one"</span>;</span><br><span class="line">    <span class="keyword">public</span> $property2 = <span class="string">"Public property two"</span>;</span><br><span class="line">    <span class="keyword">public</span> $property3 = <span class="string">"Public property three"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;property4 = <span class="string">"last property"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayIterator(<span class="keyword">$this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> myData;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($obj <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    var_dump($key, $value);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上例程的输出类似于：</p>
+<pre><code>string(9) &quot;property1&quot;
+string(19) &quot;Public property one&quot;
+
+string(9) &quot;property2&quot;
+string(19) &quot;Public property two&quot;
+
+string(9) &quot;property3&quot;
+string(21) &quot;Public property three&quot;
+
+string(9) &quot;property4&quot;
+string(13) &quot;last property&quot;
+</code></pre><h1 id="ArrayAccess（数组式访问）接口"><a href="#ArrayAccess（数组式访问）接口" class="headerlink" title="ArrayAccess（数组式访问）接口"></a>ArrayAccess（数组式访问）接口</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>提供像<strong>访问数组一样访问对象</strong>的能力的接口。</p>
+<h2 id="接口摘要-3"><a href="#接口摘要-3" class="headerlink" title="接口摘要"></a>接口摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ArrayAccess &#123;</span><br><span class="line"><span class="comment">/* 方法 */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> boolean offsetExists ( mixed $offset )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> mixed offsetGet ( mixed $offset )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> void offsetSet ( mixed $offset , mixed $value )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> void offsetUnset ( mixed $offset )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Example-1-Basic-usage"><a href="#Example-1-Basic-usage" class="headerlink" title="Example #1 Basic usage"></a>Example #1 Basic usage</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">obj</span> <span class="keyword">implements</span> <span class="title">arrayaccess</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $container = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;container = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">"one"</span>   =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">"two"</span>   =&gt; <span class="number">2</span>,</span><br><span class="line">            <span class="string">"three"</span> =&gt; <span class="number">3</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetSet</span><span class="params">($offset, $value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (is_null($offset)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;container[] = $value;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;container[$offset] = $value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetExists</span><span class="params">($offset)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;container[$offset]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetUnset</span><span class="params">($offset)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;container[$offset]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetGet</span><span class="params">($offset)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;container[$offset]) ? <span class="keyword">$this</span>-&gt;container[$offset] : <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> obj;</span><br><span class="line"></span><br><span class="line">var_dump(<span class="keyword">isset</span>($obj[<span class="string">"two"</span>]));</span><br><span class="line">var_dump($obj[<span class="string">"two"</span>]);</span><br><span class="line"><span class="keyword">unset</span>($obj[<span class="string">"two"</span>]);</span><br><span class="line">var_dump(<span class="keyword">isset</span>($obj[<span class="string">"two"</span>]));</span><br><span class="line">$obj[<span class="string">"two"</span>] = <span class="string">"A value"</span>;</span><br><span class="line">var_dump($obj[<span class="string">"two"</span>]);</span><br><span class="line">$obj[] = <span class="string">'Append 1'</span>;</span><br><span class="line">$obj[] = <span class="string">'Append 2'</span>;</span><br><span class="line">$obj[] = <span class="string">'Append 3'</span>;</span><br><span class="line">print_r($obj);</span><br></pre></td></tr></table></figure>
+<p>以上例程的输出类似于：</p>
+<pre><code>bool(true)
+int(2)
+bool(false)
+string(7) &quot;A value&quot;
+obj Object
+(
+    [container:obj:private] =&gt; Array
+        (
+            [one] =&gt; 1
+            [three] =&gt; 3
+            [two] =&gt; A value
+            [0] =&gt; Append 1
+            [1] =&gt; Append 2
+            [2] =&gt; Append 3
+        )
+
+)
+</code></pre><h2 id="Table-of-Contents-¶"><a href="#Table-of-Contents-¶" class="headerlink" title="Table of Contents ¶"></a>Table of Contents ¶</h2><ul>
+<li>ArrayAccess::offsetExists — 检查一个偏移位置是否存在</li>
+<li>ArrayAccess::offsetGet — 获取一个偏移位置的值</li>
+<li>ArrayAccess::offsetSet — 设置一个偏移位置的值</li>
+<li>ArrayAccess::offsetUnset — 复位一个偏移位置的值</li>
+</ul>
+<h1 id="序列化接口"><a href="#序列化接口" class="headerlink" title="序列化接口"></a>序列化接口</h1><h2 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h2><p>自定义序列化的接口。</p>
+<p>实现此接口的类将不再支持 <strong>sleep() 和 </strong>wakeup()。不论何时，只要有实例需要被序列化，serialize 方法都将被调用。它将不会调用 <strong>destruct() 或有其他影响，除非程序化地调用此方法。当数据被反序列化时，类将被感知并且调用合适的 unserialize() 方法而不是调用 </strong>construct()。如果需要执行标准的构造器，你应该在这个方法中进行处理。</p>
+<h2 id="接口摘要-4"><a href="#接口摘要-4" class="headerlink" title="接口摘要"></a>接口摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Serializable &#123;</span><br><span class="line"><span class="comment">/* 方法 */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> string serialize ( void )</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> mixed unserialize ( string $serialized )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Example-1-Basic-usage-1"><a href="#Example-1-Basic-usage-1" class="headerlink" title="Example #1 Basic usage"></a>Example #1 Basic usage</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">obj</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $data;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = <span class="string">"My private data"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">serialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> serialize(<span class="keyword">$this</span>-&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">unserialize</span><span class="params">($data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = unserialize($data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> obj;</span><br><span class="line">$ser = serialize($obj);</span><br><span class="line"></span><br><span class="line">$newobj = unserialize($ser);</span><br><span class="line"></span><br><span class="line">var_dump($newobj-&gt;getData());</span><br></pre></td></tr></table></figure>
+<p>以上例程的输出类似于：</p>
+<pre><code>string(15) &quot;My private data&quot;
+</code></pre><h2 id="Table-of-Contents-1"><a href="#Table-of-Contents-1" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li>Serializable::serialize — 对象的字符串表示</li>
+<li>Serializable::unserialize — 构造对象</li>
+</ul>
+<h1 id="Closure-类"><a href="#Closure-类" class="headerlink" title="Closure 类"></a>Closure 类</h1><h2 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h2><p>用于代表 匿名函数 的类.</p>
+<p>匿名函数（在 PHP 5.3 中被引入）会产生这个类型的对象。在过去，这个类被认为是一个实现细节，但现在可以依赖它做一些事情。自 PHP 5.4 起，这个类带有一些方法，允许在匿名函数创建后对其进行更多的控制。</p>
+<p>除了此处列出的方法，还有一个 <strong>invoke 方法。这是为了与其他实现了 </strong>invoke()魔术方法 的对象保持一致性，但调用匿名函数的过程与它无关。</p>
+<h2 id="类摘要"><a href="#类摘要" class="headerlink" title="类摘要"></a>类摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Closure &#123;</span><br><span class="line">    <span class="comment">/* 方法 */</span></span><br><span class="line">    __construct ( void )</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Closure bind ( Closure $closure , object $newthis [, mixed $newscope = <span class="string">'static'</span> ] )</span><br><span class="line">    <span class="keyword">public</span> Closure bindTo ( object $newthis [, mixed $newscope = <span class="string">'static'</span> ] )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Table-of-Contents-2"><a href="#Table-of-Contents-2" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li>Closure::__construct — 用于禁止实例化的构造函数</li>
+<li>Closure::bind — 复制一个闭包，绑定指定的$this对象和类作用域。</li>
+<li>Closure::bindTo — 复制当前闭包对象，绑定指定的$this对象和类作用域。</li>
+</ul>
+<h1 id="生成器类"><a href="#生成器类" class="headerlink" title="生成器类"></a>生成器类</h1><h2 id="简介-5"><a href="#简介-5" class="headerlink" title="简介"></a>简介</h2><p>Generator 对象是从 generators返回的.</p>
+<pre><code>Caution Generator 对象不能通过 new 实例化.
+</code></pre><h2 id="类摘要-1"><a href="#类摘要-1" class="headerlink" title="类摘要"></a>类摘要</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Generator implements Iterator &#123;</span><br><span class="line"><span class="comment">/* 方法 */</span></span><br><span class="line"><span class="keyword">public</span> mixed current ( void )</span><br><span class="line"><span class="keyword">public</span> mixed key ( void )</span><br><span class="line"><span class="keyword">public</span> void next ( void )</span><br><span class="line"><span class="keyword">public</span> void rewind ( void )</span><br><span class="line"><span class="keyword">public</span> mixed send ( mixed $value )</span><br><span class="line"><span class="keyword">public</span> void <span class="keyword">throw</span> ( <span class="keyword">Exception</span> $exception )</span><br><span class="line"><span class="keyword">public</span> bool valid ( void )</span><br><span class="line"><span class="keyword">public</span> void __wakeup ( void )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Table-of-Contents-3"><a href="#Table-of-Contents-3" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li>Generator::current — 返回当前产生的值</li>
+<li>Generator::key — 返回当前产生的键</li>
+<li>Generator::next — 生成器继续执行</li>
+<li>Generator::rewind — 重置迭代器</li>
+<li>Generator::send — 向生成器中传入一个值</li>
+<li>Generator::throw — 向生成器中抛入一个异常</li>
+<li>Generator::valid — 检查迭代器是否被关闭</li>
+<li>Generator::__wakeup — 序列化回调</li>
+</ul>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/01/Chrome插件开发全攻略/" title="【转】Chrome插件开发全攻略">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/10/31/php/PHP手册-预定义异常/" title="PHP手册-预定义异常">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Traversable（遍历）接口"><span class="post-toc-text">Traversable（遍历）接口</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接口摘要"><span class="post-toc-text">接口摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#范例"><span class="post-toc-text">范例</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Iterator（迭代器）接口"><span class="post-toc-text">Iterator（迭代器）接口</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接口摘要-1"><span class="post-toc-text">接口摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#预定义迭代器"><span class="post-toc-text">预定义迭代器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#范例-1"><span class="post-toc-text">范例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Table-of-Contents"><span class="post-toc-text">Table of Contents</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#IteratorAggregate（聚合式迭代器）接口"><span class="post-toc-text">IteratorAggregate（聚合式迭代器）接口</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介-1"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接口摘要-2"><span class="post-toc-text">接口摘要</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Example-1-基本用法"><span class="post-toc-text">Example #1 基本用法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ArrayAccess（数组式访问）接口"><span class="post-toc-text">ArrayAccess（数组式访问）接口</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介-2"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接口摘要-3"><span class="post-toc-text">接口摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Example-1-Basic-usage"><span class="post-toc-text">Example #1 Basic usage</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Table-of-Contents-¶"><span class="post-toc-text">Table of Contents ¶</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#序列化接口"><span class="post-toc-text">序列化接口</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介-3"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接口摘要-4"><span class="post-toc-text">接口摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Example-1-Basic-usage-1"><span class="post-toc-text">Example #1 Basic usage</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Table-of-Contents-1"><span class="post-toc-text">Table of Contents</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Closure-类"><span class="post-toc-text">Closure 类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介-4"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类摘要"><span class="post-toc-text">类摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Table-of-Contents-2"><span class="post-toc-text">Table of Contents</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生成器类"><span class="post-toc-text">生成器类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介-5"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类摘要-1"><span class="post-toc-text">类摘要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Table-of-Contents-3"><span class="post-toc-text">Table of Contents</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

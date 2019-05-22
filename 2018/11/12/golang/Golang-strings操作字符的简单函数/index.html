@@ -1,0 +1,1052 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Golang-strings操作字符的简单函数</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Golang-strings操作字符的简单函数》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/12/golang/Golang-strings操作字符的简单函数/" itemprop="url">		
+			Golang-strings操作字符的简单函数		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/12/golang/Golang-strings操作字符的简单函数/" itemprop="url">
+	<time datetime="2018-11-12T06:40:23.000Z" itemprop="datePublished">
+  		2018-11-12
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#Golang" title="Golang" rel="18">Golang</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>作为一种基本数据结构，每种语言都有一些对于字符串的预定义处理函数。Go 中使用 strings 包来完成对字符串的主要操作。</p>
+<h1 id="1-前缀和后缀"><a href="#1-前缀和后缀" class="headerlink" title="1 前缀和后缀"></a>1 前缀和后缀</h1><h2 id="func-HasPrefix"><a href="#func-HasPrefix" class="headerlink" title="func HasPrefix"></a>func <strong>HasPrefix</strong></h2><p>判断字符串 <code>s</code> 是否以 <code>prefix</code> 开头：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.HasPrefix(s, prefix <span class="keyword">string</span>) <span class="keyword">bool</span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> str <span class="keyword">string</span> = <span class="string">"This is an example of a string"</span></span><br><span class="line">    fmt.Printf(<span class="string">"T/F? Does the string \"%s\" have prefix %s? "</span>, str, <span class="string">"Th"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"%t\n"</span>, strings.HasPrefix(str, <span class="string">"Th"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>T/F? Does the string &quot;This is an example of a string&quot; have prefix Th? true
+</code></pre><h2 id="func-HasSuffix"><a href="#func-HasSuffix" class="headerlink" title="func HasSuffix"></a>func <strong>HasSuffix</strong></h2><p>判断字符串 <code>s</code> 是否以 <code>suffix</code> 结尾：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.HasSuffix(s, suffix <span class="keyword">string</span>) <span class="keyword">bool</span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> str <span class="keyword">string</span> = <span class="string">"This is an example of a string"</span></span><br><span class="line">    fmt.Printf(<span class="string">"T/F? Does the string \"%s\" have suffix %s? "</span>, str, <span class="string">"ing"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"%t\n"</span>, strings.HasSuffix(str, <span class="string">"ing"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>T/F? Does the string &quot;This is an example of a string&quot; have suffix ing? true
+</code></pre><h1 id="2-字符串包含关系"><a href="#2-字符串包含关系" class="headerlink" title="2 字符串包含关系"></a>2 字符串包含关系</h1><h2 id="func-Contains"><a href="#func-Contains" class="headerlink" title="func Contains"></a>func <strong>Contains</strong></h2><p>判断字符串 <code>s</code> 是否包含 <code>substr</code>：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">strings.Contains(s, substr <span class="keyword">string</span>) <span class="keyword">bool</span></span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">示例:</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span><span class="keyword">go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(strings.Contains(<span class="string">"seafood"</span>, <span class="string">"foo"</span>))</span><br><span class="line">    fmt.Println(strings.Contains(<span class="string">"seafood"</span>, <span class="string">"bar"</span>))</span><br><span class="line">    fmt.Println(strings.Contains(<span class="string">"seafood"</span>, <span class="string">""</span>))</span><br><span class="line">    fmt.Println(strings.Contains(<span class="string">""</span>, <span class="string">""</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>true
+false
+true
+true
+</code></pre><h2 id="func-ContainsRune"><a href="#func-ContainsRune" class="headerlink" title="func ContainsRune"></a>func <strong>ContainsRune</strong></h2><p>判断字符串 <code>s</code> 是否包含 <code>utf-8</code> 码值r:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsRune</span><span class="params">(s <span class="keyword">string</span>, r <span class="keyword">rune</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ContainsRune(<span class="string">"seafood"</span>, <span class="string">'s'</span>))   </span><br><span class="line">	fmt.Println(strings.ContainsRune(<span class="string">"seafood"</span>, <span class="string">'f'</span>))  </span><br><span class="line">	fmt.Println(strings.ContainsRune(<span class="string">"seafood"</span>, <span class="string">'g'</span>))</span><br><span class="line">	fmt.Println(strings.ContainsRune(<span class="string">" "</span>, <span class="number">32</span>))      </span><br><span class="line">	fmt.Println(strings.ContainsRune(<span class="string">""</span>, <span class="number">0</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>true
+true
+false
+true
+false
+</code></pre><h2 id="func-ContainsAny"><a href="#func-ContainsAny" class="headerlink" title="func ContainsAny"></a>func <strong>ContainsAny</strong></h2><p>判断字符串 <code>s</code> 是否包含字符串 <code>chars</code> 中的任一字符:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsAny</span><span class="params">(s, chars <span class="keyword">string</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ContainsAny(<span class="string">"seafood"</span>, <span class="string">"food"</span>))  </span><br><span class="line">	fmt.Println(strings.ContainsAny(<span class="string">"seafood"</span>, <span class="string">"abcd"</span>))  </span><br><span class="line">	fmt.Println(strings.ContainsAny(<span class="string">"seafood"</span>, <span class="string">""</span>))</span><br><span class="line">	fmt.Println(strings.ContainsAny(<span class="string">" "</span>, <span class="string">"ab cd"</span>))        </span><br><span class="line">	fmt.Println(strings.ContainsAny(<span class="string">""</span>, <span class="string">""</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>true
+true
+false
+true
+false
+</code></pre><h1 id="3-判断子字符串或字符在父字符串中出现的位置（索引）"><a href="#3-判断子字符串或字符在父字符串中出现的位置（索引）" class="headerlink" title="3 判断子字符串或字符在父字符串中出现的位置（索引）"></a>3 判断子字符串或字符在父字符串中出现的位置（索引）</h1><h2 id="func-Index"><a href="#func-Index" class="headerlink" title="func Index"></a>func <strong>Index</strong></h2><p>子串 <code>str</code> 在字符串 <code>s</code> 中第一次出现的位置，不存在则返回 <code>-1</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.Index(s, str <span class="keyword">string</span>) <span class="keyword">int</span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Index(<span class="string">"seafood"</span>, <span class="string">"food"</span>))  </span><br><span class="line">	fmt.Println(strings.Index(<span class="string">"seafood"</span>, <span class="string">"sea"</span>))  </span><br><span class="line">	fmt.Println(strings.Index(<span class="string">"seafood"</span>, <span class="string">"eat"</span>))</span><br><span class="line">	fmt.Println(strings.Index(<span class="string">" "</span>, <span class="string">""</span>))        </span><br><span class="line">	fmt.Println(strings.Index(<span class="string">""</span>, <span class="string">""</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>3
+0
+-1  // 不包含
+0
+0
+</code></pre><h2 id="func-IndexByte"><a href="#func-IndexByte" class="headerlink" title="func IndexByte"></a>func <strong>IndexByte</strong></h2><p>字符 <code>c</code> 在 <code>s</code> 中第一次出现的位置，不存在则返回 <code>-1</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IndexByte</span><span class="params">(s <span class="keyword">string</span>, c <span class="keyword">byte</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.IndexByte(<span class="string">"seafood"</span>, <span class="string">'s'</span>))</span><br><span class="line">	fmt.Println(strings.IndexByte(<span class="string">"seafood"</span>, <span class="string">'f'</span>))</span><br><span class="line">	fmt.Println(strings.IndexByte(<span class="string">"seafood"</span>, <span class="string">' '</span>))</span><br><span class="line">	fmt.Println(strings.IndexByte(<span class="string">" "</span>, <span class="number">32</span>))</span><br><span class="line">	fmt.Println(strings.IndexByte(<span class="string">""</span>, <span class="number">0</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>0
+3
+-1
+0
+-1
+</code></pre><h2 id="func-IndexRune"><a href="#func-IndexRune" class="headerlink" title="func IndexRune"></a>func <strong>IndexRune</strong></h2><p>unicode码值 <code>r</code> 在 <code>s</code> 中第一次出现的位置，不存在则返回 <code>-1</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IndexRune</span><span class="params">(s <span class="keyword">string</span>, r <span class="keyword">rune</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.IndexRune(<span class="string">"chicken"</span>, <span class="string">'k'</span>))</span><br><span class="line">    fmt.Println(strings.IndexRune(<span class="string">"chicken"</span>, <span class="string">'d'</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>4
+-1
+</code></pre><h2 id="func-IndexAny"><a href="#func-IndexAny" class="headerlink" title="func IndexAny"></a>func <strong>IndexAny</strong></h2><p>字符串 <code>chars</code> 中的任一utf-8码值在 <code>s</code> 中第一次出现的位置，如果不存在或者 <code>chars</code> 为空字符串则返回 <code>-1</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IndexAny</span><span class="params">(s, chars <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.IndexAny(<span class="string">"chicken"</span>, <span class="string">"aeiouy"</span>))</span><br><span class="line">    fmt.Println(strings.IndexAny(<span class="string">"crwth"</span>, <span class="string">"aeiouy"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>2
+-1
+</code></pre><h2 id="func-IndexFunc"><a href="#func-IndexFunc" class="headerlink" title="func IndexFunc"></a>func <strong>IndexFunc</strong></h2><p><code>s</code> 中第一个满足函数 <code>f</code> 的位置 <code>i</code>（该处的utf-8码值 <code>r</code> 满足 <code>f(r)==true</code>），不存在则返回 <code>-1</code>。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IndexFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> unicode.Is(unicode.Han, c)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Println(strings.IndexFunc(<span class="string">"Hello, 世界"</span>, f))</span><br><span class="line">    fmt.Println(strings.IndexFunc(<span class="string">"Hello, world"</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>7
+-1
+</code></pre><h2 id="func-LastIndex"><a href="#func-LastIndex" class="headerlink" title="func LastIndex"></a>func <strong>LastIndex</strong></h2><p>子串 <code>sep</code> 在字符串 <code>s</code> 中最后一次出现的位置，不存在则返回 <code>-1</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LastIndex</span><span class="params">(s, sep <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Index(<span class="string">"go gopher"</span>, <span class="string">"go"</span>))</span><br><span class="line">    fmt.Println(strings.LastIndex(<span class="string">"go gopher"</span>, <span class="string">"go"</span>))</span><br><span class="line">    fmt.Println(strings.LastIndex(<span class="string">"go gopher"</span>, <span class="string">"rodent"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>0
+3
+-1
+</code></pre><h2 id="func-LastIndexAny"><a href="#func-LastIndexAny" class="headerlink" title="func LastIndexAny"></a>func <strong>LastIndexAny</strong></h2><p>字符串 <code>chars</code> 中的任一utf-8码值在 <code>s</code> 中最后一次出现的位置，如不存在或者 <code>chars</code> 为空字符串则返回 <code>-1</code>。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LastIndexAny</span><span class="params">(s, sep <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Index(<span class="string">"go gopher"</span>, <span class="string">"go"</span>))</span><br><span class="line">    fmt.Println(strings.LastIndexAny(<span class="string">"go gopher"</span>, <span class="string">"go"</span>))</span><br><span class="line">    fmt.Println(strings.LastIndexAny(<span class="string">"go gopher"</span>, <span class="string">"rodent"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>0
+4
+8
+</code></pre><h2 id="func-LastIndexFunc"><a href="#func-LastIndexFunc" class="headerlink" title="func LastIndexFunc"></a>func <strong>LastIndexFunc</strong></h2><p><code>s</code> 中最后一个满足函数 <code>f</code> 的unicode码值的位置 <code>i</code>，不存在则返回 <code>-1</code>。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LastIndexFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> unicode.Is(unicode.Han, c)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Println(strings.LastIndexFunc(<span class="string">"Hello, 世界"</span>, f))</span><br><span class="line">	fmt.Println(strings.LastIndexFunc(<span class="string">"你好, world"</span>, f))</span><br><span class="line">	fmt.Println(strings.LastIndexFunc(<span class="string">"Hello, world"</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>10
+3
+-1
+</code></pre><h1 id="4-字符串替换"><a href="#4-字符串替换" class="headerlink" title="4 字符串替换"></a>4 字符串替换</h1><h2 id="func-Replace"><a href="#func-Replace" class="headerlink" title="func Replace"></a>func <strong>Replace</strong></h2><p>返回将 <code>s</code> 中前 <code>n</code> 个不重叠 <code>old</code> 子串都替换为 <code>new</code> 的新字符串，如果 <code>n&lt;0</code> 会替换所有 <code>old</code> 子串<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Replace</span><span class="params">(s, old, <span class="built_in">new</span> <span class="keyword">string</span>, n <span class="keyword">int</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Replace(<span class="string">"oink oink oink"</span>, <span class="string">"k"</span>, <span class="string">"ky"</span>, <span class="number">2</span>))</span><br><span class="line">	fmt.Println(strings.Replace(<span class="string">"oink oink oink"</span>, <span class="string">"oink"</span>, <span class="string">"moo"</span>, <span class="number">-1</span>))</span><br><span class="line">	fmt.Println(strings.Replace(<span class="string">"oink oink oink"</span>, <span class="string">"oink"</span>, <span class="string">"moo"</span>, <span class="number">-2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>oinky oinky oink
+moo moo moo
+moo moo moo
+</code></pre><h2 id="type-Replacer"><a href="#type-Replacer" class="headerlink" title="type Replacer"></a>type Replacer</h2><p>Replacer类型进行一系列字符串的替换。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Replacer <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 内含隐藏或非导出字段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="func-NewReplacer"><a href="#func-NewReplacer" class="headerlink" title="func NewReplacer"></a>func <strong>NewReplacer</strong></h3><p>使用提供的多组 <code>old</code>、<code>new</code> 字符串对创建并返回一个 <code>*Replacer</code>。替换是依次进行的，匹配时不会重叠。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewReplacer</span><span class="params">(oldnew ...<span class="keyword">string</span>)</span> *<span class="title">Replacer</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="func-Replacer-Replace"><a href="#func-Replacer-Replace" class="headerlink" title="func (*Replacer) Replace"></a>func <strong>(*Replacer) Replace</strong></h3><p><code>Replace</code> 返回 <code>s</code> 的所有替换进行完后的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Replacer)</span> <span class="title">Replace</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := strings.NewReplacer(<span class="string">"&lt;"</span>, <span class="string">"&amp;lt;"</span>, <span class="string">"&gt;"</span>, <span class="string">"&amp;gt;"</span>)</span><br><span class="line">    fmt.Println(r.Replace(<span class="string">"This is &lt;b&gt;HTML&lt;/b&gt;!"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<pre><code>This is &amp;lt;b&amp;gt;HTML&amp;lt;/b&amp;gt;!
+</code></pre><h3 id="func-Replacer-WriteString"><a href="#func-Replacer-WriteString" class="headerlink" title="func (*Replacer) WriteString"></a>func <strong>(*Replacer) WriteString</strong></h3><p><code>WriteString</code> 向w中写入 <code>s</code> 的所有替换进行完后的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Replacer)</span> <span class="title">WriteString</span><span class="params">(w io.Writer, s <span class="keyword">string</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure></p>
+<h1 id="5-修改字符串大小写"><a href="#5-修改字符串大小写" class="headerlink" title="5 修改字符串大小写"></a>5 修改字符串大小写</h1><h2 id="func-Title"><a href="#func-Title" class="headerlink" title="func Title"></a>func <strong>Title</strong></h2><p>返回 <code>s</code> 中每个单词的首字母都改为标题格式的字符串拷贝（单词首字母大写）。</p>
+<p><em>BUG: Title用于划分单词的规则不能很好的处理Unicode标点符号。</em><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Title</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Title(<span class="string">"the title is: hello world"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>The Title Is: Hello World
+</code></pre><h2 id="func-ToTitle"><a href="#func-ToTitle" class="headerlink" title="func ToTitle"></a>func <strong>ToTitle</strong></h2><p>返回将<strong>所有字母</strong>都转为对应的标题版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToTitle</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToTitle(<span class="string">"loud noises"</span>))</span><br><span class="line">    fmt.Println(strings.ToTitle(<span class="string">"хлеб"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>LOUD NOISES
+ХЛЕБ
+</code></pre><h2 id="func-ToTitleSpecial"><a href="#func-ToTitleSpecial" class="headerlink" title="func ToTitleSpecial"></a>func <strong>ToTitleSpecial</strong></h2><p>使用_case规定的字符映射，返回将<strong>所有字母</strong>都转为对应的标题版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToTitleSpecial</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToTitleSpecial(<span class="string">"loud noises"</span>))</span><br><span class="line">    fmt.Println(strings.ToTitleSpecial(<span class="string">"хлеб"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>LOUD NOISES
+ХЛЕБ
+</code></pre><h2 id="func-ToLower"><a href="#func-ToLower" class="headerlink" title="func ToLower"></a>func <strong>ToLower</strong></h2><p>返回将所有字母都转为对应的小写版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToLower</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToLower(<span class="string">"The Title Is: Hello World! "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>the title is: hello world! 
+</code></pre><h2 id="func-ToLowerSpecial"><a href="#func-ToLowerSpecial" class="headerlink" title="func ToLowerSpecial"></a>func <strong>ToLowerSpecial</strong></h2><p>使用_case规定的字符映射，返回将所有字母都转为对应的小写版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToLowerSpecial</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToLowerSpecial(<span class="string">"The Title Is: Hello World! "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>the title is: hello world! 
+</code></pre><h2 id="func-ToUpper"><a href="#func-ToUpper" class="headerlink" title="func ToUpper"></a>func <strong>ToUpper</strong></h2><p>返回将所有字母都转为对应的大写版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToUpper</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToUpper(<span class="string">"The Title Is: Hello World! "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>THE TITLE IS: HELLO WORLD!
+</code></pre><h2 id="func-ToUpperSpecial"><a href="#func-ToUpperSpecial" class="headerlink" title="func ToUpperSpecial"></a>func <strong>ToUpperSpecial</strong></h2><p>使用_case规定的字符映射，返回将所有字母都转为对应的大写版本的拷贝。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ToUpperSpecial</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.ToUpperSpecial(<span class="string">"The Title Is: Hello World! "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>THE TITLE IS: HELLO WORLD!
+</code></pre><h1 id="6-修剪字符串"><a href="#6-修剪字符串" class="headerlink" title="6 修剪字符串"></a>6 修剪字符串</h1><p>你可以使用 <code>strings.TrimSpace(s)</code> 来剔除字符串开头和结尾的空白符号；如果你想要剔除指定字符，则可以使用 <code>strings.Trim(s, &quot;cut&quot;)</code> 来将开头和结尾的 <code>cut</code> 去除掉。该函数的第二个参数可以包含任何字符，如果你只想剔除开头或者结尾的字符串，则可以使用 <code>TrimLeft</code> 或者 <code>TrimRight</code> 来实现。</p>
+<h2 id="func-Trim"><a href="#func-Trim" class="headerlink" title="func Trim"></a>func <strong>Trim</strong></h2><p>返回将 <code>s</code> 前后端所有 <code>cutset</code> 包含的utf-8码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Trim</span><span class="params">(s <span class="keyword">string</span>, cutset <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"[%q]"</span>, strings.Trim(<span class="string">" !!! Achtung! Achtung! !!! "</span>, <span class="string">"! "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[&quot;Achtung! Achtung&quot;]
+</code></pre><h2 id="func-TrimSpace"><a href="#func-TrimSpace" class="headerlink" title="func TrimSpace"></a>func <strong>TrimSpace</strong></h2><p>返回将 <code>s</code> 前后端所有<code>空白</code>（unicode.IsSpace指定）都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimSpace</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.TrimSpace(<span class="string">" \t\n a lone gopher \n\t\r\n"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>a lone gopher
+</code></pre><h2 id="func-TrimFunc"><a href="#func-TrimFunc" class="headerlink" title="func TrimFunc"></a>func <strong>TrimFunc</strong></h2><p>返回将 <code>s</code> 前后端所有满足 <code>f</code> 的unicode码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="comment">// 'a' = 97 '\n' = 10 '\t' = 9 '\r' = 13 ' ' = 32</span></span><br><span class="line">		<span class="keyword">return</span> c &lt; <span class="number">13</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(strings.TrimFunc(<span class="string">" \t\n a lone gopher \n\t\r\n"</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>a lone gopher      // 前后还保留有两个空格字符
+</code></pre><h2 id="func-TrimLeft"><a href="#func-TrimLeft" class="headerlink" title="func TrimLeft"></a>func <strong>TrimLeft</strong></h2><p>返回将 <code>s</code> 前端所有 <code>cutset</code> 包含的utf-8码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimLeft</span><span class="params">(s <span class="keyword">string</span>, cutset <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.TrimLeft(<span class="string">" \t\n @a lone gopher \n\t\r\n@"</span>, <span class="string">"\t\r\n"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>// 前面
+ @a lone gopher 
+
+@
+</code></pre><h2 id="func-TrimLeftFunc"><a href="#func-TrimLeftFunc" class="headerlink" title="func TrimLeftFunc"></a>func <strong>TrimLeftFunc</strong></h2><p>返回将 <code>s</code> 前端所有 <code>cutset</code> 包含的utf-8码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimLeftFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="comment">// 'a' = 97 '\n' = 10 '\t' = 9 '\r' = 13 ' ' = 32</span></span><br><span class="line">       <span class="keyword">return</span> c &lt;= <span class="number">32</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fmt.Println(strings.TrimLeftFunc(<span class="string">" \t\n a lone gopher \n\t\r\n@"</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>a lone gopher 
+
+@
+</code></pre><h2 id="func-TrimPrefix"><a href="#func-TrimPrefix" class="headerlink" title="func TrimPrefix"></a>func <strong>TrimPrefix</strong></h2><p>返回去除 <code>s</code> 可能的前缀 <code>prefix</code> 的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimPrefix</span><span class="params">(s, prefix <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="string">"Goodbye,, world!"</span></span><br><span class="line">    s = strings.TrimPrefix(s, <span class="string">"Goodbye,"</span>)</span><br><span class="line">    s = strings.TrimPrefix(s, <span class="string">"Howdy,"</span>)</span><br><span class="line"></span><br><span class="line">    fmt.Print(<span class="string">"Hello"</span> + s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>Hello, world!
+</code></pre><h2 id="func-TrimRight"><a href="#func-TrimRight" class="headerlink" title="func TrimRight"></a>func <strong>TrimRight</strong></h2><p>返回将 <code>s</code> 右边所有 <code>cutset</code> 包含的utf-8码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimRight</span><span class="params">(s <span class="keyword">string</span>, cutset <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(strings.TrimRight(<span class="string">"hello world! \n\r\t"</span>, <span class="string">"\n\r\t "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>hello world!
+</code></pre><h2 id="func-TrimRightFunc"><a href="#func-TrimRightFunc" class="headerlink" title="func TrimRightFunc"></a>func <strong>TrimRightFunc</strong></h2><p>返回将 <code>s</code> 后端所有满足 <code>f</code> 的unicode码值都去掉的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimRightFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="comment">// 'a' = 97 '\n' = 10 '\t' = 9 '\r' = 13 ' ' = 32</span></span><br><span class="line">       <span class="keyword">return</span> c &lt;= <span class="number">32</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Println(strings.TrimRightFunc(<span class="string">"hello world! \n\r\t"</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>hello world!
+</code></pre><h2 id="func-TrimSuffix"><a href="#func-TrimSuffix" class="headerlink" title="func TrimSuffix"></a>func <strong>TrimSuffix</strong></h2><p>返回去除 <code>s</code> 可能的后缀 <code>suffix</code> 的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TrimSuffix</span><span class="params">(s, suffix <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="string">"Hello, goodbye, etc!"</span></span><br><span class="line">    s = strings.TrimSuffix(s, <span class="string">"goodbye, etc!"</span>)</span><br><span class="line">    s = strings.TrimSuffix(s, <span class="string">"planet"</span>)</span><br><span class="line"></span><br><span class="line">    fmt.Print(s, <span class="string">"world!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>hello world!
+</code></pre><h1 id="7-分割字符串"><a href="#7-分割字符串" class="headerlink" title="7 分割字符串"></a>7 分割字符串</h1><h2 id="func-Fields"><a href="#func-Fields" class="headerlink" title="func Fields"></a>func <strong>Fields</strong></h2><p><code>strings.Fields(s)</code> 将会利用 <code>1 个或多个空白符号</code>来作为动态长度的分隔符将字符串分割成若干小块，并返回一个 slice切片，如果字符串只包含空白符号，则返回一个长度为 0 的 slice切片(<em>空白符：”\n\r\t “等</em>))。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fields</span><span class="params">(s <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"Fields are: %q"</span>, strings.Fields(<span class="string">"  foo bar  baz   "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>Fields are: [&quot;foo&quot; &quot;bar&quot; &quot;baz&quot;]
+</code></pre><h2 id="func-FieldsFunc"><a href="#func-FieldsFunc" class="headerlink" title="func FieldsFunc"></a>func <strong>FieldsFunc</strong></h2><p>类似 <code>Fields</code>，但使用函数 <code>f</code> 来确定分割符（满足f的unicode码值）。如果字符串全部是分隔符或者是空字符串的话，会返回空切片。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FieldsFunc</span><span class="params">(s <span class="keyword">string</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) []<span class="title">stringfunc</span> <span class="title">Fields</span><span class="params">(s <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := <span class="function"><span class="keyword">func</span><span class="params">(c <span class="keyword">rune</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="comment">// 判断字符是否为字母，且不是数字字符</span></span><br><span class="line">        <span class="keyword">return</span> !unicode.IsLetter(c) &amp;&amp; !unicode.IsNumber(c)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">"Fields are: %q"</span>, strings.FieldsFunc(<span class="string">"  aa3foo1;bar2,baz3..."</span>, f))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>Fields are: [&quot;foo1&quot; &quot;bar2&quot; &quot;baz3&quot;]
+</code></pre><h2 id="func-Split"><a href="#func-Split" class="headerlink" title="func Split"></a>func <strong>Split</strong></h2><p>用去掉 <code>s</code> 中出现的 <code>sep</code> 的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个 <code>sep</code> 都会进行一次切割，即使两个 <code>sep</code> 相邻，也会进行两次切割）。如果 <code>sep</code> 为空字符，<code>Split</code> 会将 <code>s</code> 切分成每一个unicode码值一个字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Split</span><span class="params">(s, sep <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.Split(<span class="string">"a,b,c"</span>, <span class="string">","</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.Split(<span class="string">"a man a plan a canal panama"</span>, <span class="string">"a "</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.Split(<span class="string">" xyz "</span>, <span class="string">""</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.Split(<span class="string">""</span>, <span class="string">"Bernardo O'Higgins"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[&quot;a&quot; &quot;b&quot; &quot;c&quot;]
+[&quot;&quot; &quot;man &quot; &quot;plan &quot; &quot;canal panama&quot;]
+[&quot; &quot; &quot;x&quot; &quot;y&quot; &quot;z&quot; &quot; &quot;]
+[&quot;&quot;]
+</code></pre><h2 id="func-SplitN"><a href="#func-SplitN" class="headerlink" title="func SplitN"></a>func <strong>SplitN</strong></h2><p>用去掉 <code>s</code> 中出现的 <code>sep</code> 的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个 <code>sep</code> 都会进行一次切割，即使两个 <code>sep</code> 相邻，也会进行两次切割）。如果 <code>sep</code> 为空字符，<code>Split</code> 会将 <code>s</code> 切分成每一个unicode码值一个字符串。参数 <code>n</code> 决定返回的切片的数目：</p>
+<pre><code>n &gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
+n == 0: 返回nil
+n &lt; 0 : 返回所有的子字符串组成的切片
+</code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SplitN</span><span class="params">(s, sep <span class="keyword">string</span>, n <span class="keyword">int</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitN(<span class="string">"a,b,c"</span>, <span class="string">","</span>, <span class="number">-1</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitN(<span class="string">"a man a plan a canal panama"</span>, <span class="string">"a "</span>, <span class="number">3</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitN(<span class="string">" xyz "</span>, <span class="string">""</span>, <span class="number">-1</span>))</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitN(<span class="string">""</span>, <span class="string">"Bernardo O'Higgins"</span>, <span class="number">-1</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[&quot;a&quot; &quot;b&quot; &quot;c&quot;]
+[&quot;&quot; &quot;man &quot; &quot;plan a canal panama&quot;]
+[&quot; &quot; &quot;x&quot; &quot;y&quot; &quot;z&quot; &quot; &quot;]
+[&quot;&quot;]
+</code></pre><h2 id="func-SplitAfter"><a href="#func-SplitAfter" class="headerlink" title="func SplitAfter"></a>func <strong>SplitAfter</strong></h2><p>用从 <code>s</code> 中出现的 <code>sep</code> 后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个 <code>sep</code> 都会进行一次切割，即使两个 <code>sep</code> 相邻，也会进行两次切割）。如果<code>sep</code> 为空字符，<code>Split</code> 会将 <code>s</code> 切分成每一个unicode码值一个字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SplitAfter</span><span class="params">(s, sep <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitAfter(<span class="string">"a,b,c"</span>, <span class="string">","</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[&quot;a,&quot; &quot;b,&quot; &quot;c&quot;]
+</code></pre><h2 id="func-SplitAfterN"><a href="#func-SplitAfterN" class="headerlink" title="func SplitAfterN"></a>func <strong>SplitAfterN</strong></h2><p>用从 <code>s</code> 中出现的 <code>sep</code> 后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个 <code>sep</code> 都会进行一次切割，即使两个 <code>sep</code> 相邻，也会进行两次切割）。如果<code>sep</code> 为空字符，<code>Split</code> 会将 <code>s</code> 切分成每一个unicode码值一个字符串。</p>
+<pre><code>n &gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
+n == 0: 返回nil
+n &lt; 0 : 返回所有的子字符串组成的切
+</code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SplitAfterN</span><span class="params">(s, sep <span class="keyword">string</span>, n <span class="keyword">int</span>)</span> []<span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"%q\n"</span>, strings.SplitAfter(<span class="string">"a,b,c"</span>, <span class="string">","</span>， <span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>[&quot;a,&quot; &quot;b,c&quot;]
+</code></pre><h1 id="8-拼接-slice-到字符串"><a href="#8-拼接-slice-到字符串" class="headerlink" title="8 拼接 slice 到字符串"></a>8 拼接 slice 到字符串</h1><h2 id="func-Join"><a href="#func-Join" class="headerlink" title="func Join"></a>func <strong>Join</strong></h2><p>将一系列字符串连接为一个字符串，之间用 <code>sep</code> 来分隔。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Join</span><span class="params">(a []<span class="keyword">string</span>, sep <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    s := []<span class="keyword">string</span>&#123;<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>&#125;</span><br><span class="line">    fmt.Println(strings.Join(s, <span class="string">", "</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>foo, bar, baz
+</code></pre><h1 id="9-从字符串中读取内容"><a href="#9-从字符串中读取内容" class="headerlink" title="9 从字符串中读取内容"></a>9 从字符串中读取内容</h1><h2 id="type-Reader"><a href="#type-Reader" class="headerlink" title="type Reader"></a>type <strong>Reader</strong></h2><p><code>Reader</code> 类型通过从一个字符串读取数据，实现了 <code>io.Reader</code>、<code>io.Seeker</code>、<code>io.ReaderAt</code>、<code>io.WriterTo</code>、<code>io.ByteScanner</code>、<code>io.RuneScanner</code> 接口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Reader <span class="keyword">struct</span> &#123;</span><br><span class="line">    s        <span class="keyword">string</span></span><br><span class="line">	i        <span class="keyword">int64</span> <span class="comment">// current reading index</span></span><br><span class="line">	prevRune <span class="keyword">int</span>   <span class="comment">// index of previous rune; or &lt; 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="func-NewReader"><a href="#func-NewReader" class="headerlink" title="func NewReader"></a>func <strong>NewReader</strong></h3><p><code>NewReader</code> 创建一个从 <code>s</code> 读取数据的 <code>Reader</code>。本函数类似 <code>bytes.NewBufferString</code>，但是更有效率，且为只读的。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewReader</span><span class="params">(s <span class="keyword">string</span>)</span> *<span class="title">Reader</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="func-Reader-Len"><a href="#func-Reader-Len" class="headerlink" title="func (*Reader) Len"></a>func <strong>(*Reader) Len</strong></h3><p><code>Len</code> 返回 <code>r</code> 包含的字符串还没有被读取的部分。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>###　func <strong>(*Reader) Read</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">Read</span><span class="params">(b []<span class="keyword">byte</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="func-Reader-ReadByte"><a href="#func-Reader-ReadByte" class="headerlink" title="func (*Reader) ReadByte"></a>func (*Reader) ReadByte</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">ReadByte</span><span class="params">()</span> <span class="params">(b <span class="keyword">byte</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="func-Reader-UnreadByte"><a href="#func-Reader-UnreadByte" class="headerlink" title="func (*Reader) UnreadByte"></a>func (*Reader) UnreadByte</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">UnreadByte</span><span class="params">()</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="func-Reader-ReadRune"><a href="#func-Reader-ReadRune" class="headerlink" title="func (*Reader) ReadRune"></a>func (*Reader) ReadRune</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">ReadRune</span><span class="params">()</span> <span class="params">(ch <span class="keyword">rune</span>, size <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="func-Reader-UnreadRune"><a href="#func-Reader-UnreadRune" class="headerlink" title="func (*Reader) UnreadRune"></a>func (*Reader) UnreadRune</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">UnreadRune</span><span class="params">()</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="func-Reader-Seek"><a href="#func-Reader-Seek" class="headerlink" title="func (*Reader) Seek"></a>func (*Reader) Seek</h3><p><code>Seek</code> 实现了 <code>io.Seeker</code> 接口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">Seek</span><span class="params">(offset <span class="keyword">int64</span>, whence <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">int64</span>, error)</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="func-Reader-ReadAt"><a href="#func-Reader-ReadAt" class="headerlink" title="func (*Reader) ReadAt"></a>func (*Reader) ReadAt</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">ReadAt</span><span class="params">(b []<span class="keyword">byte</span>, off <span class="keyword">int64</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="func-Reader-WriteTo"><a href="#func-Reader-WriteTo" class="headerlink" title="func (*Reader) WriteTo"></a>func (*Reader) WriteTo</h3><p><code>WriteTo</code> 实现了 <code>io.WriterTo</code> 接口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Reader)</span> <span class="title">WriteTo</span><span class="params">(w io.Writer)</span> <span class="params">(n <span class="keyword">int64</span>, err error)</span></span></span><br></pre></td></tr></table></figure></p>
+<h1 id="10-其他字符串处理函数"><a href="#10-其他字符串处理函数" class="headerlink" title="10 其他字符串处理函数"></a>10 其他字符串处理函数</h1><h2 id="func-Count"><a href="#func-Count" class="headerlink" title="func Count"></a>func <strong>Count</strong></h2><p>返回字符串 <code>s</code> 中有几个不重复的 <code>sep</code> 子串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Count</span><span class="params">(s, sep <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Count(<span class="string">"cheese"</span>, <span class="string">"e"</span>))</span><br><span class="line">    fmt.Println(strings.Count(<span class="string">"five"</span>, <span class="string">""</span>)) <span class="comment">// before &amp; after each rune</span></span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>3
+5
+</code></pre><h2 id="func-Repeat"><a href="#func-Repeat" class="headerlink" title="func Repeat"></a>func <strong>Repeat</strong></h2><p><code>Repeat</code> 用于重复 <code>count</code> 次字符串 <code>s</code> 并返回一个新的字符串。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.Repeat(s, count <span class="keyword">int</span>) <span class="keyword">string</span></span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> origS <span class="keyword">string</span> = <span class="string">"Hi there! "</span></span><br><span class="line">    <span class="keyword">var</span> newS <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line">    newS = strings.Repeat(origS, <span class="number">3</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"The new repeated string is: %s\n"</span>, newS)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>The new repeated string is: Hi there! Hi there! Hi there!
+</code></pre><h2 id="func-EqualFold"><a href="#func-EqualFold" class="headerlink" title="func EqualFold"></a>func <strong>EqualFold</strong></h2><p>判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">EqualFold</span><span class="params">(s, t <span class="keyword">string</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.EqualFold(<span class="string">"Go"</span>, <span class="string">"go"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br>    true</p>
+<h2 id="func-Map"><a href="#func-Map" class="headerlink" title="func Map"></a>func <strong>Map</strong></h2><p>将 <code>s</code> 的每一个unicode码值 <code>r</code> 都替换为 <code>mapping(r)</code>，返回这些新码值组成的字符串拷贝。如果 <code>mapping</code> 返回一个负值，将会丢弃该码值而不会被替换。（返回值中对应位置将没有码值）<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Map</span><span class="params">(mapping <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">rune</span>, <span class="title">s</span> <span class="title">string</span>) <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	rot13 := <span class="function"><span class="keyword">func</span><span class="params">(r <span class="keyword">rune</span>)</span> <span class="title">rune</span></span> &#123;</span><br><span class="line">		<span class="keyword">switch</span> &#123;</span><br><span class="line">		<span class="keyword">case</span> r &gt;= <span class="string">'A'</span> &amp;&amp; r &lt;= <span class="string">'Z'</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">'A'</span> + (r-<span class="string">'A'</span>+<span class="number">13</span>)%<span class="number">26</span></span><br><span class="line">		<span class="keyword">case</span> r &gt;= <span class="string">'a'</span> &amp;&amp; r &lt;= <span class="string">'z'</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">'a'</span> + (r-<span class="string">'a'</span>+<span class="number">13</span>)%<span class="number">26</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> r</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(strings.Map(rot13, <span class="string">"'Twas brillig and the slithy gopher..."</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<pre><code>&apos;Gjnf oevyyvt naq gur fyvgul tbcure...
+</code></pre>
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/12/golang/Golang的单引号、双引号与反引号/" title="【转】Golang的单引号、双引号与反引号">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/09/golang/Golang-位左移的应用/" title="『记』Golang-位左移的应用">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-前缀和后缀"><span class="post-toc-text">1 前缀和后缀</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-HasPrefix"><span class="post-toc-text">func HasPrefix</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-HasSuffix"><span class="post-toc-text">func HasSuffix</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-字符串包含关系"><span class="post-toc-text">2 字符串包含关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Contains"><span class="post-toc-text">func Contains</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ContainsRune"><span class="post-toc-text">func ContainsRune</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ContainsAny"><span class="post-toc-text">func ContainsAny</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-判断子字符串或字符在父字符串中出现的位置（索引）"><span class="post-toc-text">3 判断子字符串或字符在父字符串中出现的位置（索引）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Index"><span class="post-toc-text">func Index</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IndexByte"><span class="post-toc-text">func IndexByte</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IndexRune"><span class="post-toc-text">func IndexRune</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IndexAny"><span class="post-toc-text">func IndexAny</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-IndexFunc"><span class="post-toc-text">func IndexFunc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-LastIndex"><span class="post-toc-text">func LastIndex</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-LastIndexAny"><span class="post-toc-text">func LastIndexAny</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-LastIndexFunc"><span class="post-toc-text">func LastIndexFunc</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-字符串替换"><span class="post-toc-text">4 字符串替换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Replace"><span class="post-toc-text">func Replace</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#type-Replacer"><span class="post-toc-text">type Replacer</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-NewReplacer"><span class="post-toc-text">func NewReplacer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Replacer-Replace"><span class="post-toc-text">func (*Replacer) Replace</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#示例"><span class="post-toc-text">示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Replacer-WriteString"><span class="post-toc-text">func (*Replacer) WriteString</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-修改字符串大小写"><span class="post-toc-text">5 修改字符串大小写</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Title"><span class="post-toc-text">func Title</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToTitle"><span class="post-toc-text">func ToTitle</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToTitleSpecial"><span class="post-toc-text">func ToTitleSpecial</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToLower"><span class="post-toc-text">func ToLower</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToLowerSpecial"><span class="post-toc-text">func ToLowerSpecial</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToUpper"><span class="post-toc-text">func ToUpper</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-ToUpperSpecial"><span class="post-toc-text">func ToUpperSpecial</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-修剪字符串"><span class="post-toc-text">6 修剪字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Trim"><span class="post-toc-text">func Trim</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimSpace"><span class="post-toc-text">func TrimSpace</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimFunc"><span class="post-toc-text">func TrimFunc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimLeft"><span class="post-toc-text">func TrimLeft</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimLeftFunc"><span class="post-toc-text">func TrimLeftFunc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimPrefix"><span class="post-toc-text">func TrimPrefix</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimRight"><span class="post-toc-text">func TrimRight</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimRightFunc"><span class="post-toc-text">func TrimRightFunc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-TrimSuffix"><span class="post-toc-text">func TrimSuffix</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-分割字符串"><span class="post-toc-text">7 分割字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Fields"><span class="post-toc-text">func Fields</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-FieldsFunc"><span class="post-toc-text">func FieldsFunc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Split"><span class="post-toc-text">func Split</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SplitN"><span class="post-toc-text">func SplitN</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SplitAfter"><span class="post-toc-text">func SplitAfter</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-SplitAfterN"><span class="post-toc-text">func SplitAfterN</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-拼接-slice-到字符串"><span class="post-toc-text">8 拼接 slice 到字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Join"><span class="post-toc-text">func Join</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-从字符串中读取内容"><span class="post-toc-text">9 从字符串中读取内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#type-Reader"><span class="post-toc-text">type Reader</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-NewReader"><span class="post-toc-text">func NewReader</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-Len"><span class="post-toc-text">func (*Reader) Len</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-ReadByte"><span class="post-toc-text">func (*Reader) ReadByte</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-UnreadByte"><span class="post-toc-text">func (*Reader) UnreadByte</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-ReadRune"><span class="post-toc-text">func (*Reader) ReadRune</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-UnreadRune"><span class="post-toc-text">func (*Reader) UnreadRune</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-Seek"><span class="post-toc-text">func (*Reader) Seek</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-ReadAt"><span class="post-toc-text">func (*Reader) ReadAt</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#func-Reader-WriteTo"><span class="post-toc-text">func (*Reader) WriteTo</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-其他字符串处理函数"><span class="post-toc-text">10 其他字符串处理函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Count"><span class="post-toc-text">func Count</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Repeat"><span class="post-toc-text">func Repeat</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-EqualFold"><span class="post-toc-text">func EqualFold</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#func-Map"><span class="post-toc-text">func Map</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

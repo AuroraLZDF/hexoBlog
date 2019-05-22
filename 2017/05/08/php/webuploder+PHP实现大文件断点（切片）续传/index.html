@@ -1,0 +1,829 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>webuploder+PHP实现大文件断点（切片）续传</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Aurora-龙振巅峰">
+    <meta name="keywords" content="后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验">
+    <meta name="description" content="赤子之心，坦诚相待">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《webuploder+PHP实现大文件断点（切片）续传》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/3/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2017/05/08/php/webuploder+PHP实现大文件断点（切片）续传/" itemprop="url">		
+			webuploder+PHP实现大文件断点（切片）续传		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2017/05/08/php/webuploder+PHP实现大文件断点（切片）续传/" itemprop="url">
+	<time datetime="2017-05-08T03:18:07.000Z" itemprop="datePublished">
+  		2017-05-08
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#PHP" title="PHP" rel="36">PHP</a>&nbsp;
+							
+								<a href="#js" title="js" rel="2">js</a>&nbsp;
+							
+								<a href="#webuploader" title="webuploader" rel="1">webuploader</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做手机游戏运营难免会遇到上传超大APP，但受限于宽带、http响应时间等因素，导致文件上传不成功。在网上搜罗了一圈，终于在github上找到了<a href="https://github.com/kazaff" target="_blank" rel="noopener">kazaff</a>大神对于<code>webuploader</code><a href="http://blog.kazaff.me/2014/11/14/聊聊大文件上传/" target="_blank" rel="noopener">大文件上传</a>的详细介绍。</p>
+<p><em>下面整理一下自己的实现过程吧（kazaff已做了详细介绍，这里只是借鉴一下）：</em><br>文件目录结构：<br><img src="/images/webuploader/webuploader_php_menu.png"></p>
+<h1 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a><code>index.html</code></h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>WebUploader<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.11.2.min.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/webuploader.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/md5.js"</span>  <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/webuploader.css"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">            <span class="selector-class">.itemDel</span>, <span class="selector-class">.itemStop</span>, <span class="selector-class">.itemUpload</span>&#123;</span></span><br><span class="line"><span class="undefined">                margin-left: 15px;</span></span><br><span class="line"><span class="undefined">                color: blue;</span></span><br><span class="line"><span class="undefined">                cursor: pointer;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-id">#theList</span>&#123;</span></span><br><span class="line"><span class="undefined">                width: 80%;</span></span><br><span class="line"><span class="undefined">                min-height: 100px;</span></span><br><span class="line"><span class="undefined">                border: 1px solid red;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-id">#theList</span> <span class="selector-class">.itemStop</span>&#123;</span></span><br><span class="line"><span class="undefined">                display: none;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"uploader"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"theList"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"picker"</span>&gt;</span>选择文件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"color:red"</span>&gt;</span>已实现大文件分段，FTP上传需要连接ftp服务器。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/bigFileUploader.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/webuploader/index_html.png"></p>
+<h1 id="bigFileUploader-js"><a href="#bigFileUploader-js" class="headerlink" title="bigFileUploader.js"></a><code>bigFileUploader.js</code></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userInfo = &#123;<span class="attr">userId</span>:<span class="string">"up_file"</span>, <span class="attr">md5</span>:<span class="string">""</span>&#125;;   <span class="comment">//用户会话信息</span></span><br><span class="line"><span class="keyword">var</span> chunkSize =  <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>;        <span class="comment">//分块大小</span></span><br><span class="line"><span class="keyword">var</span> uniqueFileName = <span class="literal">null</span>;          <span class="comment">//文件唯一标识符</span></span><br><span class="line"><span class="keyword">var</span> md5Mark = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> backEndUrl = <span class="string">'serverPHP/upload.php'</span>;</span><br><span class="line"></span><br><span class="line">WebUploader.Uploader.register(&#123;</span><br><span class="line">    <span class="string">"before-send-file"</span>: <span class="string">"beforeSendFile"</span></span><br><span class="line">    , <span class="string">"before-send"</span>: <span class="string">"beforeSend"</span></span><br><span class="line">    , <span class="string">"after-send-file"</span>: <span class="string">"afterSendFile"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    beforeSendFile: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//秒传验证</span></span><br><span class="line">        <span class="keyword">var</span> task = <span class="keyword">new</span> $.Deferred();</span><br><span class="line">        <span class="keyword">var</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">        (<span class="keyword">new</span> WebUploader.Uploader()).md5File(file, <span class="number">0</span>, <span class="number">10</span> * <span class="number">1024</span> * <span class="number">1024</span>).progress(<span class="function"><span class="keyword">function</span> (<span class="params">percentage</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(percentage);</span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"总耗时: "</span> + ((<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) - start) / <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">            md5Mark = val;</span><br><span class="line">            userInfo.md5 = val;</span><br><span class="line"></span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type: <span class="string">"POST"</span>,</span><br><span class="line">                url: backEndUrl,</span><br><span class="line">                data: &#123;</span><br><span class="line">                    status: <span class="string">"md5Check"</span>,</span><br><span class="line">                    md5: val</span><br><span class="line">                &#125;,</span><br><span class="line">                cache: <span class="literal">false</span>,</span><br><span class="line">                timeout: <span class="number">1000</span>, <span class="comment">//todo 超时的话，只能认为该文件不曾上传过</span></span><br><span class="line">                dataType: <span class="string">"json"</span></span><br><span class="line">            &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data, textStatus, jqXHR</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(data, <span class="number">1111</span>);</span><br><span class="line">                <span class="keyword">if</span> (data.ifExist) &#123;   <span class="comment">//若存在，这返回失败给WebUploader，表明该文件不需要上传</span></span><br><span class="line">                    task.reject();</span><br><span class="line"></span><br><span class="line">                    uploader.skipFile(file);</span><br><span class="line">                    file.path = data.path;</span><br><span class="line">                    UploadComlate(file);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    task.resolve();</span><br><span class="line">                    <span class="comment">//拿到上传文件的唯一名称，用于断点续传</span></span><br><span class="line">                    uniqueFileName = md5(<span class="string">''</span> + userInfo.userId + file.name + file.type + file.lastModifiedDate + file.size);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR, textStatus, errorThrown</span>) </span>&#123;    <span class="comment">//任何形式的验证失败，都触发重新上传</span></span><br><span class="line">                task.resolve();</span><br><span class="line">                <span class="comment">//拿到上传文件的唯一名称，用于断点续传</span></span><br><span class="line">                uniqueFileName = md5(<span class="string">''</span> + userInfo.userId + file.name + file.type + file.lastModifiedDate + file.size);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> $.when(task);</span><br><span class="line">    &#125;,</span><br><span class="line">    beforeSend: <span class="function"><span class="keyword">function</span> (<span class="params">block</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//分片验证是否已传过，用于断点续传</span></span><br><span class="line">        <span class="keyword">var</span> task = <span class="keyword">new</span> $.Deferred();</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            type: <span class="string">"POST"</span>,</span><br><span class="line">            url: backEndUrl,</span><br><span class="line">            data: &#123;</span><br><span class="line">                status: <span class="string">"chunkCheck"</span>,</span><br><span class="line">                name: uniqueFileName,</span><br><span class="line">                chunkIndex: block.chunk,</span><br><span class="line">                size: block.end - block.start</span><br><span class="line">            &#125;,</span><br><span class="line">            cache: <span class="literal">false</span>,</span><br><span class="line">            timeout: <span class="number">1000</span>, <span class="comment">//todo 超时的话，只能认为该分片未上传过</span></span><br><span class="line">            dataType: <span class="string">"json"</span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data, textStatus, jqXHR</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (data.ifExist) &#123;   <span class="comment">//若存在，返回失败给WebUploader，表明该分块不需要上传</span></span><br><span class="line">                task.reject();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                task.resolve();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR, textStatus, errorThrown</span>) </span>&#123;    <span class="comment">//任何形式的验证失败，都触发重新上传</span></span><br><span class="line">            task.resolve();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $.when(task);</span><br><span class="line">    &#125;,</span><br><span class="line">    afterSendFile: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> chunksTotal = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ((chunksTotal = <span class="built_in">Math</span>.ceil(file.size / chunkSize)) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">//合并请求</span></span><br><span class="line">            <span class="keyword">var</span> task = <span class="keyword">new</span> $.Deferred();</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type: <span class="string">"POST"</span>,</span><br><span class="line">                url: backEndUrl,</span><br><span class="line">                data: &#123;</span><br><span class="line">                    status: <span class="string">"chunksMerge"</span>,</span><br><span class="line">                    name: uniqueFileName,</span><br><span class="line">                    chunks: chunksTotal,</span><br><span class="line">                    ext: file.ext,</span><br><span class="line">                    md5: md5Mark</span><br><span class="line">                &#125;,</span><br><span class="line">                cache: <span class="literal">false</span>,</span><br><span class="line">                dataType: <span class="string">"json"</span></span><br><span class="line">            &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data, textStatus, jqXHR</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//todo 检查响应是否正常</span></span><br><span class="line">                <span class="comment">//console.log(data);</span></span><br><span class="line">                task.resolve();</span><br><span class="line">                file.path = data.path;</span><br><span class="line">                UploadComlate(file, data);</span><br><span class="line"></span><br><span class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR, textStatus, errorThrown</span>) </span>&#123;</span><br><span class="line">                task.reject();</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> $.when(task);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            UploadComlate(file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> uploader = WebUploader.create(&#123;</span><br><span class="line">    swf: <span class="string">"Uploader.swf"</span>,</span><br><span class="line">    server: backEndUrl,</span><br><span class="line">    pick: <span class="string">"#picker"</span>,</span><br><span class="line">    resize: <span class="literal">false</span>,</span><br><span class="line">    dnd: <span class="string">"#theList"</span>,</span><br><span class="line">    paste: <span class="built_in">document</span>.body,</span><br><span class="line">    disableGlobalDnd: <span class="literal">true</span>,</span><br><span class="line">    thumb: &#123;</span><br><span class="line">        width: <span class="number">100</span>,</span><br><span class="line">        height: <span class="number">100</span>,</span><br><span class="line">        quality: <span class="number">70</span>,</span><br><span class="line">        allowMagnify: <span class="literal">true</span>,</span><br><span class="line">        crop: <span class="literal">true</span></span><br><span class="line">        <span class="comment">//, type: "image/jpeg"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/*, compress: &#123;</span></span><br><span class="line"><span class="comment">     quality: 90</span></span><br><span class="line"><span class="comment">     , allowMagnify: false</span></span><br><span class="line"><span class="comment">     , crop: false</span></span><br><span class="line"><span class="comment">     , preserveHeaders: true</span></span><br><span class="line"><span class="comment">     , noCompressIfLarger: true</span></span><br><span class="line"><span class="comment">     ,compressSize: 100000</span></span><br><span class="line"><span class="comment">     &#125;,*/</span></span><br><span class="line">    compress: <span class="literal">false</span>,</span><br><span class="line">    prepareNextFile: <span class="literal">true</span>,</span><br><span class="line">    chunked: <span class="literal">true</span>,</span><br><span class="line">    chunkSize: chunkSize,</span><br><span class="line">    formData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $.extend(<span class="literal">true</span>, &#123; &#125;, userInfo);</span><br><span class="line">    &#125;,</span><br><span class="line">    threads:<span class="number">1</span>,</span><br><span class="line">    fileNumLimit: <span class="number">1</span>,</span><br><span class="line">    fileSingleSizeLimit: <span class="number">1000</span> * <span class="number">1024</span> * <span class="number">1024</span>,</span><br><span class="line">    duplicate: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">uploader.on(<span class="string">"fileQueued"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    $(<span class="string">"#theList"</span>).append(<span class="string">'&lt;li id="'</span> + file.id + <span class="string">'"&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;img /&gt;&lt;span&gt;'</span> + file.name + <span class="string">'&lt;/span&gt;&lt;span class="itemUpload"&gt;上传&lt;/span&gt;&lt;span class="itemStop"&gt;暂停&lt;/span&gt;&lt;span class="itemDel"&gt;删除&lt;/span&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;div class="percentage"&gt;&lt;/div&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;/li&gt;'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> $img = $(<span class="string">"#"</span> + file.id).find(<span class="string">"img"</span>);</span><br><span class="line"></span><br><span class="line">     uploader.makeThumb(file, <span class="function"><span class="keyword">function</span> (<span class="params">error, src</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (error) &#123;</span><br><span class="line">     $img.replaceWith(<span class="string">"&lt;span&gt;不能预览&lt;/span&gt;"</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     $img.attr(<span class="string">"src"</span>, src);</span><br><span class="line">     &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#theList"</span>).on(<span class="string">"click"</span>, <span class="string">".itemUpload"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    uploader.upload();</span><br><span class="line">    <span class="comment">//"上传"--&gt;"暂停"</span></span><br><span class="line">    $(<span class="keyword">this</span>).hide();</span><br><span class="line">    $(<span class="string">".itemStop"</span>).show();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#theList"</span>).on(<span class="string">"click"</span>, <span class="string">".itemStop"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    uploader.stop(<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">//"暂停"--&gt;"上传"</span></span><br><span class="line">    $(<span class="keyword">this</span>).hide();</span><br><span class="line">    $(<span class="string">".itemUpload"</span>).show();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//todo 如果要删除的文件正在上传（包括暂停），则需要发送给后端一个请求用来清除服务器端的缓存文件</span></span><br><span class="line">$(<span class="string">"#theList"</span>).on(<span class="string">"click"</span>, <span class="string">".itemDel"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    uploader.removeFile($(<span class="keyword">this</span>).parent().attr(<span class="string">"id"</span>));   <span class="comment">//从上传文件列表中删除</span></span><br><span class="line">    $(<span class="keyword">this</span>).parent().remove();  <span class="comment">//从上传列表dom中删除</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">uploader.on(<span class="string">"uploadProgress"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">file, percentage</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">"#"</span> + file.id + <span class="string">" .percentage"</span>).text(percentage * <span class="number">100</span> + <span class="string">"%"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UploadComlate</span>(<span class="params">file, data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(file, data);</span><br><span class="line">    <span class="keyword">if</span>(file &amp;&amp; data &amp;&amp; data.type == <span class="number">1</span>)&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url: backEndUrl,</span><br><span class="line">            type: <span class="string">"POST"</span>,</span><br><span class="line">            dataType: <span class="string">"json"</span>,</span><br><span class="line">            cache: <span class="literal">false</span>,</span><br><span class="line">            data:&#123;</span><br><span class="line">                act: <span class="string">"upload"</span>,</span><br><span class="line">                real_name: file.name,</span><br><span class="line">                tmp_name: data.path,</span><br><span class="line">                code: data.type,</span><br><span class="line">                size: file.size</span><br><span class="line">            &#125;,</span><br><span class="line">            success:<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(data.code == <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="comment">/* $("#app_url").val(data.url);</span></span><br><span class="line"><span class="comment">                    $("#app_size").val(data.size); */</span></span><br><span class="line"></span><br><span class="line">                    $(<span class="string">"#"</span> + file.id + <span class="string">" .percentage"</span>).text(<span class="string">"上传完毕"</span>).css(&#123;<span class="string">'color'</span>:<span class="string">'red'</span>&#125;);</span><br><span class="line">                    $(<span class="string">".itemStop"</span>).hide();</span><br><span class="line">                    $(<span class="string">".itemUpload"</span>).hide();</span><br><span class="line">                    $(<span class="string">".itemDel"</span>).hide();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(data.code == <span class="number">2</span>)&#123;</span><br><span class="line">                    $(<span class="string">"#"</span> + file.id + <span class="string">" .percentage"</span>).text(data.mes).css(&#123;<span class="string">'color'</span>:<span class="string">'red'</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"#"</span> + file.id + <span class="string">" .percentage"</span>).text(<span class="string">'网络错误！'</span>).css(&#123;<span class="string">'color'</span>:<span class="string">'red'</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="upload-php"><a href="#upload-php" class="headerlink" title="upload.php"></a><code>upload.php</code></h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@define(<span class="string">'ROOT'</span>, dirname(dirname(<span class="keyword">__FILE__</span>)));</span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">'./FileUpload.php'</span>);</span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">'./Ftp.php'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(@$_POST[<span class="string">'act'</span>] == <span class="string">'upload'</span>)&#123;</span><br><span class="line">    $data = $_POST;</span><br><span class="line">    $arr = uploadRunApk($data, <span class="string">'upload/'</span> . date(<span class="string">"Y"</span>) . <span class="string">'/'</span> . date(<span class="string">'m'</span>) . <span class="string">'/'</span>);</span><br><span class="line">    <span class="keyword">echo</span> json_encode($arr);</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$arr = uploadChunked();</span><br><span class="line"><span class="keyword">echo</span> json_encode($arr);</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过FTP上传到指定位置(这里以上传apk文件为例)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadRunApk</span><span class="params">($file, $save_path)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $_SC;</span><br><span class="line">    $max_file_size_in_bytes = <span class="number">1073741824</span>;                <span class="comment">// 1024M in bytes</span></span><br><span class="line">    <span class="comment">//var_dump($file);exit;</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">isset</span>($file)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'找不到文件'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">isset</span>($file[<span class="string">"tmp_name"</span>])) &#123;     <span class="comment">//is_uploaded_file()</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件无法上传'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">isset</span>($file[<span class="string">'real_name'</span>])) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件名不存在'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//$file_size = @filesize($file["tmp_name"]);</span></span><br><span class="line">    $file_size = $file[<span class="string">'size'</span>];</span><br><span class="line">    <span class="keyword">if</span> (!$file_size || $file_size &gt; $max_file_size_in_bytes) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件size太大'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ($file_size &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件大小不能为0'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $path_info = pathinfo($file[<span class="string">'real_name'</span>]);</span><br><span class="line">    $file_extension = $path_info[<span class="string">"extension"</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>($file_extension != <span class="string">'apk'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件类型错误:'</span>, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//$fmd5 = md5_file($file["tmp_name"]);</span></span><br><span class="line">    <span class="comment">//$file_name = $save_path . $fmd5 . '.' . $file_extension;</span></span><br><span class="line">    $file_name = $save_path . $path_info[<span class="string">'filename'</span>] . <span class="string">'.'</span> .$file_extension;</span><br><span class="line">    $ftp = <span class="keyword">new</span> Ftp($ftp_host, $ftp_port, $ftp_user, $ftp_pass);</span><br><span class="line">    <span class="keyword">if</span> ($ftp-&gt;up_file($file[<span class="string">"tmp_name"</span>], $file_name)) &#123;</span><br><span class="line">        $show_name = substr($file_name, strrpos($file_name, <span class="string">'/'</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; <span class="string">'文件上传成功'</span>, <span class="string">'code'</span> =&gt; <span class="number">1</span>, <span class="string">'url'</span> =&gt; $file_name, <span class="string">'size'</span> =&gt; $file_size, <span class="string">'show_name'</span> =&gt; $show_name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'mes'</span> =&gt; $file_name, <span class="string">'code'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadChunked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//关闭缓存</span></span><br><span class="line">    header(<span class="string">"Expires: Mon, 26 Jul 1997 05:00:00 GMT"</span>);</span><br><span class="line">    header(<span class="string">"Last-Modified: "</span> . gmdate(<span class="string">"D, d M Y H:i:s"</span>) . <span class="string">" GMT"</span>);</span><br><span class="line">    header(<span class="string">"Cache-Control: no-store, no-cache, must-revalidate"</span>);</span><br><span class="line">    header(<span class="string">"Cache-Control: post-check=0, pre-check=0"</span>, <span class="keyword">false</span>);</span><br><span class="line">    header(<span class="string">"Pragma: no-cache"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">global</span> $_SC;</span><br><span class="line">    $uploader = <span class="keyword">new</span> FileUpload(<span class="keyword">array</span>(<span class="string">'apk'</span>, <span class="string">'jpg'</span>, <span class="string">'png'</span>, <span class="string">'zip'</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于断点续传，验证指定分块是否已经存在，避免重复上传</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'status'</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($_POST[<span class="string">'status'</span>] == <span class="string">'chunkCheck'</span>) &#123;</span><br><span class="line">            $target = $uploader-&gt;path . $_POST[<span class="string">'name'</span>] . <span class="string">'/'</span> . $_POST[<span class="string">'chunkIndex'</span>];</span><br><span class="line">            <span class="keyword">if</span> (file_exists($target) &amp;&amp; filesize($target) == $_POST[<span class="string">'size'</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'ifExist'</span> =&gt; <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'ifExist'</span> =&gt; <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($_POST[<span class="string">'status'</span>] == <span class="string">'md5Check'</span>) &#123;</span><br><span class="line">            <span class="comment">//todo 模拟持久层查询</span></span><br><span class="line">            $dataArr = <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'b0201e4d41b2eeefc7d3d355a44c6f5a'</span> =&gt; <span class="string">'kazaff2.jpg'</span></span><br><span class="line">            );</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">isset</span>($dataArr[$_POST[<span class="string">'md5'</span>]])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'ifExist'</span> =&gt; <span class="number">1</span>, <span class="string">'path'</span> =&gt; $dataArr[$_POST[<span class="string">'md5'</span>]]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'ifExist'</span> =&gt; <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($_POST[<span class="string">'status'</span>] == <span class="string">'chunksMerge'</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ($path = $uploader-&gt;chunksMerge($_POST[<span class="string">'name'</span>], $_POST[<span class="string">'chunks'</span>], $_POST[<span class="string">'ext'</span>])) &#123;</span><br><span class="line">                <span class="comment">//todo 把md5签名存入持久层，供未来的秒传验证</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'status'</span> =&gt; <span class="number">1</span>, <span class="string">'path'</span> =&gt; $path, <span class="string">'type'</span> =&gt; <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'status'</span> =&gt; <span class="number">0</span>, <span class="string">'chunksMerge'</span> =&gt; <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (($path = $uploader-&gt;upload(<span class="string">'file'</span>, $_POST)) !== <span class="keyword">false</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'status'</span> =&gt; <span class="number">1</span>, <span class="string">'path'</span> =&gt; $path, <span class="string">'type'</span> =&gt; <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'status'</span> =&gt; <span class="number">0</span>, <span class="string">'upload'</span> =&gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FileUpload-php"><a href="#FileUpload-php" class="headerlink" title="FileUpload.php"></a><code>FileUpload.php</code></h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  PHP通用文件上传类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  支持单文件和多文件上传</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileUpload</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//要配置的内容</span></span><br><span class="line">    <span class="keyword">public</span> $path;</span><br><span class="line">    <span class="keyword">private</span> $allowtype;</span><br><span class="line">    <span class="keyword">private</span> $maxsize;</span><br><span class="line">    <span class="keyword">private</span> $israndname;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $originName;</span><br><span class="line">    <span class="keyword">private</span> $tmpFileName;</span><br><span class="line">    <span class="keyword">private</span> $fileType;</span><br><span class="line">    <span class="keyword">private</span> $fileSize;</span><br><span class="line">    <span class="keyword">private</span> $newFileName;</span><br><span class="line">    <span class="keyword">private</span> $errorNum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> $errorMess = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $isChunk = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> $indexOfChunk = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($type)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;path = ROOT . <span class="string">'/upload'</span>;</span><br><span class="line">        <span class="comment">//$this-&gt;allowtype = array('jpg', 'jpeg', 'gif', 'png', 'mp4', 'mp3', 'zip', 'apk', 'pdf', 'rar');</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;allowtype = $type;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;maxsize = <span class="number">1073741824</span>;                <span class="comment">// 1024M in bytes</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;israndname = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于设置成员属性($path, $allowtype, $maxsize, $israndname)</span></span><br><span class="line"><span class="comment">     * 可以通过连贯操作一次设置多个属性值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $key  成员属性（不区分大小写）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $val  为成员属性设置的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> object 返回自己对象$this, 可以用于连贯操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($key, $val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $key = strtolower($key);</span><br><span class="line">        <span class="keyword">if</span> (array_key_exists($key, get_class_vars(get_class(<span class="keyword">$this</span>)))) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption($key, $val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//为单个成员属性设置值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setOption</span><span class="params">($key, $val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;$key = $val;</span><br><span class="line">        <span class="keyword">return</span> $val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 调用该方法上传文件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $fileField</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $info</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">upload</span><span class="params">($fileField, $info)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//判断是否为分块上传</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;checkChunk($info);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;checkFilePath(<span class="keyword">$this</span>-&gt;path))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//$this-&gt;errorMess = $this-&gt;getError();</span></span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将文件上传的信息取出赋给变量</span></span><br><span class="line">        $name = $_FILES[$fileField][<span class="string">'name'</span>];</span><br><span class="line">        $tmp_name = $_FILES[$fileField][<span class="string">'tmp_name'</span>];</span><br><span class="line">        $size = $_FILES[$fileField][<span class="string">'size'</span>];</span><br><span class="line">        $error = $_FILES[$fileField][<span class="string">'error'</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置文件信息</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;setFiles($name, $tmp_name, $size, $error))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//如果是分块，则创建一个唯一名称的文件夹用来保存该文件的所有分块</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;isChunk) &#123;</span><br><span class="line">                $uploadDir = <span class="keyword">$this</span>-&gt;path;</span><br><span class="line">                $tmpName = <span class="keyword">$this</span>-&gt;setDirNameForChunks($info);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;checkFilePath($uploadDir . <span class="string">'/'</span> . $tmpName))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//$this-&gt;errorMess = $this-&gt;getError();</span></span><br><span class="line">                    <span class="comment">//return false;</span></span><br><span class="line">                    show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//创建一个对应的文件，用来记录上传分块文件的修改时间，用于清理长期未完成的垃圾分块</span></span><br><span class="line">                touch($uploadDir . <span class="string">'/'</span> . $tmpName . <span class="string">'.tmp'</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;checkFileSize() &amp;&amp; <span class="keyword">$this</span>-&gt;checkFileType()) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;setNewFileName();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;copyFile()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;path . <span class="keyword">$this</span>-&gt;newFileName;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//$this-&gt;errorMess = $this-&gt;getError();</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $uniqueFileName</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $chunksTotal</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $fileExt</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">chunksMerge</span><span class="params">($uniqueFileName, $chunksTotal, $fileExt)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $targetDir = <span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . $uniqueFileName;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//检查对应文件夹中的分块文件数量是否和总数保持一致</span></span><br><span class="line">        <span class="keyword">if</span> ($chunksTotal &gt; <span class="number">1</span> &amp;&amp; (count(scandir($targetDir)) - <span class="number">2</span>) == $chunksTotal)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//同步锁机制</span></span><br><span class="line">            $lockFd = fopen(<span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . $uniqueFileName . <span class="string">'.lock'</span>, <span class="string">"w"</span>);</span><br><span class="line">            <span class="keyword">if</span> (!flock($lockFd, LOCK_EX | LOCK_NB))</span><br><span class="line">            &#123;</span><br><span class="line">                fclose($lockFd);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//进行合并</span></span><br><span class="line">            <span class="keyword">$this</span>-&gt;fileType = $fileExt;</span><br><span class="line">            $finalName = <span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . (<span class="keyword">$this</span>-&gt;setOption(<span class="string">'newFileName'</span>, <span class="keyword">$this</span>-&gt;proRandName()));</span><br><span class="line">            $file = fopen($finalName, <span class="string">'wb'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> ($index = <span class="number">0</span>; $index &lt; $chunksTotal; $index++)</span><br><span class="line">            &#123;</span><br><span class="line">                $tmpFile = $targetDir . <span class="string">'/'</span> . $index;</span><br><span class="line">                $chunkFile = fopen($tmpFile, <span class="string">'rb'</span>);</span><br><span class="line">                $content = fread($chunkFile, filesize($tmpFile));</span><br><span class="line">                fclose($chunkFile);</span><br><span class="line">                fwrite($file, $content);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//删除chunk文件</span></span><br><span class="line">                unlink($tmpFile);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fclose($file);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//删除chunk文件夹</span></span><br><span class="line">            rmdir($targetDir);</span><br><span class="line">            unlink(<span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . $uniqueFileName . <span class="string">'.tmp'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//解锁</span></span><br><span class="line">            flock($lockFd, LOCK_UN);</span><br><span class="line">            fclose($lockFd);</span><br><span class="line">            unlink(<span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . $uniqueFileName . <span class="string">'.lock'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;path . <span class="string">'/'</span> . <span class="keyword">$this</span>-&gt;newFileName;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取上传后的文件名称</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFileName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;newFileName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//上传失败后，调用该方法则返回，上传出错信息</span></span><br><span class="line">    <span class="comment">/*public function getErrorMsg()</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        return $this-&gt;errorMess;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置上传出错信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getError</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $str = <span class="string">"上传文件&lt;span color='red'&gt;&#123;$this-&gt;originName&#125;&lt;/span&gt;时出错："</span>;</span><br><span class="line">        <span class="keyword">switch</span> (<span class="keyword">$this</span>-&gt;errorNum) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                $str .= <span class="string">"没有文件被上传"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                $str .= <span class="string">"文件只有部分被上传"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                $str .= <span class="string">"上传文件的大小超过了HTML表单中MAX_FILE_SIZE选项指定的值"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                $str .= <span class="string">"上传的文件超过了php.ini中upload_max_filesize选项限制的值"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-1</span>:</span><br><span class="line">                $str .= <span class="string">"未允许的类型"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-2</span>:</span><br><span class="line">                $str .= <span class="string">"文件过大， 上传的文件夹不能超过&#123;$this-&gt;maxsize&#125;个字节"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-3</span>:</span><br><span class="line">                $str .= <span class="string">"上传失败"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-4</span>:</span><br><span class="line">                $str .= <span class="string">"建立存放上传文件目录失败，请重新指定上传目录"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-5</span>:</span><br><span class="line">                $str .= <span class="string">"必须指定上传文件的路径"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                $str .= <span class="string">"未知错误"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $str . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根据文件的相关信息为分块数据创建文件夹</span></span><br><span class="line">    <span class="comment">//md5(当前登录用户的数据库id + 文件原始名称 + 文件类型 + 文件最后修改时间 + 文件总大小)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setDirNameForChunks</span><span class="params">($info)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $str = <span class="string">''</span> . $info[<span class="string">'userId'</span>] . $info[<span class="string">'name'</span>] . $info[<span class="string">'type'</span>] . $info[<span class="string">'lastModifiedDate'</span>] . $info[<span class="string">'size'</span>];</span><br><span class="line">        <span class="keyword">return</span> md5($str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置和$_FILES有关的内容</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setFiles</span><span class="params">($name = <span class="string">""</span>, $tmp_name = <span class="string">""</span>, $size = <span class="number">0</span>, $error = <span class="number">0</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, $error);</span><br><span class="line">        <span class="keyword">if</span> ($error) &#123;</span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setOption(<span class="string">'originName'</span>, $name);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setOption(<span class="string">'tmpFileName'</span>, $tmp_name);</span><br><span class="line">        $aryStr = explode(<span class="string">"."</span>, $name);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setOption(<span class="string">"fileType"</span>, strtolower($aryStr[count($aryStr) - <span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setOption(<span class="string">"fileSize"</span>, $size);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">checkChunk</span><span class="params">($info)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($info[<span class="string">'chunks'</span>]) &amp;&amp; $info[<span class="string">'chunks'</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">"isChunk"</span>, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">isset</span>($info[<span class="string">'chunk'</span>]) &amp;&amp; $info[<span class="string">'chunk'</span>] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;setOption(<span class="string">"indexOfChunk"</span>, $info[<span class="string">'chunk'</span>]);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'分块索引不合法'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置上传后的文件名称</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setNewFileName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;isChunk) &#123;        <span class="comment">//如果是分块，则以分块的索引作为文件名称保存</span></span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'newFileName'</span>, <span class="keyword">$this</span>-&gt;indexOfChunk);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;israndname) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'newFileName'</span>, <span class="keyword">$this</span>-&gt;proRandName());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'newFileName'</span>, <span class="keyword">$this</span>-&gt;originName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//检查上传的文件是否是合法的类型</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFileType</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (in_array(strtolower(<span class="keyword">$this</span>-&gt;fileType), <span class="keyword">$this</span>-&gt;allowtype)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, <span class="number">-1</span>);</span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//检查上传的文件是否是允许的大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFileSize</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;fileSize &gt; <span class="keyword">$this</span>-&gt;maxsize) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, <span class="number">-5</span>);</span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//检查是否有存放上传文件的目录</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFilePath</span><span class="params">($target)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>($target)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, <span class="number">-5</span>);</span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!file_exists($target) || !is_writable($target)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!@mkdir($target, <span class="number">0755</span>)) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, <span class="number">-4</span>);</span><br><span class="line">                <span class="comment">//return false;</span></span><br><span class="line">                show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;path = $target;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置随机文件名</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">proRandName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $fileName = date(<span class="string">'YmdHis'</span>) . <span class="string">"_"</span> . rand(<span class="number">100</span>, <span class="number">999</span>);</span><br><span class="line">        <span class="keyword">return</span> $fileName . <span class="string">'.'</span> . <span class="keyword">$this</span>-&gt;fileType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//复制上传文件到指定的位置</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">copyFile</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;errorNum) &#123;</span><br><span class="line">            $path = rtrim(<span class="keyword">$this</span>-&gt;path, <span class="string">'/'</span>) . <span class="string">'/'</span>;</span><br><span class="line">            $path .= <span class="keyword">$this</span>-&gt;newFileName;</span><br><span class="line">            <span class="keyword">if</span> (@move_uploaded_file(<span class="keyword">$this</span>-&gt;tmpFileName, $path)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;setOption(<span class="string">'errorNum'</span>, <span class="number">-3</span>);</span><br><span class="line">                <span class="comment">//return false;</span></span><br><span class="line">                show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//return false;</span></span><br><span class="line">            show_message(<span class="keyword">$this</span>-&gt;getError(), <span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">//关闭缓存</span></span><br><span class="line"><span class="comment">header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");</span></span><br><span class="line"><span class="comment">header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");</span></span><br><span class="line"><span class="comment">header("Cache-Control: no-store, no-cache, must-revalidate");</span></span><br><span class="line"><span class="comment">header("Cache-Control: post-check=0, pre-check=0", false);</span></span><br><span class="line"><span class="comment">header("Pragma: no-cache");</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">$uploader = new FileUpload();</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//用于断点续传，验证指定分块是否已经存在，避免重复上传</span></span><br><span class="line"><span class="comment">if (isset($_POST['status'])) &#123;</span></span><br><span class="line"><span class="comment">    if ($_POST['status'] == 'chunkCheck') &#123;</span></span><br><span class="line"><span class="comment">        $target = '../uploads/' . $_POST['name'] . '/' . $_POST['chunkIndex'];</span></span><br><span class="line"><span class="comment">        if (file_exists($target) &amp;&amp; filesize($target) == $_POST['size']) &#123;</span></span><br><span class="line"><span class="comment">            die('&#123;"ifExist":1&#125;');</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        die('&#123;"ifExist":0&#125;');</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125; elseif ($_POST['status'] == 'md5Check') &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        //todo 模拟持久层查询</span></span><br><span class="line"><span class="comment">        $dataArr = array(</span></span><br><span class="line"><span class="comment">            'b0201e4d41b2eeefc7d3d355a44c6f5a' =&gt; 'kazaff2.jpg'</span></span><br><span class="line"><span class="comment">        );</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        if (isset($dataArr[$_POST['md5']])) &#123;</span></span><br><span class="line"><span class="comment">            die('&#123;"ifExist":1, "path":"' . $dataArr[$_POST['md5']] . '"&#125;');</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        die('&#123;"ifExist":0&#125;');</span></span><br><span class="line"><span class="comment">    &#125; elseif ($_POST['status'] == 'chunksMerge') &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        if ($path = $uploader-&gt;chunksMerge($_POST['name'], $_POST['chunks'], $_POST['ext'])) &#123;</span></span><br><span class="line"><span class="comment">            //todo 把md5签名存入持久层，供未来的秒传验证</span></span><br><span class="line"><span class="comment">            die('&#123;"status":1, "path": "' . $path . '"&#125;');</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        die('&#123;"status":0');</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">if (($path = $uploader-&gt;upload('file', $_POST)) !== false) &#123;</span></span><br><span class="line"><span class="comment">    die('&#123;"status":1, "path": "' . $path . '"&#125;');</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">die('&#123;"status":0&#125;');</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>发现自己语言组织能力好差啊，各位看官还是转到<a href="http://blog.kazaff.me/2014/11/14/聊聊大文件上传/" target="_blank" rel="noopener">聊聊大文件上传</a>去欣赏吧</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2017/05/22/ubuntu16.04下解决Adobe Flash不是最新版问题/" title="ubuntu16.04下解决Adobe Flash不是最新版问题">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2017/05/02/入门Webpack，看这篇就够了/" title="【转】入门Webpack，看这篇就够了">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: 'b9203c40539965c52855',
+		clientSecret: '80f3357a6572570797a5b3f84643c9dc33841d85',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'hexoBlog',
+		owner: 'AuroraLZDF',
+		admin: 'AuroraLZDF',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#index-html"><span class="post-toc-text">index.html</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#bigFileUploader-js"><span class="post-toc-text">bigFileUploader.js</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#upload-php"><span class="post-toc-text">upload.php</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#FileUpload-php"><span class="post-toc-text">FileUpload.php</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最后"><span class="post-toc-text">最后</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/AuroraLZDF" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Aurora-龙振巅峰. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          console.log(searchText, searchText.length, datas);
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://auroralzdf.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
