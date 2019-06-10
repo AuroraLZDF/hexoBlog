@@ -6,6 +6,8 @@
     "version": "3.8.0"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": ">= 4.12.1",
     "extend": ">=3.0.2",
     "hexo": "^3.8.0",
     "hexo-deployer-git": "^1.0.0",
@@ -14,8 +16,9 @@
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-ejs": "^0.3.1",
-    "hexo-renderer-marked": "^0.3.18",
+    "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.3.3"
+    "hexo-server": "^0.3.3",
+    "marked": ">=0.3.18"
   }
 }
