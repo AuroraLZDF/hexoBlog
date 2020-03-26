@@ -7,12 +7,12 @@ subtitle: 赤子之心，坦诚相待
 description: 南京航空航天大学，就职于苏州。擅长PHP开发，Linux爱好者。
 author: Aurora-龙振巅峰
 email: 18862324237@163.com
-keywords: "后端，PHP，JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验"
+keywords: "后端，PHP，Golang, Vuejs, JS，JQUERY，开发者，程序猿，编程，代码，开源，IT网站，Developer，Programmer，Coder，Geek，Html，Css，用户体验"
 language: zh-CN
 timezone: Asia/Shanghai
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://auroralzdf.gitee.io
+url: https://auroralzdf.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -37,7 +37,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -58,13 +58,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: annie
+theme: 3-hexo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://gitee.com/auroraLZDF/auroraLZDF.git
-  #repo: https://github.com/AuroraLZDF/blog.io.git
+  #repo: https://gitee.com/auroraLZDF/auroraLZDF.git
+  repo: https://github.com/AuroraLZDF/AuroraLZDF.GitHub.io.git
   #repo: https://git.coding.net/aurora_LZDF/Hexo-Blog.git
   branch: master
 # Search   
