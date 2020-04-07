@@ -106,7 +106,7 @@ add('writable_dirs', []);
 
 
 // 主机信息
-host('192.168.15.66')
+host('192.168.15.75')
     ->user('deployer') // 这里的 deployer 用户名要求要是服务器上存在的账户名，已实现 ssh 登陆
       // 指定私钥的位置，前提是公钥已经发送到服务器端
     ->identityFile('~/.ssh/id_rsa')
