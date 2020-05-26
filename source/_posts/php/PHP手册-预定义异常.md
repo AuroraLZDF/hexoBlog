@@ -1,7 +1,7 @@
 ---
 title: PHP手册-预定义异常
 date: 2018-10-31 11:10:41
-tags: [PHP, ]
+tags: [PHP]
 categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'

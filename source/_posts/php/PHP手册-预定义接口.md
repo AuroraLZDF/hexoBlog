@@ -1,7 +1,7 @@
 ---
 title: PHP手册-预定义接口
 date: 2018-10-31 14:17:59
-tags: [PHP, ]
+tags: [PHP]
 categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
@@ -197,13 +197,13 @@ foreach($obj as $key => $value) {
 
     string(9) "property1"
     string(19) "Public property one"
-
+    
     string(9) "property2"
     string(19) "Public property two"
-
+    
     string(9) "property3"
     string(21) "Public property three"
-
+    
     string(9) "property4"
     string(13) "last property"
 
@@ -280,9 +280,9 @@ print_r($obj);
                 [1] => Append 2
                 [2] => Append 3
             )
-
-    )
     
+    )
+
 ## Table of Contents ¶
 - ArrayAccess::offsetExists — 检查一个偏移位置是否存在
 - ArrayAccess::offsetGet — 获取一个偏移位置的值

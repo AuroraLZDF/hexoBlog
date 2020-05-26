@@ -1,8 +1,8 @@
 ---
 title: PHP-自动加载规范
 date: 2019-02-12 15:45:33
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---
@@ -175,3 +175,4 @@ class SplClassLoader
 }
 ```
 摘录自：[https://gist.github.com/jwage/221634](https://gist.github.com/jwage/221634)
+

@@ -1,8 +1,8 @@
 ---
 title: PHP-PSR-3日志接口规范
 date: 2019-02-19 16:50:46
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

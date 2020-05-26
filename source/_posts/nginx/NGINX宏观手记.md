@@ -34,7 +34,7 @@ cover: '/images/categories/nginx.gif'
 |$hostname	|主机名|
 |$http_name	|匹配任意请求头字段； 变量名中的后半部分“name”可以替换成任意请求头字段，如在配置文件中需要获取http请求头：“Accept-Language”，那么将“－”替换为下划线，大写字母替换为小写，形如：$http_accept_language即可。|
 |$https	|如果开启了SSL安全模式，值为“on”，否则为空字符串。|
-|$is_args	|如果请求中有参数，值为“?”，否则为空字符串。
+|$is_args	|如果请求中有参数，值为“?”，否则为空字符串。|
 |$limit_rate	|用于设置响应的速度限制，详见 limit_rate。|
 |$msec	|当前的Unix时间戳 (1.3.9, 1.2.6)|
 |$nginx_version	|nginx版本|

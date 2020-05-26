@@ -1,10 +1,10 @@
-﻿---
-title: 使用Hexo + Github Pages搭建个人独立博客
-date: 2017-03-02 16:40:41
-tags: [Hexo]
-categories: [Hexo]
-toc: true
-cover: '/images/categories/hexo.jpg'
+---
+title:  使用Hexo + Github Pages搭建个人独立博客
+date:  2017-03-02 16:40:41
+tags:  [Hexo]
+categories:  [Hexo]
+toc:  true
+cover:  '/images/categories/hexo.jpg'
 ---
 
 ## 系统环境配置
@@ -68,8 +68,8 @@ hexo s == hexo server
 hexo d == hexo deploy
 ```
 
- ------------------
- 
+------------------
+
 ## 生成静态页面
 
 ``` bash
@@ -155,7 +155,7 @@ deploy:
   branch: master
 ```
 
-  
+
 然后在命令行中执行
 
 ``` bash
@@ -286,10 +286,10 @@ reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作�
 wechatpay: /path/to/wechat-reward-image
 alipay: /path/to/alipay-reward-image
 ```
-    
-    
+
+
 ## 设置代码高亮主题
-    
+
 NexT 使用 [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)作为代码高亮，共有5款主题供你选择。 NexT 默认使用的是 白色的 normal 主题，可选的值有 normal，night， night blue， night bright， night eighties：
 
 更改 highlight_theme 字段，将其值设定成你所喜爱的高亮主题，例如：
@@ -300,7 +300,7 @@ NexT 使用 [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)作�
 # https://github.com/chriskempson/tomorrow-theme
 highlight_theme: normal
 ```
-    
+
 ## 侧边栏社交链接
 ``` yml
 # SubNav
@@ -319,9 +319,9 @@ subnav: #侧边栏社交链接
   #twitter: "#"
   #linkedin: "#"
 ```
- 
+
  ## 评论系统
- 
+
 NexT 支持 多说 和 DISQUS 评论系统。 当同时设置了 多说 和 DISQUS 时，优先选择多说。 NexT 内置了一套 多说 的样式。
 
 如需取消某个 页面/文章 的评论，在 md 文件的 front-matter 中增加 comments: false
@@ -350,7 +350,7 @@ duoshuo: AuroraLZDF
 ``` yml
 disqus_shortname: your-disqus-shortname
 ```
-    
+
 ## 数据统计与分析
 
 
@@ -365,23 +365,23 @@ disqus_shortname: your-disqus-shortname
 [Markdown 语法说明 (简体中文版)][20]
 
 
-  [1]: https://nodejs.org
-  [2]: http://www.runoob.com/nodejs/nodejs-install-setup.html
-  [3]: http://www.jianshu.com/p/05289a4bc8b2
-  [4]: https://github.com/AuroraLZDF/AuroraLZDF.github.io
-  [5]: http://blog.gzcyj.top
-  [6]: http://www.qiniu.com/
-  [7]: http://jiji262.github.io/qiniuimgbed/
-  [8]: https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
-  [9]: http://www.qq.com/404/
-  [10]: https://github.com/blog/273-github-ribbons
-  [11]: https://qr.alipay.com/paipai/open.htm
-  [12]: http://zhanzhang.baidu.com/guide/index
-  [13]: http://ibruce.info/2015/04/04/busuanzi/
-  [14]: https://hexo.io/
-  [15]: http://ibruce.info/2013/11/22/hexo-your-blog/
-  [16]: http://codepub.cn/2015/04/06/Github-Pages-personal-blog-from-Octopress-to-Hexo/
-  [17]: http://www.jianshu.com/p/05289a4bc8b2
-  [18]: https://wingjay.com/2015/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E5%A4%A9%E4%B9%8B%E5%86%85%E6%90%AD%E5%BB%BA%E4%BB%A5%E4%BD%A0%E8%87%AA%E5%B7%B1%E5%90%8D%E5%AD%97%E4%B8%BA%E5%9F%9F%E5%90%8D%E7%9A%84%E5%BE%88cool%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
-  [19]: http://mp.weixin.qq.com/s?__biz=MzI4MzE2MTQ5Mw==&mid=401679929&idx=1&sn=bd752ae5ac550b4bf4dcccb1c12aa2b1&scene=18#wechat_redirect
-  [20]: http://wowubuntu.com/markdown/index.html
+[1]: https://nodejs.org
+[2]: http://www.runoob.com/nodejs/nodejs-install-setup.html
+[3]: http://www.jianshu.com/p/05289a4bc8b2
+[4]: https://github.com/AuroraLZDF/AuroraLZDF.github.io
+[5]: http://blog.gzcyj.top
+[6]: http://www.qiniu.com/
+[7]: http://jiji262.github.io/qiniuimgbed/
+[8]: https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
+[9]: http://www.qq.com/404/
+[10]: https://github.com/blog/273-github-ribbons
+[11]: https://qr.alipay.com/paipai/open.htm
+[12]: http://zhanzhang.baidu.com/guide/index
+[13]: http://ibruce.info/2015/04/04/busuanzi/
+[14]: https://hexo.io/
+[15]: http://ibruce.info/2013/11/22/hexo-your-blog/
+[16]: http://codepub.cn/2015/04/06/Github-Pages-personal-blog-from-Octopress-to-Hexo/
+[17]: http://www.jianshu.com/p/05289a4bc8b2
+[18]: https://wingjay.com/2015/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E5%A4%A9%E4%B9%8B%E5%86%85%E6%90%AD%E5%BB%BA%E4%BB%A5%E4%BD%A0%E8%87%AA%E5%B7%B1%E5%90%8D%E5%AD%97%E4%B8%BA%E5%9F%9F%E5%90%8D%E7%9A%84%E5%BE%88cool%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
+[19]: http://mp.weixin.qq.com/s?__biz=MzI4MzE2MTQ5Mw==&mid=401679929&idx=1&sn=bd752ae5ac550b4bf4dcccb1c12aa2b1&scene=18#wechat_redirect
+[20]: http://wowubuntu.com/markdown/index.html

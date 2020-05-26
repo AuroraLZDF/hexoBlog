@@ -2,7 +2,7 @@
 title: PHP-取整函数ceil，floor，round，intval函数的区别
 date: 2019-02-21 14:44:29
 tags: [PHP]
-categories: [PHP、笔记]
+categories: [笔记]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---
@@ -94,7 +94,7 @@ int intval ( mixed $var [, int $base ] )
 
     echo intval(9.999); // 9
 ?>
- ```
+```
 
 **注意**：
 除非 `var` 参数是字符串，否则 `intval()` 的 `base` 参数不会有效果。

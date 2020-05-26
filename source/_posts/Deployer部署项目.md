@@ -3,6 +3,7 @@ title: Deployer部署项目
 date: 2020-04-02 16:11:51
 categories: [Deployer]
 tags: [Deployer]
+toc: true
 ---
 ![](/images/php/deployer.png)
 # Deployer 简介

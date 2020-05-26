@@ -1,10 +1,9 @@
 ---
 title: mysql联合索引
-date: 2017-11-13 10:25:12
+date: 2020-21-10 10:57:12
 tags: [MySQL]
 categories: [MySQL]
 toc: true
-cover: '/images/categories/mysql.jpg'
 ---
 
 命名规则：表名_字段名
@@ -180,7 +179,7 @@ show keys from tblname;
 再次，建立索引除了要进行全表扫描外同时还要对数据进行大量的排序操作，因此，应当调整排序区的大小。
 
     9i之前，可以在session级别上加大sort_area_size的大小，比如设置为100m或者更大。
-
+    
     9i以后，如果初始化参数workarea_size_policy的值为TRUE，则排序区从pga_aggregate_target里自动分配获得。
 
 最后，建立索引的时候，可以加上nologging选项。以减少在建立索引过程中产生的大量redo，从而提高执行的速度。

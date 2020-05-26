@@ -1,8 +1,8 @@
 ---
 title: PHP-PSR-4自动加载规范
 date: 2019-02-20 10:24:40
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

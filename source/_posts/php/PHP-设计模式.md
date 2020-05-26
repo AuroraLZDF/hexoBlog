@@ -1,7 +1,7 @@
 ---
 title: PHP-设计模式（一）
 date: 2019-02-21 16:38:06
-tags: [PHP、笔记]
+tags: [笔记]
 categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'

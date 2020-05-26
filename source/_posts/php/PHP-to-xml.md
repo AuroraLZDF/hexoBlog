@@ -1,8 +1,8 @@
 ---
 title: PHP-to-xml
 date: 2019-04-15 17:43:02
-tags: [Linux,PHP]
-categories: [PHP，笔记]
+tags: [PHP]
+categories: [笔记]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

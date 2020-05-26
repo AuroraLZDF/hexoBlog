@@ -2,7 +2,7 @@
 title: PHP-子类重写父类属性问题
 date: 2019-04-15 17:26:07
 tags: [Linux,PHP]
-categories: [PHP，笔记]
+categories: [笔记]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

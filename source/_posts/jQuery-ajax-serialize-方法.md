@@ -1,7 +1,7 @@
 ---
 title: jQuery-ajax-serialize()方法
 date: 2019-02-21 15:44:07
-tags: [Ajax、笔记]
+tags: [笔记]
 categories: [JS]
 toc: true
 ---

@@ -1,8 +1,8 @@
 ---
 title: 【转】PHP-PSR-1基础编码规范
 date: 2019-02-18 14:36:56
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

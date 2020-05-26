@@ -2,7 +2,7 @@
 title: PHP-header()生成文件
 date: 2019-02-21 15:12:04
 tags: [PHP]
-categories: [PHP、笔记]
+categories: [笔记]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

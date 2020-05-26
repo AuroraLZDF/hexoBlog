@@ -1,7 +1,7 @@
 ---
 title: PHP-数组根据某键值，把相同键值的合并最终生成一个新的二维数组.md
 date: 2019-02-21 15:28:07
-tags: [PHP、笔记]
+tags: [笔记]
 categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'

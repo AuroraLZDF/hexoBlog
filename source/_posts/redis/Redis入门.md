@@ -3,6 +3,7 @@ title: Redis入门
 date: 2020-04-16 09:34:42
 categories: [Redis]
 tags: [Redis]
+toc: true
 ---
 
 # Redis简介

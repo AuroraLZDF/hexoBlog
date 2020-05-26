@@ -1,8 +1,8 @@
 ---
 title: PHP-PSR-6缓存接口规范
 date: 2019-02-20 11:04:19
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---

@@ -129,7 +129,7 @@ readfile('original.pdf');
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");   // 设置临界时间
 ```
-    
+
 ## 详细例子：
 
 ```php

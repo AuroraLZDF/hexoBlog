@@ -1,8 +1,8 @@
 ---
 title: PHP-PSR-2编码风格规范
 date: 2019-02-18 15:03:50
-tags: [PHP]
-categories: [PHP、PHP标准规范]
+tags: [PHP,PHP标准规范]
+categories: [PHP]
 toc: true
 cover: '/images/categories/php.jpeg'
 ---
