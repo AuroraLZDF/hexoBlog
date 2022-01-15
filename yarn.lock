@@ -1503,6 +1503,11 @@ hexo-util@^0.6.0, hexo-util@^0.6.2, hexo-util@^0.6.3:
     html-entities "^1.2.0"
     striptags "^2.1.1"
 
+hexo-wordcount@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/hexo-wordcount/-/hexo-wordcount-6.0.1.tgz#5a60efc9d3c8e421956f2fd6683ca94a8a795264"
+  integrity sha512-tbo2P9xRWEKQmRf7+XuPjx9It1MnaE26nA+EEb2DN39gK1x+26W7Nm4Iyp4AugQjBWYYDx7OLn4gp1WFxQpQew==
+
 hexo@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/hexo/-/hexo-3.8.0.tgz#4d05cce558ded5c14dfa1516bbae3971747f9747"
@@ -2031,10 +2036,10 @@ markdown@~0.5.0:
   dependencies:
     nopt "~2.1.1"
 
-marked@>=0.3.18:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
-  integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
+marked@>=4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.10.tgz#423e295385cc0c3a70fa495e0df68b007b879423"
+  integrity sha512-+QvuFj0nGgO970fySghXGmuw+Fd0gD2x3+MqCWLIPf5oxdv1Ka6b2q+z9RP01P/IaKPMEramy+7cNy/Lw8c3hw==
 
 marked@^0.6.1:
   version "0.6.3"
